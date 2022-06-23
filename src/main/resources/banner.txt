@@ -8,6 +8,6 @@ ___) (___| )  \  || (___) || (____/\| (___) || )  \  ||\_)  )  | (___) || )   ( 
 \_______/|/    )_)(_______)(_______/(_______)|/    )_)(____/   (_______)|/     \|\_______/|/    )_)
   
    Title : ${application.title} 
-   version : ${application.version}
+   Version : ${application.version}
    Spring Boot version : ${spring-boot.version}}
 
