@@ -22,7 +22,7 @@ public class AuthController {
 	
 	@GetMapping("/login")
 	public String loadLoginPage() {
-		log.info("[ Call /login - GET ]");
+		log.info("[ Call /login - GET ]"); // ??? : 
 		return "login";
 	}
 	

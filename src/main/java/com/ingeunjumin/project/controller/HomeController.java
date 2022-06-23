@@ -17,7 +17,7 @@ public class HomeController {
 
 	@GetMapping("/home")
 	public String loadHomePage(ModelMap modelMap) {
-		log.info("[ Call /home - GET ]");
+		log.info("[ Call /home - GET ]"); // ??? : 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		AuthVO autoVO = (AuthVO) auth.getPrincipal();
 	    String userAuth = autoVO.getAuth();

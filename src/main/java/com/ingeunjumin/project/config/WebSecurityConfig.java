@@ -24,6 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Bean
+	// ??? : 
     public DaoAuthenticationProvider authenticationProvider(AuthService authService){
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(authService);
@@ -32,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
 	@Override
+	// ??? : 
 	protected void configure(AuthenticationManagerBuilder auth) {
 		auth.authenticationProvider(authenticationProvider(authService));
 	}
@@ -42,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 	
 	@Override
+	// HTTP 시큐리티 관련 보안 설정
     protected void configure(HttpSecurity http) throws Exception{
 		 http
 		 .authorizeRequests().antMatchers("/resources/static/*/**","/login","/join").permitAll()//security 대상에서 제외

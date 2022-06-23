@@ -29,9 +29,9 @@ public class AuthService implements UserDetailsService{
 	}
 
 	public int setUser(UsersVO usersVO) {
-		String password = usersVO.getUserPassword();
-		password = passwordEncoder.encode(password);
-		usersVO.setUserPassword(password);
+		String password = usersVO.getUserPassword(); // 파라미터값 비밀번호 get
+		password = passwordEncoder.encode(password); // 암호화
+		usersVO.setUserPassword(password); // 암호화된 패스워드 set
 		return usersMapper.insertUsers(usersVO);
 	}
 	
