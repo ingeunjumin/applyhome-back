@@ -1,0 +1,34 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- MyBatis에게 Mapper 경로를 적어야 한다. -->
+<mapper namespace="com.ingeunjumin.project.mapper.UsersMapper">
+	<insert id="insertUsers">
+		INSERT INTO users
+		(
+			user_id,
+			user_password,
+			user_name,
+			auth
+		)
+		VALUES
+		(
+			#{userId},
+			#{userPassword},
+			#{userName},
+			#{auth}
+		)
+	</insert>
+	
+	<select id="selectUserInfo" resultType="UsersVO">
+        SELECT
+            user_no AS userNo,
+            user_password AS userPassword,
+            user_id AS userId ,
+            user_name AS userName,
+            phone,
+            email,
+            auth
+        FROM users
+        WHERE user_id = #{userId}
+    </select>
+    
+</mapper>
