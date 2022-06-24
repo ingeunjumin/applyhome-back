@@ -50,3 +50,271 @@ insert into business_area(business_type,business_name,latitude,longitude)
 values("터미널","대전유성시외터미널","36.3562543","127.3304702");
 insert into business_area(business_type,business_name,latitude,longitude)
 values("터미널","대전서남부터미널","36.312983","127.388103");
+-- 백화점
+INSERT
+	INTO
+	business_area(business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"백화점",
+"신세계백화점 대전신세계아트앤사이언스",
+"36.3491042",
+"127.3786212"
+);
+INSERT
+	INTO
+	business_area(business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"백화점",
+"갤러리아 타임월드점",
+"36.3519543",
+"127.378167"
+);
+INSERT
+	INTO
+	business_area(business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"백화점",
+"세이백화점",
+"36.32063075",
+"127.4087991"
+);
+INSERT
+	INTO
+	business_area
+(
+business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"백화점",
+"롯데백화점 대전",
+"36.34062922",
+"127.3895614"
+);
+INSERT
+	INTO
+	business_area
+(
+business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"백화점",
+"NC중앙로역점",
+"36.32887487",
+"127.4250577"
+);
+-- 대형마트
+INSERT
+	INTO
+	business_area
+(
+business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"대형마트",
+"이마트 대전터미널점",
+"36.35031558",
+"127.4366939"
+);
+INSERT
+	INTO
+	business_area
+(
+business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"대형마트",
+"이마트 둔산점",
+"36.35637972",
+"127.3777635"
+);
+INSERT
+	INTO
+	business_area
+(
+business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"대형마트",
+"이마트트레이더스 월평점",
+"36.35770196",
+"127.3629207"
+);
+INSERT
+	INTO
+	business_area
+(
+business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"대형마트",
+"코스트코 대전점",
+"36.32400372",
+"127.403482"
+);
+INSERT
+	INTO
+	business_area
+(
+business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"대형마트",
+"홈플러스 유성점",
+"36.35840239",
+"127.3541716"
+);
+INSERT
+	INTO
+	business_area
+(
+business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"대형마트",
+"홈플러스 대전가오점",
+"36.30696782",
+"127.4579858"
+);
+INSERT
+	INTO
+	business_area
+(
+business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"대형마트",
+"홈플러스 동대전점",
+"36.35382427",
+"127.4373667"
+);
+INSERT
+	INTO
+	business_area
+(
+business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"대형마트",
+"홈플러스 서대전점",
+"36.31370882",
+"127.3189989"
+);
+INSERT
+	INTO
+	business_area
+(
+business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"대형마트",
+"홈플러스 문화점",
+"36.32029261",
+"127.4076959"
+);
+INSERT
+	INTO
+	business_area
+(
+business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"대형마트",
+"롯데마트 대덕점",
+"36.4269265",
+"127.3869794"
+);
+INSERT
+	INTO
+	business_area
+(
+business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"대형마트",
+"롯데마트 노은점",
+"36.38436007",
+"127.3215307"
+);
+INSERT
+	INTO
+	business_area
+(
+business_type,
+	business_name,
+	latitude,
+	longitude
+)
+VALUES
+(
+"대형마트",
+"롯데마트 서대전점",
+"36.3005094",
+"127.3247763"
+);
