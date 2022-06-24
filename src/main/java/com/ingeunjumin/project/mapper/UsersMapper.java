@@ -22,6 +22,7 @@ public interface UsersMapper {
 		 *comment : 특정 사용자 조회
 		 */
 	public UsersVO selectUserInfo(@Param("userId") String userId);
+	
 	/**
 		 * @Method Name : selectUsersAll
 		 * @return : List<Map<String,Object>>
@@ -31,6 +32,7 @@ public interface UsersMapper {
 		 *comment : 전체 사용자 조회
 		 */
 	public List<Map<String,Object>> selectUsersAll();
+	
 	/**
 		 * @Method Name : insertUsers
 		 * @return : int
@@ -40,6 +42,7 @@ public interface UsersMapper {
 		 *comment : 사용자 저장
 		 */
 	public int insertUser(UsersVO usersVO);
+	
 	/**
 		 * @Method Name : deleteUsers
 		 * @return : int
@@ -49,6 +52,7 @@ public interface UsersMapper {
 		 *comment : 사용자 삭제
 		 */
 	public int deleteUser(@Param("userNo") int userNo);
+	
 	/**
 		 * @Method Name : updateUsers
 		 * @return : int
