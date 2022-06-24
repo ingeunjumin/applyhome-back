@@ -1,7 +1,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- MyBatis에게 Mapper 경로를 적어야 한다. -->
 <mapper namespace="com.ingeunjumin.project.mapper.UsersMapper">
-	<insert id="insertUsers">
+	
+	<select id="selectUserInfo" resultType="UsersVO">
+        SELECT
+            user_no AS userNo,
+            user_password AS userPassword,
+            user_id AS userId ,
+            user_name AS userName,
+            phone,
+            email,
+            auth
+        FROM users
+        WHERE user_id = #{userId}
+    </select>
+    
+    <!-- 전체 사용자 조회 -->
+    <select id="selectUsersAll" resultType="UsersVO">
+        SELECT
+            user_no AS userNo,
+            user_password AS userPassword,
+            user_id AS userId ,
+            user_name AS userName,
+            phone,
+            email,
+            auth
+        FROM users
+    </select>
+    
+    <!-- 사용자 추가 -->
+	<insert id="insertUser">
 		INSERT INTO users
 		(
 			user_id,
@@ -18,17 +46,25 @@
 		)
 	</insert>
 	
-	<select id="selectUserInfo" resultType="UsersVO">
-        SELECT
-            user_no AS userNo,
-            user_password AS userPassword,
-            user_id AS userId ,
-            user_name AS userName,
-            phone,
-            email,
-            auth
-        FROM users
-        WHERE user_id = #{userId}
-    </select>
+    <!-- 특정 사용자 삭제 -->
+    <delete id="deleteUser">
+	DELETE 
+		FROM users
+	WHERE 
+		user_no = #{userNo}
+	</delete>
+	
+	<!-- 특정 사용자 업데이트 -->
+	<update id="updateUser">
+	UPDATE users
+	SET user_no = #{userNo}
+	<if test="userId != null">userId = #{userId}</if>
+	<if test="userPassword != null">userPassword = #{userPassword}</if>
+	<if test="userName != null">userName = #{userName}</if>
+	<if test="phone != null">phone = #{phone}</if>
+	<if test="email != null">email = #{email}</if>
+	<if test="auth != null">auth = #{auth}</if>
+	WHERE user_no = #{userNo}
+	</update>
     
 </mapper>
