@@ -70,20 +70,19 @@
 	</delete>
 	
 	<!-- 특정 사용자 업데이트 -->
-	<!-- 
-		- prifix = tirm 안에있는 모든 문자열의 앞에 붙여줄 문자열을 입력하는 곳
-		- suffixOverrides = trim 안에있는 모든 문자열의 조건문을 판별해서 입력된 문자열의 맨 끝에서부터 찾아서 지워줄 문자열을 입력하는 곳 
-	-->
 	<update id="updateUser">
 	UPDATE users
-	<trim prefix="SET" suffixOverrides=",">
-	<if test="userId != null">userId = #{userId},</if>
-	<if test="userPassword != null">userPassword = #{userPassword},</if>
-	<if test="userName != null">userName = #{userName},</if>
-	<if test="phone != null">phone = #{phone},</if>
-	<if test="email != null">email = #{email},</if>
-	<if test="auth != null">auth = #{auth},</if>
-	</trim>
+	SET 
+		userName = #{userName}
+	<if test="userId != null">
+		,userId = #{userId}
+	</if>
+	<if test="phone != null">
+		,phone = #{phone}
+	</if>
+	<if test="email != null">
+		,email = #{email}
+	</if>
 	WHERE user_no = #{userNo}
 	</update>
     
