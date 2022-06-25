@@ -8,8 +8,22 @@ CREATE TABLE IF NOT EXISTS users(
     user_name VARCHAR(20) COMMENT '회원 이름',
     phone VARCHAR(20) COMMENT '회원 핸드폰 번호',
     email VARCHAR(30) COMMENT '회원 이메일',
-    auth VARCHAR(20) COMMENT '회원 권한',
     create_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '가입 날짜'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 권한 테이블
+CREATE TABLE IF NOT EXISTS auth_authority(
+   role_id INTEGER(4) AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT '권한 번호',
+   role_name VARCHAR(20) COMMENT '권한 이름',
+   role_description VARCHAR(30) COMMENT '권한 설명'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 유저 권한 테이블
+CREATE TABLE IF NOT EXISTS auth_users_authority(
+    user_no INTEGER(4) NOT NULL COMMENT '회원 번호',
+    role_id INTEGER(4) NOT NULL COMMENT '권한 번호',
+    FOREIGN KEY (user_no) REFERENCES users (user_no) ON DELETE CASCADE,
+    FOREIGN KEY (role_id) REFERENCES auth_authority (role_id) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- 주변 상권 테이블
@@ -37,25 +51,14 @@ CREATE TABLE IF NOT EXISTS apartments(
 	apartments_no INTEGER(8) AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT '아파트 번호',
 	apartments_name VARCHAR(50) COMMENT '아파트명',
 	addr VARCHAR(50) COMMENT '아파트 도로명 주소',
+	gu VARCHAR(20) COMMENT '구 이름',
 	dong_count INTEGER(4) COMMENT '동수',
 	sedae_count INTEGER(4) COMMENT '세대수',
 	latitude VARCHAR(40) COMMENT '위도',
 	longitude VARCHAR(40) COMMENT '경도',
 	is_sold BOOLEAN COMMENT '분양예정 여부',
-	create_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '데이터 생성 날짜'
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 아파트 정보 테이블
-CREATE TABLE IF NOT EXISTS apartments_info(
-	apartments_info_no INTEGER(8) AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT '아파트 정보 번호',
-	apartments_no INTEGER(8) COMMENT '아파트 번호',
-	dong VARCHAR(10) COMMENT '아파트 동',
-	footage VARCHAR(10) COMMENT '아파트 평수(ex: 24평 32평)',
-	apartments_type VARCHAR(20) COMMENT '아파트 타입',
-	apartments_img VARCHAR(150) COMMENT '평수 사진 이미지',
-	max_floor VARCHAR(10) COMMENT '아파트 최고 층',
-	create_at DATETIME COMMENT '아파트 건립날짜',
-	CONSTRAINT apartments_info_id_fk FOREIGN KEY (apartments_no) REFERENCES apartments(apartments_no) ON DELETE CASCADE
+	price INTEGER(4) COMMENT '아파트 가격',
+	create_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '아파트 건립날짜'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- 아파트 매매 거래 내역 테이블
@@ -78,4 +81,5 @@ CREATE TABLE IF NOT EXISTS history_rent_contract(
 	CONSTRAINT history_rent_contract_id_fk FOREIGN KEY (apartments_no) REFERENCES apartments(apartments_no) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
+-- ALTER TABLE apartments ADD gu VARCHAR(20);
+-- ALTER TABLE apartments ADD price INTEGER(4);

@@ -2,18 +2,32 @@
 <!-- MyBatis에게 Mapper 경로를 적어야 한다. -->
 <mapper namespace="com.ingeunjumin.project.mapper.UsersMapper">
 	
+	<!-- 사용자 조회 -->
 	<select id="selectUserInfo" resultType="UsersVO">
         SELECT
             user_no AS userNo,
             user_password AS userPassword,
             user_id AS userId ,
-            user_name AS userName,
+            user_name AS name,
             phone,
-            email,
-            auth
+            email
         FROM users
         WHERE user_id = #{userId}
     </select>
+    
+    <!-- 사용자 권한 조회 -->
+    <select id="selectUserAuth" resultType="AuthorityVO">
+		SELECT
+            a.role_id AS id,
+            a.role_name AS roleCode,
+            a.role_description AS roleDescription
+        FROM users AS u
+        INNER JOIN auth_users_authority AS au
+        	ON au.user_no = u.user_no 
+        INNER JOIN auth_authority as a
+        	ON a.role_id = au.role_id
+        WHERE user_id = #{userId}
+	</select>
     
     <!-- 전체 사용자 조회 -->
     <select id="selectUsersAll" resultType="UsersVO">
@@ -23,8 +37,7 @@
             user_id AS userId ,
             user_name AS userName,
             phone,
-            email,
-            auth
+            email
         FROM users
     </select>
     
@@ -35,14 +48,16 @@
 			user_id,
 			user_password,
 			user_name,
-			auth
+			phone,
+			email	
 		)
 		VALUES
 		(
 			#{userId},
 			#{userPassword},
-			#{userName},
-			#{auth}
+			#{name},
+			#{phone},
+			#{email}
 		)
 	</insert>
 	

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.ingeunjumin.project.vo.AuthorityVO;
 import com.ingeunjumin.project.vo.UsersVO;
 
 @Mapper
@@ -22,6 +23,16 @@ public interface UsersMapper {
 		 *comment : 특정 사용자 조회
 		 */
 	public UsersVO selectUserInfo(@Param("userId") String userId);
+	
+	
+	/**
+	 * @param userId
+	 * @return
+	 * @author : Sangwon Hyun
+	 * @date : 2022. 6. 25.
+	 * comment : 특정 사용자 권한 조회
+	 */
+	public List<AuthorityVO> selectUserAuth(@Param("userId") String userId);
 	
 	/**
 		 * @Method Name : selectUsersAll
@@ -62,4 +73,5 @@ public interface UsersMapper {
 		 *comment : 사용자 수정
 		 */
 	public int updateUser(@RequestBody UsersVO userVo);
+	
 }

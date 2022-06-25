@@ -3,7 +3,6 @@ package com.ingeunjumin.project.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -20,22 +19,15 @@ import com.ingeunjumin.project.service.AuthService;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
     private AuthService authService;
-	@Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Bean
-	// ??? : 
-    public DaoAuthenticationProvider authenticationProvider(AuthService authService){
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(authService);
-        authenticationProvider.setPasswordEncoder(bCryptPasswordEncoder);
-        return authenticationProvider;
-    }
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 	@Override
-	// ??? : 
-	protected void configure(AuthenticationManagerBuilder auth) {
-		auth.authenticationProvider(authenticationProvider(authService));
+	protected void configure(AuthenticationManagerBuilder auth)throws Exception {
+		auth.userDetailsService(authService).passwordEncoder(passwordEncoder());
 	}
 
 	@Override

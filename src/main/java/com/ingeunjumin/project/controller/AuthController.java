@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ingeunjumin.project.service.AuthService;
+import com.ingeunjumin.project.service.UserService;
 import com.ingeunjumin.project.vo.UsersVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AuthController {
 	
 	@Autowired
-	private AuthService authService;
+	private UserService userService;
 	
 	@GetMapping("/login")
 	public String loadLoginPage() {
@@ -31,11 +31,12 @@ public class AuthController {
 	
 	@GetMapping("/usersAll")
 	public List<Map<String, Object>> callUsersAll(){
-		return authService.getUsersAllList();
+		return userService.getUsersAllList();
 	}
 	
 	@PostMapping("/join")
 	public @ResponseBody int callJoin(@RequestBody UsersVO usersVO) {
-		return authService.setUser(usersVO);
+		return userService.setUser(usersVO);
 	}
+	
 }

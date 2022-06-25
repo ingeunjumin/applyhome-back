@@ -12,7 +12,11 @@
   </head>
   <body>
     Hello World!
-    <h3>권한 : ${userAuth}</h3>
-	<h3>사용자 이름 : ${userName}</h3>
+    <c:forEach items="${auth}" var="item">
+    	<h3>권한 : ${item.roleCode}</h3>
+    	<h3>권한 설명 : ${item.roleDescription}</h3>
+    </c:forEach>
+    
+	<h3>사용자 이름 : ${name}</h3>
   </body>
 </html>
