@@ -1,5 +1,5 @@
 -- api_test
-CREATE TABLE IF NOT EXISTS api_test(
+CREATE TABLE IF NOT EXISTS open_data(
 apt_no INT(5) AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT '매매 번호',
 deal_amount varchar(20) COMMENT '거래금액',
 build_year varchar(5) COMMENT '건축년도',
