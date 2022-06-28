@@ -50,36 +50,22 @@ CREATE TABLE IF NOT EXISTS statistics_sale_price(
 CREATE TABLE IF NOT EXISTS apartments(
 	apartments_no INTEGER(8) AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT '아파트 번호',
 	apartments_name VARCHAR(50) COMMENT '아파트명',
-	addr VARCHAR(50) COMMENT '아파트 도로명 주소',
-	gu VARCHAR(20) COMMENT '구 이름',
-	dong_count INTEGER(4) COMMENT '동수',
-	sedae_count INTEGER(4) COMMENT '세대수',
+	price INTEGER(4) COMMENT '아파트 가격',
+	addr VARCHAR(50) COMMENT '아파트 도로명(지번) 주소',
+	gu VARCHAR(20) COMMENT '구 이름(법정구)',
+	dong VARCHAR(20) COMMENT '동 이름(법정동)',
 	latitude VARCHAR(40) COMMENT '위도',
 	longitude VARCHAR(40) COMMENT '경도',
-	is_sold BOOLEAN COMMENT '분양예정 여부',
-	price INTEGER(4) COMMENT '아파트 가격',
 	create_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '아파트 건립날짜'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- 아파트 매매 거래 내역 테이블
 CREATE TABLE IF NOT EXISTS history_sale_contract(
-	sale_contract_no BIGINT(20) AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT '매매 계약 번호',
+	sale_contract_no BIGINT(20) AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT '매매 번호',
 	apartments_no INTEGER(8) COMMENT '아파트 번호',
-	sale_type VARCHAR(20) COMMENT '매매 타입(직거래 인지 아닌지)',
-	sale_price INTEGER(4) COMMENT '매매 가격',
-	create_at DATETIME COMMENT '계약날짜',
+	sale_price INTEGER(4) COMMENT '거래금액',
+	create_at DATETIME COMMENT '계약 일',
 	CONSTRAINT history_sale_contract_id_fk FOREIGN KEY (apartments_no) REFERENCES apartments(apartments_no) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 아파트 전/월세 내역 테이블
-CREATE TABLE IF NOT EXISTS history_rent_contract(
-	rent_contract_no BIGINT(20) AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT '전/월세 계약 번호',
-	apartments_no INTEGER(8) COMMENT '아파트 번호',
-	rent_type VARCHAR(20) COMMENT '타입 (전세, 월세)',
-	rent_price INTEGER(4) COMMENT '전/월세 가격',
-	create_at DATETIME COMMENT '계약날짜',
-	CONSTRAINT history_rent_contract_id_fk FOREIGN KEY (apartments_no) REFERENCES apartments(apartments_no) ON DELETE CASCADE
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ALTER TABLE apartments ADD gu VARCHAR(20);
--- ALTER TABLE apartments ADD price INTEGER(4);
+-- ALTER TABLE 테이블이름 ADD 컬럼명 VARCHAR(20);

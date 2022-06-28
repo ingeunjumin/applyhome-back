@@ -15,6 +15,11 @@ import com.ingeunjumin.project.vo.UsersVO;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author sangwon Hyun
+ * @date 2022. 6. 28.
+ * @comment : 홈화면 컨트롤러
+ */
 @Controller
 @Slf4j
 public class HomeController {

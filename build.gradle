@@ -19,26 +19,28 @@ repositories {
 }
 
 dependencies {
-	// spring security
+	//Spring security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
-	// Session
+	//Session
 	implementation 'org.springframework.session:spring-session-core'
 	compileOnly 'org.projectlombok:lombok'
-	// devtools
+	//devtools
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	// MySQL
+	//MySQL
 	runtimeOnly 'mysql:mysql-connector-java'
 	//lombok
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
-	// JSP다운로드
+	//JSP다운로드
 	implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
 	implementation 'javax.servlet:jstl'
-	//PageHanlder(라이브러리)
+	//PageHanlder
 	implementation group: 'com.github.pagehelper', name: 'pagehelper-spring-boot-starter', version: '1.4.2'
+	//excel
+	implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.2.2'
 }
 
 tasks.named('test') {
