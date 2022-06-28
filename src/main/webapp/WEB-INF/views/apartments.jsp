@@ -33,7 +33,7 @@
             </svg>
 			</a></li>
 
-			<li class="nav-item"><a href="/members" class="nav-link">
+			<li class="nav-item"><a href="/member" class="nav-link">
 					<svg aria-hidden="true" focusable="false" data-prefix="fad"
 						data-icon="cat" role="img" xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 512 512" class="svg-inline--fa fa-cat fa-w-16 fa-9x">
@@ -63,8 +63,8 @@
             </svg> <span class="link-text">Apartments</span>
 			</a></li>
 
-			<li class="nav-item"><a href="/saleContent"
-				class="nav-link"> <svg aria-hidden="true" focusable="false"
+			<li class="nav-item"><a href="/saleContent"class="nav-link">
+				 <svg aria-hidden="true" focusable="false"
 						data-prefix="fad" data-icon="space-station-moon-alt" role="img"
 						xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
 						class="svg-inline--fa fa-space-station-moon-alt fa-w-16 fa-5x">

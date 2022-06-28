@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MembersController {
 	
-	@GetMapping("/members")
+	@GetMapping("/member")
 	public String callMembersPage() {
 		return "member";
 	}
