@@ -74,4 +74,14 @@ public interface UsersMapper {
 		 */
 	public int updateUser(@RequestBody UsersVO userVo);
 	
+	
+	/**
+		 * @Method Name : selectUsersNo
+		 * @return : UsersVO
+		 * @author : geunhwan Ryu
+		 * @date : 2022. 6. 29.
+		 * @upDate : 
+		 *comment : 특정 계정 조회
+		 */
+	public UsersVO selectUserNo(@Param("userNo") int userNo);
 }

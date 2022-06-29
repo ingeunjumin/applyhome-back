@@ -19,6 +19,10 @@ public class UsersVO implements UserDetails{
 	private String phone;
 	private String email;
 	private String createAt;
+	private String postalCode;
+	private String address;
+	private int roleId;
+	private String roleName;
 	private List<AuthorityVO> authorities;
 	
 	@Override

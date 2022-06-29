@@ -32,13 +32,20 @@
     <!-- 전체 사용자 조회 -->
     <select id="selectUsersAll" resultType="UsersVO">
         SELECT
-            user_no AS userNo,
-            user_password AS userPassword,
-            user_id AS userId ,
-            user_name AS userName,
-            phone,
-            email
-        FROM users
+            u.user_no AS userNo,
+            u.user_password AS userPassword,
+            u.user_id AS userId ,
+            u.user_name AS name,
+            u.phone,
+            u.email,
+            DATE_FORMAT(u.create_at, "%Y-%m-%d") AS createAt,
+            aa.role_name AS roleName
+        FROM users u LEFT JOIN auth_users_authority aua 
+		ON 
+			u.user_no = aua.user_no 
+		LEFT JOIN auth_authority aa 
+		ON 
+			aua.role_id =aa.role_id 
     </select>
     
     <!-- 사용자 추가 -->
@@ -85,5 +92,21 @@
 	</if>
 	WHERE user_no = #{userNo}
 	</update>
+	
+	<!-- 특정사용자 조회 -->
+	<select id="selectUserNo" resultType="UsersVO">
+	SELECT
+		 user_no AS userNo,
+		 user_name AS name,
+		 user_id AS userId,
+		 phone,
+		 email,
+		 address,
+		 postal_code AS postalCode
+	FROM 
+		users u 
+	WHERE 
+		user_no = #{userNo}
+	</select>
     
 </mapper>

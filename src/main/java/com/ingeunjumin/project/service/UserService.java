@@ -35,4 +35,8 @@ public class UserService {
 		return usersMapper.selectUserAuth(userId);
 	}
 	
+	public UsersVO getSelecteUserNo(int usersNo) {
+		return usersMapper.selectUserNo(usersNo);
+	}
+	
 }
