@@ -14,6 +14,11 @@
 	<main>
 		<div class="container">
 			<h1>Home</h1>
+			<h3>이름 : ${name}</h3>
+			<c:forEach items="${auth}" var="item">
+					<h3>권한 : ${item.roleCode}</h3>
+					<h3>권한 설명 : ${item.roleDescription}</h3>
+			</c:forEach>
 		</div>
 	</main>
 	<script defer src="/resources/static/js/theme.js"></script>

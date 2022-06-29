@@ -7,7 +7,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ingeunjumin.project.service.UserService;
 import com.ingeunjumin.project.vo.AuthorityVO;
@@ -27,7 +28,7 @@ public class HomeController {
 	@Autowired
 	private UserService UserService;
 	
-	@GetMapping("/home")
+	@RequestMapping(value = {"/home", "/"} , method = RequestMethod.GET)
 	public String loadHomePage(ModelMap modelMap) {
 		log.info("[ Call /home - GET ]"); 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -40,4 +41,5 @@ public class HomeController {
 	    modelMap.addAttribute("auth",vo.getAuthorities());
 		return "home";
 	}
+	
 }
