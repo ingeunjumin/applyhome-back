@@ -1,7 +1,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- MyBatis에게 Mapper 경로를 적어야 한다. -->
 <mapper namespace="com.ingeunjumin.project.mapper.ApartmentsMapper">
-	
+		<select id="ApartmentsAllList" resultType="map">
+			SELECT
+				apartments_no,
+				apartments_name,
+				price,
+				addr,
+				gu,
+				DATE_FORMAT(create_at,'%Y') AS createAt,
+				latitude,
+				longitude
+			FROM apartments 
+		</select>
+		
+		<select id="SelectApartments" resultType="map">
+			SELECT
+				apartments_name,
+				price,
+				addr,
+				gu,
+				DATE_FORMAT(create_at,'%Y') AS createAt,
+				latitude,
+				longitude
+			FROM apartments
+			WHERE apartments_no = ${apartments_no}
+		</select>
 
     
 </mapper>

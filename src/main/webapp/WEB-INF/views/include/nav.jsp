@@ -36,7 +36,7 @@
             </svg> <span class="link-text">Members</span>
 			</a></li>
 
-			<li class="nav-item"><a href="/apartments" class="nav-link">
+			<li class="nav-item"><a href="/apartments?pageNum=1&pageSize=10" class="nav-link">
 					<svg aria-hidden="true" focusable="false" data-prefix="fad"
 						data-icon="alien-monster" role="img"
 						xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"

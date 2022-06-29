@@ -34,7 +34,29 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+						
+							<c:choose>	 		
+					 			<c:when test="${fn:length(pageHelper.list) > 0}">
+					 				<c:forEach items="${pageHelper.list}" var="item">	
+						 				<tr onclick="getApartmentsWrapper(${item.apartments_no})">
+								    		<td>${item.apartments_no}</td>
+								    		<td>${item.apartments_name}</td>
+								    		<td>${item.addr}</td>
+								    		<td>${item.gu}</td>
+								    		<td>${item.price}</td>
+								    		<td>${item.create_at}</td>			    							    			
+				  						</tr>
+									</c:forEach>
+					 			</c:when>
+					 			
+					 			<c:otherwise>
+					 				<tr>
+					 					<td colspan="6">데이터가 없습니다.</td>
+					 				</tr>
+					 			</c:otherwise>
+					 		</c:choose>
+					 		
+							<!-- <tr>
 								<td>1</td>
 								<td>대주파크빌</td>
 								<td>대전 충정로 136</td>
@@ -57,12 +79,23 @@
 								<td>동구</td>
 								<td>34,500</td>
 								<td>2022-06-27</td>
-							</tr>
+							</tr> -->
 						</tbody>
 					</table>
 					<div class="pagination">
-						<a href="#">Previous</a> <a href="#">1</a> <a href="#">2</a> <a
-							href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">Next</a>
+						<c:if test="${pageHelper.hasPreviousPage}">
+				          	<a onclick="getApartmentsList(${pageHelper.pageNum-1},10)">Previous</a>
+				          </c:if>
+				          <c:forEach begin="${pageHelper.navigateFirstPage}" end="${pageHelper.navigateLastPage}"  var="pageNum">
+				          	<a id="pageNum${pageNum}"  onclick="getApartmentsList(${pageNum},10)">${pageNum}</a>
+				          </c:forEach>
+				          <c:if test="${pageHelper.hasNextPage}">
+				          	<a onclick="getApartments(${pageHelper.pageNum+1},10)">Next</a>
+				          </c:if>
+				          
+				          <input id="nowPageNum" type="hidden" value="${pageHelper.pageNum}">
+						<!--  <a href="#">Previous</a> <a href="#">1</a> <a href="#">2</a> <a
+							href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">Next</a>-->
 					</div>
 				</div>
 				<!--data-container end-->
@@ -71,19 +104,19 @@
 						<div class="title">아파트 정보</div>
 						<div class="form">
 							<div class="inputfield">
-								<label>아파트 이름 :</label> <input type="text" class="input" />
+								<label>아파트 이름 :</label> <input id="apartmentsName" type="text" class="input" />
 							</div>
 							<div class="inputfield">
-								<label>도로명 주소 :</label> <input type="text" class="input" />
+								<label>도로명 주소 :</label> <input id="addr" type="text" class="input" />
 							</div>
 							<div class="inputfield">
-								<label>최근 매매 가격 :</label> <input type="password" class="input" />
+								<label>최근 매매 가격 :</label> <input id="price" type="text" class="input" />
 							</div>
 							<div class="inputfield">
 								<label>난방방식 :</label> <input type="password" class="input" />
 							</div>
 							<div class="inputfield">
-								<label>건축 년도 :</label> <input type="password" class="input" />
+								<label>건축 년도 :</label> <input id="createAt" type="text" class="input" />
 							</div>
 							<div class="inputfield">
 								<label>동 수 :</label> <input type="text" class="input" />
@@ -116,5 +149,55 @@
 		</div>
 	</main>
 	<script defer src="/resources/static/js/theme.js"></script>
+	
+	<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+	></script>
+	<script
+	   type="text/javascript"
+	   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0fd0f8b5a2dc48f454d8049f912ec8b2"
+	></script>
+	
+	<script type="text/javascript">
+	
+	function getApartmentsList(pageNum, pageSize) {
+		location.href = "/apartments?pageNum=" + pageNum + "&pageSize=" + pageSize;
+	}
+	function getApartmentsWrapper(apartments_no){
+		$.ajax({
+			url : "/apartments/"+ apartments_no ,
+			type : 'GET',
+			dataType: "json",
+			success : function(response) {
+				console.log(response)
+				$('#apartmentsName').val(response.apartments_name);
+				$('#addr').val(response.addr);
+				$('#price').val(response.price);
+				$('#createAt').val(response.createAt);
+				var latitude = response.latitude;
+		        var longitude = response.longitude;
+				console.log(latitude);
+		      	//카카오맵
+		        var mapContainer = document.getElementById("map"), // 지도를 표시할 div
+		        mapOption = {
+		            center: new kakao.maps.LatLng(longitude, latitude), // 지도의 중심좌표
+		            level: 3, // 지도의 확대 레벨
+		        };
+		        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		     // 마커가 표시될 위치입니다
+		        var markerPosition = new kakao.maps.LatLng(longitude, latitude);
+
+		        // 마커를 생성합니다
+		        var marker = new kakao.maps.Marker({
+		          position: markerPosition,
+		        });
+		        // 마커가 지도 위에 표시되도록 설정합니다
+		        marker.setMap(map);
+		    }
+		});
+	}
+	</script>
 </body>
 </html>

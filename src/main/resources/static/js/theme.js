@@ -20,3 +20,11 @@ function toggleTheme() {
 }
 
 document.getElementById('themeButton').onclick = toggleTheme;
+
+function getPageNum() {
+	var pageNum = $('#nowPageNum').val();
+	$("#pageNum" + pageNum).css("background-color", "black");
+	$("#pageNum" + pageNum).css("color", "#fff");
+}
+
+
