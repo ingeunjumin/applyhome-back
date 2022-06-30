@@ -88,7 +88,7 @@ public class MembersController {
 		 * @author : geunhwan Ryu
 		 * @date : 2022. 6. 30.
 		 * @upDate : 
-		 *comment : search 계정 조회
+		 *comment : search 계정 조회 (테스트)
 		 */
 	@GetMapping("/member/search")
 	public String callSearchUsers(ModelMap map , 
