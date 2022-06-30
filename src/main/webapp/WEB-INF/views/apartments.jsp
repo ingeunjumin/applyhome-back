@@ -167,7 +167,7 @@
 	function getApartmentsList(pageNum, pageSize) {
 	    var search = $("#searchBarHidden").val();
 		var controllUrl =
-			"/apartments/search?name="+search+"&pageNum="+pageNum+"&pageSize="+pageSize;
+			"/apartments/search?pageNum="+pageNum+"&pageSize="+pageSize;
 	    if (search != "null") {
 	    	controllUrl = 
 	    		"/apartments/search?name="+search+"&pageNum="+pageNum+"&pageSize="+pageSize;
@@ -270,7 +270,7 @@
 		if (key.keyCode == 13) {
 			var search = $('#searchBar').val().trim();//input에 작성한 작성자를 가져옴
 			if (search != '') {
-				location.href="/apartments/search?writer="+search+"&pageNum="+pageNum+"&pageSize="+pageSize
+				location.href="/apartments/search?name="+search+"&pageNum="+pageNum+"&pageSize="+pageSize
 			}
 		}
 	});
