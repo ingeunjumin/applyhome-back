@@ -21,6 +21,7 @@ function toggleTheme() {
 
 document.getElementById('themeButton').onclick = toggleTheme;
 
+getPageNum()
 function getPageNum() {
 	var pageNum = $('#nowPageNum').val();
 	$("#pageNum" + pageNum).css("background-color", "black");

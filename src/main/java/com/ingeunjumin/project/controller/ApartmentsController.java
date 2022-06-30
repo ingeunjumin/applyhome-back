@@ -3,13 +3,13 @@ package com.ingeunjumin.project.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
 import com.ingeunjumin.project.service.ApartmentsService;
+import com.ingeunjumin.project.vo.ApartmentsVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,20 +36,67 @@ public class ApartmentsController {
 	public String callApartmentsPage(ModelMap map, @RequestParam("pageNum") int pageNum,
 			@RequestParam("pageSize") int pageSize) {
 		
-		List<Map<String, Object>> list = apartmentsService.getApartmaentsAllList(pageNum, pageSize);
-		PageInfo<Map<String, Object>> pageInfo = new PageInfo<Map<String, Object>>(list);
+		log.info("[ Call /apartments - GET ]");
+		List<ApartmentsVO> list = apartmentsService.getApartmaentsAllList(pageNum, pageSize);
+		PageInfo<ApartmentsVO> pageInfo = new PageInfo<ApartmentsVO>(list);
 		map.addAttribute("pageHelper", pageInfo);
 		
 		return "apartments";
 	}
 	
 	
-	@RequestMapping(value="/apartments/{apartment_no}", method = {RequestMethod.GET})
+	/**
+	 * @param apartmentNo
+	 * @return
+	 * @author : In Seok
+	 * @Date : 2022. 6. 30.
+	 * comment : 아파트번호 클릭시 apartmentsNo넘에 맞는 정보 출력
+	 */
 	@ResponseBody
-	public Map<String, Object> callSelectApartments(@PathVariable("apartment_no") int apartment_no) {
-		return apartmentsService.getSelectApartmaents(apartment_no);
+	@GetMapping("/apartments/{apartmentsNo}")
+	public ApartmentsVO callSelectApartments(@PathVariable("apartmentsNo") int apartmentNo) {
+		log.info("[ Call /apartments/"+apartmentNo+" - GET ]");
+		return apartmentsService.getSelectApartmaents(apartmentNo);
 	}
-  	
 	
+	/**
+	 * @param apartmentsNo
+	 * @param vo
+	 * @return
+	 * @author : In Seok
+	 * @Date : 2022. 6. 29.
+	 * comment : 업데이트
+	 */
+	@ResponseBody
+	@PatchMapping("/apartments/{apartmentsNo}")
+  	public int updateApartments(@PathVariable("apartmentsNo")int apartmentsNo, @RequestBody ApartmentsVO vo) {
+		return apartmentsService.updateApartmaents(apartmentsNo, vo);
+	}
+	
+	/**
+	 * @param map
+	 * @param writer
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 * @author : In Seok
+	 * @Date : 2022. 6. 30.
+	 * comment : 아파트 검색!!
+	 */
+	@GetMapping("/apartments/search")
+	public String callBoardSearchPage(ModelMap map, @RequestParam("name") String name,
+			@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
+		log.info("[ Call /apartments/"+name+" - GET ]");
+		List<ApartmentsVO> list = apartmentsService.getSearchApartmentsList(name, pageNum, pageSize);
+		
+		String addSearcg = name;
+		map.addAttribute("search", addSearcg);
+		
+		PageInfo<ApartmentsVO> pageInfo = new PageInfo<ApartmentsVO>(list);
+		
+		map.addAttribute("pageHelper", pageInfo);
+		
+		return "apartments";
+	}
 
 }
