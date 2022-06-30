@@ -1,112 +1,150 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- MyBatis에게 Mapper 경로를 적어야 한다. -->
 <mapper namespace="com.ingeunjumin.project.mapper.UsersMapper">
-	
+
 	<!-- 사용자 조회 -->
 	<select id="selectUserInfo" resultType="UsersVO">
-        SELECT
-            user_no AS userNo,
-            user_password AS userPassword,
-            user_id AS userId ,
-            user_name AS name,
-            phone,
-            email
-        FROM users
-        WHERE user_id = #{userId}
-    </select>
-    
-    <!-- 사용자 권한 조회 -->
-    <select id="selectUserAuth" resultType="AuthorityVO">
 		SELECT
-            a.role_id AS id,
-            a.role_name AS roleCode,
-            a.role_description AS roleDescription
-        FROM users AS u
-        INNER JOIN auth_users_authority AS au
-        	ON au.user_no = u.user_no 
-        INNER JOIN auth_authority as a
-        	ON a.role_id = au.role_id
-        WHERE user_id = #{userId}
+			user_no AS userNo,
+			user_password AS userPassword,
+			user_id AS userId,
+			user_name AS name,
+			phone,
+			email
+		FROM 
+			users
+		WHERE 
+			user_id = #{userId}
 	</select>
-    
-    <!-- 전체 사용자 조회 -->
-    <select id="selectUsersAll" resultType="UsersVO">
-        SELECT
-            u.user_no AS userNo,
-            u.user_password AS userPassword,
-            u.user_id AS userId ,
-            u.user_name AS name,
-            u.phone,
-            u.email,
-            DATE_FORMAT(u.create_at, "%Y-%m-%d") AS createAt,
-            aa.role_name AS roleName
-        FROM users u LEFT JOIN auth_users_authority aua 
-		ON 
-			u.user_no = aua.user_no 
-		LEFT JOIN auth_authority aa 
-		ON 
-			aua.role_id =aa.role_id 
-    </select>
-    
-    <!-- 사용자 추가 -->
+
+	<!-- 사용자 권한 조회 -->
+	<select id="selectUserAuth" resultType="AuthorityVO">
+		SELECT
+			a.role_id AS id,
+			a.role_name AS roleCode,
+			a.role_description AS roleDescription
+		FROM 
+			users AS u
+			INNER JOIN auth_users_authority AS au
+			ON au.user_no = u.user_no
+			INNER JOIN auth_authority as a
+			ON a.role_id = au.role_id
+		WHERE 
+			user_id = #{userId}
+	</select>
+
+	<!-- 전체 사용자 조회 -->
+	<select id="selectUsersAll" resultType="UsersVO">
+		SELECT
+			u.user_no AS userNo,
+			u.user_password AS userPassword,
+			u.user_id AS userId ,
+			u.user_name AS name,
+			u.phone,
+			u.email,
+			DATE_FORMAT(u.create_at, "%Y-%m-%d") AS createAt,
+			aa.role_name AS roleName
+		FROM users u LEFT JOIN auth_users_authority aua
+		ON
+		u.user_no = aua.user_no
+		LEFT JOIN auth_authority aa
+		ON
+		aua.role_id =aa.role_id
+	</select>
+
+	<!-- 사용자 추가 -->
 	<insert id="insertUser">
 		INSERT INTO users
-		(
+			(
 			user_id,
 			user_password,
 			user_name,
 			phone,
-			email	
-		)
+			email
+			)
 		VALUES
-		(
+			(
 			#{userId},
 			#{userPassword},
 			#{name},
 			#{phone},
 			#{email}
-		)
+			)
 	</insert>
-	
-    <!-- 특정 사용자 삭제 -->
-    <delete id="deleteUser">
-	DELETE 
-		FROM users
-	WHERE 
-		user_no = #{userNo}
+
+	<!-- 특정 사용자 삭제 -->
+	<delete id="deleteUser">
+		DELETE
+		FROM 
+			users
+		WHERE
+			user_no = #{userNo}
 	</delete>
-	
+
 	<!-- 특정 사용자 업데이트 -->
 	<update id="updateUser">
-	UPDATE users
-	SET 
-		userName = #{userName}
-	<if test="userId != null">
-		,userId = #{userId}
-	</if>
-	<if test="phone != null">
-		,phone = #{phone}
-	</if>
-	<if test="email != null">
-		,email = #{email}
-	</if>
-	WHERE user_no = #{userNo}
+		UPDATE
+			users
+		SET
+				user_name = #{name}
+			<if test="userId != null">
+				,user_id = #{userId}
+			</if>
+			<if test="userPassword != null">
+				,user_password = #{userPassword}
+			</if>
+			<if test="phone != null">
+				,phone = #{phone}
+			</if>
+			<if test="email != null">
+				,email = #{email}
+			</if>
+			<if test="address != null">
+				,address = #{address}
+			</if>
+			<if test="postalCode != null">
+				,postal_code = #{postalCode}
+			</if>
+		WHERE
+			user_no = #{userNo}
 	</update>
-	
+
 	<!-- 특정사용자 조회 -->
 	<select id="selectUserNo" resultType="UsersVO">
-	SELECT
-		 user_no AS userNo,
-		 user_name AS name,
-		 user_id AS userId,
-		 phone,
-		 email,
-		 address,
-		 postal_code AS postalCode
-	FROM 
-		users u 
-	WHERE 
-		user_no = #{userNo}
+		SELECT
+			user_no AS userNo,
+			user_name AS name,
+			user_id AS userId,
+			phone,
+			email,
+			address,
+			postal_code AS postalCode
+		FROM
+			users u
+		WHERE
+			user_no = #{userNo}
 	</select>
-    
+	
+	<select id="selectSearchUsers" resultType="map">
+		SELECT
+			u.user_no AS userNo,
+			u.user_password AS userPassword,
+			u.user_id AS userId ,
+			u.user_name AS name,
+			u.phone,
+			u.email,
+			DATE_FORMAT(u.create_at, "%Y-%m-%d") AS createAt,
+			aa.role_name AS roleName
+		FROM users u LEFT JOIN auth_users_authority aua
+		ON
+		u.user_no = aua.user_no
+		LEFT JOIN auth_authority aa
+		ON
+		aua.role_id =aa.role_id
+		WHERE 
+			u.user_name LIKE CONCAT('%',#{search},'%') or u.user_id LIKE CONCAT('%',#{search},'%')
+	</select>
+
+
+
 </mapper>

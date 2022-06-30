@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ingeunjumin.project.mapper.UsersMapper;
 import com.ingeunjumin.project.vo.AuthorityVO;
@@ -37,6 +38,19 @@ public class UserService {
 	
 	public UsersVO getSelecteUserNo(int usersNo) {
 		return usersMapper.selectUserNo(usersNo);
+	}
+	
+	@Transactional(rollbackFor = {Exception.class})
+	public int getUpdateUser(UsersVO vo) {
+		String password = vo.getUserPassword();
+		password = passwordEncoder.encode(password);
+		vo.setUserPassword(password);
+		return usersMapper.updateUser(vo);
+	}
+	
+	public List<Map<String, Object>> getSelectSearchUsers(String search){
+		System.out.println("search =>>> "+search);
+		return usersMapper.selectSearchUsers(search);
 	}
 	
 }

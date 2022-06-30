@@ -84,4 +84,15 @@ public interface UsersMapper {
 		 *comment : 특정 계정 조회
 		 */
 	public UsersVO selectUserNo(@Param("userNo") int userNo);
+	
+	
+	/**
+		 * @Method Name : selectSearchUsers
+		 * @return : List<Map<String,Object>>
+		 * @author : geunhwan Ryu
+		 * @date : 2022. 6. 30.
+		 * @upDate : 
+		 *comment : search users
+		 */
+	public List<Map<String, Object>> selectSearchUsers(String search);
 }

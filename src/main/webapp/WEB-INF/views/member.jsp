@@ -17,7 +17,8 @@
 			<!-- search -->
 			<div class="search">
 				<label> <input id="searchBar" type="text"
-					placeholder="검색어 입력..." />
+					placeholder="ID 또는 이름 입력..." />
+				<input id="keyword" type="hidden" value="">
 				</label>
 			</div>
 			<div class="row">
@@ -86,11 +87,12 @@
 								<label>ID :</label> <input type="text" class="input" id="userId" />
 							</div>
 							<div class="inputfield">
-								<label>Password</label> <input type="password" class="input" />
+								<label>Password</label> <input type="password" class="input"
+									id="password" />
 							</div>
 							<div class="inputfield">
 								<label>Confirm Password</label> <input type="password"
-									class="input" />
+									class="input" id="confirmPassword" />
 							</div>
 							<div class="inputfield">
 								<label>Authority</label>
@@ -113,21 +115,22 @@
 							</div>
 							<div class="inputfield" id="address">
 								<label>Address</label>
-								<textarea class="textarea" onclick="getPostCode()"></textarea>
+								<textarea class="textarea" onclick="getPostCode()" id="address"></textarea>
 							</div>
 							<div class="inputfield">
 								<label>Postal Code</label> <input type="text" class="input"
 									id="postalCode" onclick="getPostCode()" />
 							</div>
 							<div class="inputfield terms">
-								<label class="check"> <input type="checkbox" /> <span
-									class="checkmark"></span>
+								<label class="check"> <input type="checkbox"
+									checked="checked" id="checkbox" /> <span class="checkmark" id="checkbox"></span>
 								</label>
 								<p>Agreed to terms and conditions</p>
 							</div>
 							<div class="inputfield">
-								<input type="submit" value="수정하기" class="btn" /> <input
-									id="userNoHidden" type="hidden" value="">
+								<input type="submit" value="수정하기" class="btn"
+									onclick="userUpdate()" /> \ <input id="userNoHidden"
+									type="hidden" value="">
 							</div>
 						</div>
 					</div>
@@ -161,34 +164,87 @@
 				$('#userId').val(response.userId);
 				$('#email').val(response.email);
 				$('#phone').val(response.phone);
-				$('#address').val(response.address);
+				$('textarea#address').val(response.address);
 				$('#postalCode').val(response.postalCode);
 			}
 		})
 	}
+	// 특정 계정 수정하기
 	
-	//UPDATE @PatchMapping("/member/update/{userNo}")
-	// var jsonData = { }
-	/*
-	var userNo = $('#userNoHidden').val();
-	$.ajax({
-         url : '/member/update/'+userNo,
-         type : 'PATCH',
-         contentType : 'application/json',//서버에 json타입으로 보낼 예정(요청).
-         dataType : 'json', //서버결과를 json으로 응답받겠다.
-         data : JSON.stringify(jsonData),
-         success: function(response){
-        	 if(response > 0){
-        		 
-        	 }
-         }
-	})
-         */
+		function userUpdate(){
+			var userNo = $('#userNoHidden').val().trim();
+			var name = $('#name').val().trim();
+			var userId = $('#userId').val().trim();
+			var password = $('#password').val().trim();
+			var userPassword = $('#confirmPassword').val().trim();
+			var phone = $('#phone').val().trim();
+			var email = $('#email').val().trim();
+			var address = $('textarea#address').val().trim(); //textarea 값 가져오기
+			var postalCode = $('#postalCode').val().trim();
+			
+			var jsonData = {
+					userNo : userNo,
+					name : name,
+					userId : userId,
+					userPassword : userPassword,
+					phone : phone,
+					email : email,
+					address : address,
+					postalCode : postalCode
+			}
+		if(name != "" && userId != "" && phone != "" && email != "" && address != "" && postalCode != ""){// 빈값 여부 확인
+				if(password == userPassword){
+					$('#confirmPassword').css('color','green');
+					if($('#checkbox').is(':checked')){ // 체크 여부 확인
+						if(confirm("수정하시겠습니까?")){
+								$.ajax({
+							         url : '/member/update',
+							         type : 'PATCH',
+							         contentType : 'application/json',//서버에 json타입으로 보낼 예정(요청).
+							         dataType : 'json', //서버결과를 json으로 응답받겠다.
+							         data : JSON.stringify(jsonData),
+							         success: function(response){
+							        	 if(response > 0){
+							        		 console.log(response)
+							        	 }
+							         }
+								}) //ajax end
+							alert("수정되었습니다.")
+						}
+					}else{
+						alert("동의 항목을 체크해주세요!")
+						return false;
+					}
+				}else{
+					alert("비밀번호가 일치하지 않습니다.")
+					$('#confirmPassword').css('color','red');
+					$('#confirmPassword').focus();
+					return false;
+				}
+		}else{
+			alert("정보를 입력해주세요!")
+			return false;
+		}
+				
+				
+		}//userUpdate() end
+		
+		// select user search
+		$('#searchBar').keyup(function(key) {// 키보드를 뗄 때 무엇을 눌렀다가 뗐는데 파라미터 key에 들어감.
+			//var nowPageNum = $('#nowPageNum').val();
+			//var pageSize = 5;
+			// keycode = 13 은 enter를 의미
+			if (key.keyCode == 13) {
+				var search = $('#searchBar').val().trim(); 
+				if (search != '') {
+					location.href = '/member/search?search='+search
+				}
+				
+			}
+		});
 	
 	
-	
-	
-	
+
 	
 	
 	
