@@ -18,7 +18,7 @@
 			<div class="search">
 				<label> <input id="searchBar" type="text"
 					placeholder="ID 또는 이름 입력..." />
-				<input id="keyword" type="hidden" value="">
+				<input id="keyword" type="hidden" value="${search}">
 				</label>
 			</div>
 			<div class="row">
@@ -35,8 +35,8 @@
 						</thead>
 						<tbody>
 							<c:choose>
-								<c:when test="${fn:length(usersData)>0}">
-									<c:forEach items="${usersData}" var="item">
+								<c:when test="${fn:length(pageHelper.list)>0}">
+									<c:forEach items="${pageHelper.list}" var="item">
 										<tr onclick="getUserData(${item.userNo})">
 											<td>${item.userNo}</td>
 											<td>${item.name}</td>
@@ -71,8 +71,17 @@
 						</tbody>
 					</table>
 					<div class="pagination">
-						<a href="#">Previous</a> <a href="#">1</a> <a href="#">2</a> <a
-							href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">Next</a>
+						<c:if test="${pageHelper.hasPreviousPage}">
+                 	<a onclick="getUserDataList(${pageHelper.pageNum-1},10)" href="#">Previous</a>
+                 </c:if>
+				 <c:forEach items="${pageHelper.navigatepageNums}" var="pageNum">
+				 	<a id="pageNum${pageNum}" onclick="getUserDataList(${pageNum},10)">
+				 	${pageNum}</a>
+				 </c:forEach>
+				 <c:if test="${pageHelper.hasNextPage}">
+                 	<a onclick="getUserDataList(${pageHelper.pageNum+1},10)" href="#">Next</a>
+                 </c:if>
+                 <input id="nowPageNum" type="hidden" value="${pageHelper.pageNum}">
 					</div>
 				</div>
 				<!--data-container end-->
@@ -151,6 +160,16 @@
 		crossorigin="anonymous"></script>
 	<script defer src="/resources/static/js/theme.js"></script>
 	<script type="text/javascript">
+	
+	function getUserDataList(pageNum, pageSize){
+		var search = $('#keyword').val();
+		var URL = '/member?pageNum='+pageNum+'&pageSize='+pageSize;
+			if($('#keyword').val() != null){
+				URL = '/member/search?search='+search+'&pageNum='+pageNum+'&pageSize='+pageSize; 
+			}
+				location.href = URL
+	}
+	
 	//특정 계정 정보 가져오기
 	function getUserData(userNo){
 		$('#userNoHidden').val(userNo);
@@ -231,33 +250,23 @@
 		
 		// select user search
 		$('#searchBar').keyup(function(key) {// 키보드를 뗄 때 무엇을 눌렀다가 뗐는데 파라미터 key에 들어감.
-			//var nowPageNum = $('#nowPageNum').val();
-			//var pageSize = 5;
+			var pageNum = $('#nowPageNum').val();
+			var pageSize = 10;
 			// keycode = 13 은 enter를 의미
 			if (key.keyCode == 13) {
 				var search = $('#searchBar').val().trim(); 
 				if (search != '') {
-					location.href = '/member/search?search='+search
+					location.href = '/member/search?search='+search+'&pageNum='+pageNum+'&pageSize='+pageSize
 				}
 				
 			}
 		});
 	
-	
+	// 이메일 정규 표현식
+	// 핸드폰번호 정규 표현식
+	// 번외 : 안전 비밀번호 정규 표현식 ex) 8글자 이상(영문,숫자,특수기호)
+		
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	// 도로명 주소 가져오는 메소드(Daum주소 찾기 팝업)
     function getPostCode(){

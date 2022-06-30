@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageInfo;
 import com.ingeunjumin.project.service.UserService;
 import com.ingeunjumin.project.vo.AuthorityVO;
 import com.ingeunjumin.project.vo.UsersVO;
@@ -38,16 +39,21 @@ public class MembersController {
 	private UserService userService;
 
 	@GetMapping("/member")
-	public String callMembersPage(ModelMap modelMap) {
+	public String callMembersPage(ModelMap modelMap,
+			@RequestParam("pageNum") int pageNum,
+			@RequestParam("pageSize") int pageSize) {
 		log.info("[ Call /member - GET ]");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();// security에서 로그인한 사람에 정보를 체크 후 불러옴
 		UsersVO vo = (UsersVO) auth.getPrincipal(); // UsersVO 사용자 권한정보가 저장된 vo
 		List<AuthorityVO> list = userService.getAuth(vo.getUserId());// 사용자 권한 조회
 		vo.setAuthorities(list);// 사용자 권한 vo에 set
-		List<Map<String, Object>> usersData = userService.getUsersAllList();
+		
+		List<Map<String, Object>> list1 = userService.getUsersAllList(pageNum,pageSize);
+		PageInfo<Map<String, Object>> pageInfo = new PageInfo<Map<String, Object>>(list1);
+		
+		modelMap.addAttribute("pageHelper", pageInfo);
 		modelMap.addAttribute("name", vo.getUsername());
 		modelMap.addAttribute("auth", vo.getAuthorities());
-		modelMap.addAttribute("usersData", usersData);
 		return "member";
 	}
 
@@ -95,8 +101,12 @@ public class MembersController {
 			@RequestParam("search") String search,
 			@RequestParam("pageNum") int pageNum,
 			@RequestParam("pageSize") int pageSize){
-		List<Map<String, Object>> list = userService.getSelectSearchUsers(search);
-		map.addAttribute("usersData", list);
+		
+		List<Map<String, Object>> list = userService.getSelectSearchUsers(search,pageNum,pageSize);
+		PageInfo<Map<String, Object>> pageInfo = new PageInfo<Map<String, Object>>(list);
+		map.addAttribute("search", search);
+		map.addAttribute("pageHelper", pageInfo);
+		
 		return "member";
 	}
 	

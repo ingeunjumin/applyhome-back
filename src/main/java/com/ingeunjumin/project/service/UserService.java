@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
 import com.ingeunjumin.project.mapper.UsersMapper;
 import com.ingeunjumin.project.vo.AuthorityVO;
 import com.ingeunjumin.project.vo.UsersVO;
@@ -27,8 +28,10 @@ public class UserService {
 		return usersMapper.insertUser(usersVO);
 	}
 	
-	public List<Map<String,Object>> getUsersAllList() {
-		System.out.println(usersMapper.selectUsersAll());
+	public List<Map<String,Object>> getUsersAllList(int pageNum,int pageSize) {
+		
+		PageHelper.startPage(pageNum, pageSize);
+		
 		return usersMapper.selectUsersAll();
 	}
 	
@@ -48,8 +51,10 @@ public class UserService {
 		return usersMapper.updateUser(vo);
 	}
 	
-	public List<Map<String, Object>> getSelectSearchUsers(String search){
-		System.out.println("search =>>> "+search);
+	public List<Map<String, Object>> getSelectSearchUsers(String search,int pageNum,int pageSize){
+		
+		PageHelper.startPage(pageNum, pageSize);
+		
 		return usersMapper.selectSearchUsers(search);
 	}
 	

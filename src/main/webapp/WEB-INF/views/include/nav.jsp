@@ -21,7 +21,7 @@
             </svg>
 			</a></li>
 
-			<li class="nav-item"><a href="/member" class="nav-link">
+			<li class="nav-item"><a href="/member?pageNum=1&pageSize=10" class="nav-link">
 					<svg aria-hidden="true" focusable="false" data-prefix="fad"
 						data-icon="cat" role="img" xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 512 512" class="svg-inline--fa fa-cat fa-w-16 fa-9x">
