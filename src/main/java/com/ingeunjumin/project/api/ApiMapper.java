@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface ApiMapper {
@@ -23,4 +24,12 @@ public interface ApiMapper {
 	 * comment : 아파트 상세정보 조회
 	 */
 	public Map<String, Object> selectOneApartments(int apartmentsNo);
+	
+	/**
+	 * @return
+	 * @author : Sangwon Hyun
+	 * @date : 2022. 6. 30.
+	 * comment : 아파트 최근 3개월 거래내역
+	 */
+	public List<Map<String, Object>> selectApartmentsContract(@Param("apartmentsNo")int apartmentsNo, @Param("date")String date);
 }

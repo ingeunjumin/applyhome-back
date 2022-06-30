@@ -24,4 +24,20 @@
 		WHERE apartments_no = #{apartmentsNo}
    	</select>
     
+    <select id="selectApartmentsContract" resultType="map">
+    	SELECT 
+			a.apartments_no AS apartmentsNo,
+			a.apartments_name AS apartmentsName,
+			hs.sale_price AS salePrice,
+			hs.gu,
+			hs.dong,
+			hs.create_at AS createAt
+		FROM apartments AS a
+		INNER JOIN history_sale_contract AS hs
+		ON a.apartments_no = hs.apartments_no 
+		WHERE a.apartments_no = #{apartmentsNo}
+		AND DATE_FORMAT(hs.create_at,'%Y-%m-%d') >= #{date}
+		ORDER BY hs.create_at DESC
+    </select>
+    
 </mapper>
