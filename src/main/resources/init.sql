@@ -65,6 +65,10 @@ CREATE TABLE IF NOT EXISTS history_sale_contract(
 	apartments_no INTEGER(8) COMMENT '아파트 번호',
 	sale_price INTEGER(4) COMMENT '거래금액',
 	create_at DATETIME COMMENT '계약 일',
+	floor VARCHAR(20) COMMENT '층',
+	area_for_exclusive_use VARCHAR(30) COMMENT '면적',
+	gu VARCHAR(20) COMMENT '구 이름(법정구)',
+	dong VARCHAR(20) COMMENT '동 이름(법정동)',
 	CONSTRAINT history_sale_contract_id_fk FOREIGN KEY (apartments_no) REFERENCES apartments(apartments_no) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

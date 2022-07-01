@@ -45,7 +45,11 @@ public class ApiService {
 		if(term == 12) { //1년 거래내역
 			date = "2021-01-00";
 		}
-		return mapper.selectApartmentsContract(apartmentsNo, date);
+		List<Map<String, Object>> list = mapper.selectApartmentsContract(apartmentsNo, date);
+		if(list.size() == 0) {
+			list = mapper.selectApartmentsContract(apartmentsNo, "2021-01-00");
+		}
+		return list;
 	}
 	
 }

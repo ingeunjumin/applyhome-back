@@ -36,9 +36,9 @@ public class ApiRestController {
 		return apiService.getApartmentsInfo(aptNo);
 	}
 	
-	@GetMapping("/apartments/contract")
-	public List<Map<String, Object>> callApartmentsContract(@RequestParam("aptno") int aptNo,@RequestParam("term") int term){
-		log.info("[ Call /api/v1/apartments/contract?aptno="+aptNo+"&term="+term+" - GET ]");
+	@GetMapping("/contract")
+	public List<Map<String, Object>> callApartmentsContract(@RequestParam("aptno") int aptNo, @RequestParam("term") int term){
+		log.info("[ Call /api/v1/contract?aptno="+aptNo+"&term="+term+" - GET ]");
 		return apiService.selectApartmentsContract(aptNo, term);
 	}
 	

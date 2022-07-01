@@ -11,6 +11,11 @@
 		FROM apartments 
     </select>
     
+    <select id="selectAllApartmentsAndBusinessArea" resultType="map">
+    	
+    </select>
+    
+    
    	<select id="selectOneApartments" resultType="map">
    		SELECT 
 			apartments_no AS apartmentsNo,
@@ -19,7 +24,7 @@
 			addr,
 			gu,
 			dong,
-			create_at AS createAt
+			DATE_FORMAT(create_at, '%Y-%m-%d') AS createAt
 		FROM apartments 
 		WHERE apartments_no = #{apartmentsNo}
    	</select>
@@ -28,16 +33,21 @@
     	SELECT 
 			a.apartments_no AS apartmentsNo,
 			a.apartments_name AS apartmentsName,
-			hs.sale_price AS salePrice,
+			AVG(hs.sale_price) AS salePrice,
+			FORMAT(AVG(hs.sale_price),0) AS salePriceComma,
 			hs.gu,
 			hs.dong,
-			hs.create_at AS createAt
+			hs.floor,
+			hs.area_for_exclusive_use AS areaForExclusiveUse,
+			DATE_FORMAT(hs.create_at, '%Y-%m-%d') AS createAt
 		FROM apartments AS a
 		INNER JOIN history_sale_contract AS hs
 		ON a.apartments_no = hs.apartments_no 
 		WHERE a.apartments_no = #{apartmentsNo}
 		AND DATE_FORMAT(hs.create_at,'%Y-%m-%d') >= #{date}
+		GROUP BY DATE_FORMAT(hs.create_at,'%Y-%m-%d')
 		ORDER BY hs.create_at DESC
     </select>
+ 
     
 </mapper>
