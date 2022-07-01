@@ -41,8 +41,49 @@
       </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer src="/resources/static/js/theme.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
     <script>
+// 최근 6개월 대전 매매 시세 그래프 start
+    $.ajax({
+    	url : "/statistics/sixmonth/contract",
+    	data : "GET",
+		dataType : "json",
+		success : function(response){
+			console.log(response);
+			//그래프 로직 작성~
+			const labelArray = [];
+			const dataArray = [];
+			for(var i=0; i<response.length; i++){
+				labelArray.push(response[i].month);
+				dataArray.push(response[i].monthAvgAmount);
+			}
+		      const datas = {
+		        labels: labelArray,
+		        datasets: [
+		          {
+		            label: "대전 매매 가격",
+		            backgroundColor: "rgb(255, 99, 132)",
+		            borderColor: "rgb(255, 99, 132)",
+		            data : dataArray,
+		          },
+		        ],
+		      };
+		      console.log(datas);
+
+		      const config = {
+		        type: "line",
+		        data: datas,
+		        options: {},
+		      };
+		      
+		      // $("myChart3")에 config데이터 chart형식으로 추가하기
+		      const myChart = new Chart(document.getElementById("myChart3"), config);
+		}
+    });
+ // 최근 6개월 대전 매매 시세 그래프 end
+    
       const DATA_SETTINGS = {
         datasets: [
           {
@@ -59,6 +100,12 @@
       new Chart(document.getElementById("myChart"), MY_CHART_DATA);
       new Chart(document.getElementById("myChart2"), MY_CHART_DATA);
 
+      
+      
+      
+      
+	// 최근 6개월 대전 매매 시세 라인 그래프 가라 데이터!      
+      /* 
       const labels = [
         "2022-01",
         "2022-02",
@@ -85,6 +132,7 @@
         options: {},
       };
       const myChart = new Chart(document.getElementById("myChart3"), config);
+      */
     </script>
   </body>
 </html>
