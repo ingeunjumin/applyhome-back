@@ -55,6 +55,10 @@
 			//그래프 로직 작성~
 			const labelArray = [];
 			const dataArray = [];
+			// 배열.push : 결과의 정보들을 배열 순서대로 넣어주기 
+			// 가져온 결과 : 0 1 2 3 4 5 / var arr = [] 
+			// arr.push(추가할 정보 for문으로 정보입력)
+			// result ===> [0,1,2,3,4,5]
 			for(var i=0; i<response.length; i++){
 				labelArray.push(response[i].month);
 				dataArray.push(response[i].monthAvgAmount);
