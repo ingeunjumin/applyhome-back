@@ -17,8 +17,8 @@
 			<!-- search -->
 			<div class="search">
 				<label> <input id="searchBar" type="text"
-					placeholder="ID 또는 이름 입력..." />
-				<input id="keyword" type="hidden" value="${search}">
+					placeholder="ID 또는 이름 입력..." onfocus="this.placeholder=''" onblur="this.placeholder='ID 또는 이름 입력...'"/> <input id="keyword" type="hidden"
+					value="${search}">
 				</label>
 			</div>
 			<div class="row">
@@ -72,16 +72,16 @@
 					</table>
 					<div class="pagination">
 						<c:if test="${pageHelper.hasPreviousPage}">
-                 	<a onclick="getUserDataList(${pageHelper.pageNum-1},10)" href="#">Previous</a>
-                 </c:if>
-				 <c:forEach items="${pageHelper.navigatepageNums}" var="pageNum">
-				 	<a id="pageNum${pageNum}" onclick="getUserDataList(${pageNum},10)">
-				 	${pageNum}</a>
-				 </c:forEach>
-				 <c:if test="${pageHelper.hasNextPage}">
-                 	<a onclick="getUserDataList(${pageHelper.pageNum+1},10)" href="#">Next</a>
-                 </c:if>
-                 <input id="nowPageNum" type="hidden" value="${pageHelper.pageNum}">
+							<a onclick="getUserDataList(${pageHelper.pageNum-1},10)" href="#">Previous</a>
+						</c:if>
+						<c:forEach items="${pageHelper.navigatepageNums}" var="pageNum">
+							<a id="pageNum${pageNum}"
+								onclick="getUserDataList(${pageNum},10)"> ${pageNum}</a>
+						</c:forEach>
+						<c:if test="${pageHelper.hasNextPage}">
+							<a onclick="getUserDataList(${pageHelper.pageNum+1},10)" href="#">Next</a>
+						</c:if>
+						<input id="nowPageNum" type="hidden" value="${pageHelper.pageNum}">
 					</div>
 				</div>
 				<!--data-container end-->
@@ -97,12 +97,17 @@
 							</div>
 							<div class="inputfield">
 								<label>Password</label> <input type="password" class="input"
-									id="password" />
+									id="password" placeholder="숫자,대문자,특수문자를 포함한 6글자 이상 입력..." 
+									onfocus="this.placeholder=''" onblur="this.placeholder='숫자,대문자,특수문자를 포함한 6글자 이상 입력...'"
+									/>
 							</div>
 							<div class="inputfield">
 								<label>Confirm Password</label> <input type="password"
 									class="input" id="confirmPassword" />
 							</div>
+							<p>
+							<div class="alert" id="passwordStrength"></div>
+							</p>
 							<div class="inputfield">
 								<label>Authority</label>
 								<div class="custom_select">
@@ -120,7 +125,9 @@
 							</div>
 							<div class="inputfield">
 								<label>Phone Number</label> <input type="text" class="input"
-									id="phone" />
+									id="phone" placeholder="'-'를 제외한 핸드폰번호를 입력하세요..." 
+									onfocus="this.placeholder=''" onblur="this.placeholder=''-'를 제외한 핸드폰번호를 입력하세요...'"
+									/>
 							</div>
 							<div class="inputfield" id="address">
 								<label>Address</label>
@@ -132,7 +139,8 @@
 							</div>
 							<div class="inputfield terms">
 								<label class="check"> <input type="checkbox"
-									checked="checked" id="checkbox" /> <span class="checkmark" id="checkbox"></span>
+									checked="checked" id="checkbox" /> <span class="checkmark"
+									id="checkbox"></span>
 								</label>
 								<p>Agreed to terms and conditions</p>
 							</div>
@@ -148,9 +156,13 @@
 			</div>
 		</div>
 	</main>
-	<!-- 도로명 주소 CDN -->
+	<!-- jQuery cdn 최신 불러오기 start  -->
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<!--  jQuery cdn 최신 불러오기 end -->
+	<!-- 도로명 주소 CDN strat -->
 	<script
 		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<!-- 도로명 주소 CDN end -->
 	<script type="module"
 		src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule
@@ -160,7 +172,9 @@
 		crossorigin="anonymous"></script>
 	<script defer src="/resources/static/js/theme.js"></script>
 	<script type="text/javascript">
+	passwordSecurity();// 비밀번호 보안 메소드 호출
 	
+// 검색창 입력 값이 있으면 검색된 사용자를 보여줄지 전체 사용자를 보여줄지 함수
 	function getUserDataList(pageNum, pageSize){
 		var search = $('#keyword').val();
 		var URL = '/member?pageNum='+pageNum+'&pageSize='+pageSize;
@@ -170,26 +184,26 @@
 				location.href = URL
 	}
 	
-	//특정 계정 정보 가져오기
-	function getUserData(userNo){
-		$('#userNoHidden').val(userNo);
-		$.ajax({
-			url : "/member/"+userNo,
-			data : "GET",
-			dataType : "json",
-			success : function(response){
-				console.log(response);
-				$('#name').val(response.name);
-				$('#userId').val(response.userId);
-				$('#email').val(response.email);
-				$('#phone').val(response.phone);
-				$('textarea#address').val(response.address);
-				$('#postalCode').val(response.postalCode);
-			}
-		})
-	}
-	// 특정 계정 수정하기
+//특정 계정 정보 가져오기
+		function getUserData(userNo){
+			$('#userNoHidden').val(userNo);
+			$.ajax({
+				url : "/member/"+userNo,
+				data : "GET",
+				dataType : "json",
+				success : function(response){
+					console.log(response);
+					$('#name').val(response.name);
+					$('#userId').val(response.userId);
+					$('#email').val(response.email);
+					$('#phone').val(response.phone);
+					$('textarea#address').val(response.address);
+					$('#postalCode').val(response.postalCode);
+				}
+			})
+		}
 	
+// 특정 계정 수정하기
 		function userUpdate(){
 			var userNo = $('#userNoHidden').val().trim();
 			var name = $('#name').val().trim();
@@ -200,6 +214,8 @@
 			var email = $('#email').val().trim();
 			var address = $('textarea#address').val().trim(); //textarea 값 가져오기
 			var postalCode = $('#postalCode').val().trim();
+			var regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/; //핸드폰번호 확인 정규 표현식
+			var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;//이메일 정규 표현식
 			
 			var jsonData = {
 					userNo : userNo,
@@ -211,44 +227,58 @@
 					address : address,
 					postalCode : postalCode
 			}
+//특정 계정 수정 중 input값 체크 구간 start
 		if(name != "" && userId != "" && phone != "" && email != "" && address != "" && postalCode != ""){// 빈값 여부 확인
-				if(password == userPassword){
-					$('#confirmPassword').css('color','green');
-					if($('#checkbox').is(':checked')){ // 체크 여부 확인
-						if(confirm("수정하시겠습니까?")){
-								$.ajax({
-							         url : '/member/update',
-							         type : 'PATCH',
-							         contentType : 'application/json',//서버에 json타입으로 보낼 예정(요청).
-							         dataType : 'json', //서버결과를 json으로 응답받겠다.
-							         data : JSON.stringify(jsonData),
-							         success: function(response){
-							        	 if(response > 0){
-							        		 console.log(response)
-							        	 }
-							         }
-								}) //ajax end
-							alert("수정되었습니다.")
-						}
+			if(password == userPassword){
+				$('#confirmPassword').css('color','green');
+				    if (regEmail.test(email) === true) {// 이메일 정규 표현식
+				    console.log("email OK!")
+						if (regPhone.test(phone) === true) {// 휴대폰번호 정규 표현식
+					    	console.log("휴대폰 OK!")
+							if($('#checkbox').is(':checked')){ // 체크 여부 확인
+								if(confirm("수정하시겠습니까?")){
+										$.ajax({
+									         url : '/member/update',
+									         type : 'PATCH',
+									         contentType : 'application/json',//서버에 json타입으로 보낼 예정(요청).
+									         dataType : 'json', //서버결과를 json으로 응답받겠다.
+									         data : JSON.stringify(jsonData),
+									         success: function(response){
+									        	 if(response > 0){
+									        		 console.log(response)
+									        	 }
+									         }
+										}) //ajax end
+									alert("수정되었습니다.")
+								}
+							}else{
+								alert("동의 항목을 체크해주세요!")
+								return false;
+							}// 체크 여부 확인 end
+						}else{
+						    alert('휴대폰번호 형식이 아닙니다.');
+						    $('#phone').focus();
+						    return false;
+						}// 휴대폰번호 정규 표현식 end
 					}else{
-						alert("동의 항목을 체크해주세요!")
-						return false;
-					}
+						alert('이메일 형식이 아닙니다.');
+					    $('#email').focus();
+					    return false;
+					}// 이메일 정규 표현식 end
 				}else{
 					alert("비밀번호가 일치하지 않습니다.")
 					$('#confirmPassword').css('color','red');
 					$('#confirmPassword').focus();
 					return false;
-				}
+				} // 비밀번호 확인 end
 		}else{
 			alert("정보를 입력해주세요!")
 			return false;
-		}
-				
-				
+		}// 빈칸 여부 확인 end
+//특정 계정 수정 중 input값 체크 구간 end
 		}//userUpdate() end
 		
-		// select user search
+// select user search
 		$('#searchBar').keyup(function(key) {// 키보드를 뗄 때 무엇을 눌렀다가 뗐는데 파라미터 key에 들어감.
 			var pageNum = $('#nowPageNum').val();
 			var pageSize = 10;
@@ -262,13 +292,77 @@
 			}
 		});
 	
-	// 이메일 정규 표현식
-	// 핸드폰번호 정규 표현식
-	// 번외 : 안전 비밀번호 정규 표현식 ex) 8글자 이상(영문,숫자,특수기호)
+// 이메일 정규 표현식
+		function fn_submit() {
+		      var text = document.getElementById('text').value;
 		
+		      var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+		      if (regEmail.test(text) === true) {
+		          alert('입력된 값은 이메일입니다.');
+		      }
+	 	 }	
+// 핸드폰번호 정규 표현식
+		function submitPhoneNum(phone) {
+	// 정규 표현식이라는 의미 : 변수 앞에 reg
+			var regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+		    if (regPhone.test(phone) === true) {
+		    	console.log("휴대폰 OK!")
+		    }else{
+		    	alert('휴대폰번호 형식이 아닙니다.');
+		    	$('#phone').focus();
+		    }
+	  	}
+// 번외 : 안전 비밀번호 정규 표현식 ex) 6글자 이상(영문,숫자,특수기호)
+	function passwordSecurity() { // 비밀번호 보안 함수
+
+	    $('#password, #confirmPassword').on('keyup', function(e) {
+
+	        if($('#password').val() == '' && $('#confirmPassword').val() == '')
+	        {
+	            $('#passwordStrength').removeClass().html('');
+
+	            return false;
+	        }
+
+	     if($('#passwordInput').val() != '' && $('#confirmPasswordInput').val() != '' && $('#passwordInput').val() != $('#confirmPasswordInput').val())
+	        {
+	            $('#passwordStrength').removeClass().addClass('alert alert-error').html('Passwords do not match!');
+	            return false;
+	        }
+
+	        // Must have capital letter, numbers and lowercase letters
+	        // 비밀번호 보안 강함
+	        var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+			
+	        // Must have either capitals and lowercase letters or lowercase and numbers
+	        // 비밀번호 보안 중간
+	        var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+
+	        // Must be at least 6 characters long
+	        // 비밀번호 보안 약함
+	        var okRegex = new RegExp("(?=.{6,}).*", "g");
+
+	        if (okRegex.test($(this).val()) === false) {
+	            // If ok regex doesn't match the password
+	            $('#passwordStrength').removeClass().addClass('alert alert-error').html('비밀번호는 6글자 이상으로 입력해주세요.');
+
+	        } else if (strongRegex.test($(this).val())) {
+	            // If reg ex matches strong password
+	            $('#passwordStrength').removeClass().addClass('alert alert-success').html('보안이 강한 비밀번호 입니다.').css('color','Green');
+	        } else if (mediumRegex.test($(this).val())) {
+	            // If medium password matches the reg ex
+	            $('#passwordStrength').removeClass().addClass('alert alert-info').html('대문자, 숫자, 특수문자를 추가하여 보안을 강화해주세요.').css('color','Orange');
+	        } else {
+	            // If password is ok
+	            $('#passwordStrength').removeClass().addClass('alert alert-error').html('보안이 약한 비밀번호 입니다. 추가 입력해주세요.').css('color','Red');
+	        }
+
+	        return true;
+	    });
+	};	
 
 	
-	// 도로명 주소 가져오는 메소드(Daum주소 찾기 팝업)
+// 도로명 주소 가져오는 메소드(Daum주소 찾기 팝업)
     function getPostCode(){
   	  new daum.Postcode({
   		  //oncomplete : 너가 enter를 눌렀다면 실행해줘 라는 함수

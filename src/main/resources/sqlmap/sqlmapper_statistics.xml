@@ -1,6 +1,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- MyBatis에게 Mapper 경로를 적어야 한다. -->
 <mapper namespace="com.ingeunjumin.project.mapper.ApartmentsMapper">
+
+	<!-- 6개월 매매 평균 금액 조회 -->
+	<select id="selectSixMonthStatistics" resultType="map">
+	SELECT
+		ROUND(AVG(sale_price)) AS 평균금액,
+		DATE_FORMAT(create_at,'%Y-%m') AS 월별
+	FROM 
+		history_sale_contract
+	WHERE 
+		DATE_FORMAT(create_at,'%Y-%m') BETWEEN #{startDate} AND #{endDate}
+	GROUP BY DATE_FORMAT(create_at,'%Y-%m')
+	ORDER BY DATE_FORMAT(create_at,'%Y-%m')
+	</select>
+	
 	
 
     
