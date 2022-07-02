@@ -15,7 +15,19 @@
 	ORDER BY DATE_FORMAT(create_at,'%Y-%m')
 	</select>
 	
-	
+	<!-- 월별 지역마다 매매 건수 구하기 -->
+	<select id="selectSixMonthAptSellStatistics" resultType="map">
+	SELECT	
+		count(*) AS monthCountAptSales,
+		DATE_FORMAT(create_at,'%Y-%m') AS month,
+		gu
+	FROM 
+		history_sale_contract
+	WHERE 
+		DATE_FORMAT(create_at,'%Y-%m') BETWEEN '2021-01' AND '2021-06'
+	GROUP BY DATE_FORMAT(create_at,'%Y-%m'), gu
+	ORDER BY DATE_FORMAT(create_at,'%Y-%m')
+	</select>
 
     
 </mapper>
