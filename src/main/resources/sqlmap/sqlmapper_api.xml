@@ -49,5 +49,13 @@
 		ORDER BY hs.create_at DESC
     </select>
  
+	<select id="getBusinessArea" resultType="map">
+		SELECT
+			business_type AS businessType,
+			business_name AS businessName,
+			latitude,
+			longitude
+		FROM business_area
+	</select>
     
 </mapper>

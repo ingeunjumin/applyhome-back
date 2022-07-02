@@ -32,4 +32,12 @@ public interface ApiMapper {
 	 * comment : 아파트 최근 3개월 거래내역
 	 */
 	public List<Map<String, Object>> selectApartmentsContract(@Param("apartmentsNo")int apartmentsNo, @Param("date")String date);
+
+	/**
+	 * @return
+	 * @author : Sangwon Hyun
+	 * @date : 2022. 7. 2.
+	 * comment : 상권 데이터 조회
+	 */
+	public List<Map<String, Object>> getBusinessArea();
 }

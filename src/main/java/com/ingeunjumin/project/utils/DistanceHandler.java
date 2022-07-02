@@ -10,11 +10,11 @@ public class DistanceHandler {
      * @date    : 2022. 7. 2.
      * @methodName : calculateDistance
      * @returnType : double
-     * @param :
+     * @param : 
      */
-    public double calculateDistance(double cn100Lat, double cn100Lon, double areaLat, double areaLon){
-        double theta = cn100Lon - areaLon;
-        double dist = Math.sin(deg2rad(cn100Lat)) * Math.sin(deg2rad(areaLat)) + Math.cos(deg2rad(cn100Lat)) * Math.cos(deg2rad(areaLat)) * Math.cos(deg2rad(theta));
+    public double calculateDistance(double latitude, double longitude, double targetLat, double targetLon){
+        double theta = longitude - targetLon;
+        double dist = Math.sin(deg2rad(latitude)) * Math.sin(deg2rad(targetLat)) + Math.cos(deg2rad(latitude)) * Math.cos(deg2rad(targetLat)) * Math.cos(deg2rad(theta));
         dist = Math.acos(dist);
         dist = rad2deg(dist);
         dist = dist * 60 * 1.1515;
