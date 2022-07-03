@@ -9,12 +9,7 @@
 			latitude,
 			longitude
 		FROM apartments 
-    </select>
-    
-    <select id="selectAllApartmentsAndBusinessArea" resultType="map">
-    	
-    </select>
-    
+    </select>    
     
    	<select id="selectOneApartments" resultType="map">
    		SELECT 
@@ -24,8 +19,10 @@
 			addr,
 			gu,
 			dong,
+			latitude,
+			longitude,
 			DATE_FORMAT(create_at, '%Y-%m-%d') AS createAt
-		FROM apartments 
+		FROM apartments
 		WHERE apartments_no = #{apartmentsNo}
    	</select>
     
