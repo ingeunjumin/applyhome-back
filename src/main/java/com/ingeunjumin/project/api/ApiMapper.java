@@ -40,4 +40,12 @@ public interface ApiMapper {
 	 * comment : 상권 데이터 조회
 	 */
 	public List<Map<String, Object>> selectBusinessArea();
+
+	/**
+	 * @return
+	 * @author : Sangwon Hyun
+	 * @date : 2022. 7. 3.
+	 * comment : 대전에서 가장 비싼 탑 5 아파트 조회
+	 */
+	public List<Map<String, Object>> selectTopFiveApartments();
 }

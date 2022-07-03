@@ -42,4 +42,9 @@ public class ApiRestController {
 		return apiService.selectApartmentsContract(aptNo, term);
 	}
 	
+	@GetMapping("/apartments/rank")
+	public List<Map<String, Object>> callApartmentsRank() {
+		log.info("[ Call /api/v1/apartments/rank - GET ]");
+		return apiService.getTopFiveApartments();
+	}
 }
