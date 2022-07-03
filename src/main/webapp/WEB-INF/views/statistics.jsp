@@ -88,6 +88,8 @@
     });
  // 최근 6개월 대전 매매 시세 그래프 end
     
+ 
+ 
       const DATA_SETTINGS = {
         datasets: [
           {

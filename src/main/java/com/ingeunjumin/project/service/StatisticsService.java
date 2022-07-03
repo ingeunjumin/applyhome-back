@@ -17,8 +17,8 @@ public class StatisticsService {
 	private StatisticsMapper statisticsMapper;
 	
 	public List<Map<String,Object>> getSelectSixMonthStatistics(){
-		String startDate = "2021-01";
-		String endDate = "2021-06";
+		String startDate = "2021-05";
+		String endDate = "2021-11";
 		return statisticsMapper.selectSixMonthStatistics(startDate,endDate);
 	}
 	
