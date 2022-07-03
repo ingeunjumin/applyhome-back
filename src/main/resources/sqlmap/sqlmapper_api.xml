@@ -55,4 +55,22 @@
 		FROM business_area
 	</select>
     
+	<select id="selectTopFiveApartments" resultType="map">
+	select 
+		top.apartments_no AS apartmentsNo, 
+		top.price AS price,
+		a.apartments_name AS apartmentsName
+	from (
+	select 
+	max(sale_price) as price,
+	apartments_no 
+	from history_sale_contract 
+	group by apartments_no 
+	order by 1 desc
+	limit 5
+	) as top
+	inner join apartments as a 
+	on top.apartments_no = a.apartments_no 
+	</select>
+
 </mapper>

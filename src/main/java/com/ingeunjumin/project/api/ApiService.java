@@ -26,12 +26,17 @@ public class ApiService {
 		Map<String, Object> map = mapper.selectOneApartments(aptNo);
 		int price = (int) map.get("price");
 		String strPrice = "";
-		
+		String tenMillion = "";
 		if(price >= 10000) {
 			String hundredMillion = Integer.toString(price).substring(0,1);
 			strPrice = hundredMillion+"억 ";
+			tenMillion = Integer.toString(price).substring(1);
 		}
-		String tenMillion = Integer.toString(price).substring(1);
+		if(price >= 100000){
+			String billion = Integer.toString(price).substring(0,2);
+			strPrice = billion+"억 ";
+			tenMillion = Integer.toString(price).substring(2);
+		}
 		tenMillion = new DecimalFormat("###,###").format(Integer.parseInt(tenMillion));
 		map.put("strPrice", strPrice+tenMillion);
 
@@ -76,6 +81,22 @@ public class ApiService {
 				data.put("distance", String.format("%.1f", result)+"km");
 				list.add(data);
 			}
+		}
+		return list;
+	}
+
+	public List<Map<String, Object>> getTopFiveApartments(){
+		
+		List<Map<String, Object>> list = mapper.selectTopFiveApartments();
+		for(Map<String, Object> data : list){
+			int price = (int) data.get("price");
+			String billion = Integer.toString(price).substring(0,2);
+			String tenMillion =  Integer.toString(price).substring(2,3);
+			String strPrice = billion+"억";
+			if(!tenMillion.equals("0")){
+				strPrice = billion+"."+tenMillion+"억";
+			}
+			data.put("strPrice", strPrice);
 		}
 		return list;
 	}
