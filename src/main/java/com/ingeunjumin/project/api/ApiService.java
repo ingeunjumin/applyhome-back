@@ -73,6 +73,7 @@ public class ApiService {
 			targetLat, targetLon);
 
 			if(result <= boundary){
+				data.put("distance", String.format("%.1f", result)+"km");
 				list.add(data);
 			}
 		}
