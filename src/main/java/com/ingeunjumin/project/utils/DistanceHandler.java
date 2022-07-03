@@ -19,8 +19,9 @@ public class DistanceHandler {
         dist = rad2deg(dist);
         dist = dist * 60 * 1.1515;
         dist = dist * 1609.344;
+        double km = 0.001;
 
-        return Math.round(dist);
+        return Math.round(dist)*km;
     }
 
     public double deg2rad(double deg){

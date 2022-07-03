@@ -1,17 +1,22 @@
 package com.ingeunjumin.project.api;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ingeunjumin.project.utils.DistanceHandler;
+
 @Service
 public class ApiService {
 
 	@Autowired
 	private ApiMapper mapper;
+	@Autowired
+	private DistanceHandler distanceHandler;
 	
 	public List<Map<String, Object>> getAllApartments(){
 		return 	mapper.selectAllApartments();
@@ -29,7 +34,11 @@ public class ApiService {
 		String tenMillion = Integer.toString(price).substring(1);
 		tenMillion = new DecimalFormat("###,###").format(Integer.parseInt(tenMillion));
 		map.put("strPrice", strPrice+tenMillion);
-		
+
+		String latitude = map.get("latitude").toString();
+		String longitude = map.get("longitude").toString();
+		map.put("businessList", getBusinessArea(latitude, longitude)); //근처 1.5km 안에 있는 상권 조회 함수 호출
+
 		return map;
 	}
 	
@@ -50,5 +59,24 @@ public class ApiService {
 		}
 		return list;
 	}
-	
+
+	public List<Map<String, Object>> getBusinessArea(String latitude, String longitude){
+
+		List<Map<String, Object>> businesList = mapper.selectBusinessArea();
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		double boundary = 1.5;
+
+		for(Map<String, Object> data : businesList){
+			double targetLat = Double.parseDouble(data.get("latitude").toString());
+			double targetLon = Double.parseDouble(data.get("longitude").toString());
+			double result = distanceHandler.calculateDistance( Double.parseDouble(latitude), Double.parseDouble(longitude), 
+			targetLat, targetLon);
+
+			if(result <= boundary){
+				list.add(data);
+			}
+		}
+		return list;
+	}
+ 
 }

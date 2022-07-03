@@ -39,5 +39,5 @@ public interface ApiMapper {
 	 * @date : 2022. 7. 2.
 	 * comment : 상권 데이터 조회
 	 */
-	public List<Map<String, Object>> getBusinessArea();
+	public List<Map<String, Object>> selectBusinessArea();
 }

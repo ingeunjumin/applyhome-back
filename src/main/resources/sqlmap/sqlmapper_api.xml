@@ -49,7 +49,7 @@
 		ORDER BY hs.create_at DESC
     </select>
  
-	<select id="getBusinessArea" resultType="map">
+	<select id="selectBusinessArea" resultType="map">
 		SELECT
 			business_type AS businessType,
 			business_name AS businessName,
