@@ -55,5 +55,12 @@ public class StatisticsController {
 		return statisticsService.getSelectSixMonthStatistics();
 	}
 	
+	@GetMapping("/statistics/sixmonth/trade/sale")
+	@ResponseBody
+	public List<Map<String,Object>> callSixmonthTradeCountAndAvgSaleAmount(){
+		log.info("[ Call /statistics/sixmonth/trade/sale - GET ]");
+		return statisticsService.getSelectMonthTradeCountAndAvgSalesAmount();
+	}
+	
 	
 }

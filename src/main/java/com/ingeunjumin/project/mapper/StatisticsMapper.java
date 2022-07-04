@@ -23,4 +23,18 @@ public interface StatisticsMapper {
 			@Param("endDate") String endDate
 			);
 
+	/**
+		 * @Method Name : selectMonthTradeCountAndSalesAmount
+		 * @return : List<Map<String,Object>>
+		 * @author : geunhwan Ryu
+		 * @date : 2022. 7. 4.
+		 * @upDate : 
+		 *comment : 구별 월 매매 건수 && 월 평균 매매금액 조회
+		 */
+	public List<Map<String,Object>> selectMonthTradeCountAndAvgSalesAmount(
+			@Param("startDate") String startDate,
+			@Param("endDate") String endDate
+			);
+	
+	
 }

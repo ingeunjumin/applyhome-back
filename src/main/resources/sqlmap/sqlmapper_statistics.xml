@@ -17,21 +17,7 @@
 	
 	<!-- 월별 지역마다 매매 건수 구하기 -->
 	<select id="selectSixMonthAptSellStatistics" resultType="map">
-	SELECT
-		ROUND(AVG(sale_price)) AS monthAvgAmount,
-		DATE_FORMAT(create_at,'%Y-%m') AS month,
-		gu 
-	FROM 
-		history_sale_contract
-	WHERE 
-		DATE_FORMAT(create_at,'%Y-%m') BETWEEN #{startDate} AND #{startDate}
-	GROUP BY DATE_FORMAT(create_at,'%Y-%m'), gu
-	ORDER BY DATE_FORMAT(create_at,'%Y-%m')
-	</select>
-	
-	<!-- 구별 월 매매 건수 && 월 평균 매매금액 -->
-	<select id="">
-	SELECT
+		SELECT
 		ROUND(AVG(sale_price)) AS monthAvgAmount,
 		DATE_FORMAT(create_at,'%Y-%m') AS month,
 		COUNT(gu) AS countMonthSales, 
@@ -39,9 +25,23 @@
 		FROM 
 		history_sale_contract
 	WHERE 
-		DATE_FORMAT(create_at,'%Y-%m') BETWEEN '2021-01' AND '2021-06'
+		DATE_FORMAT(create_at,'%Y-%m') BETWEEN #{startDate} AND #{endDate}
 	GROUP BY DATE_FORMAT(create_at,'%Y-%m'), gu
 	ORDER BY DATE_FORMAT(create_at,'%Y-%m')
+	</select>
+	
+	<!-- 구별 월 매매 건수 && 월 평균 매매금액 -->
+	<select id="selectMonthTradeCountAndAvgSalesAmount" resultType="map">
+	SELECT 
+		ROUND(AVG(sale_price)) AS monthAvgAmount,
+		COUNT(*) AS countMonthSales,
+		gu
+	FROM 
+		history_sale_contract
+	WHERE 
+		DATE_FORMAT(create_at,'%Y-%m') BETWEEN #{startDate} AND #{endDate}
+	GROUP BY gu
+	ORDER BY COUNT(*)
 	</select>
     
 </mapper>

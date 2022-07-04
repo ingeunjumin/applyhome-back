@@ -6,16 +6,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,11 +31,20 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Controller
 @Slf4j
+@Component
 public class MembersController {
 
 	@Autowired
 	private UserService userService;
 
+	/**
+		 * @Method Name : callMembersPage
+		 * @return : String
+		 * @author : geunhwan Ryu
+		 * @date : 2022. 7. 4.
+		 * @upDate : 
+		 *comment : 로그,전체사용자,페이징처리 함수
+		 */
 	@GetMapping("/member")
 	public String callMembersPage(ModelMap modelMap,
 			@RequestParam("pageNum") int pageNum,
@@ -110,30 +117,10 @@ public class MembersController {
 		return "member";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+//  @Scheduled(cron="0/3 * * * * *")
+//  public void test2() {
+//      System.out.println("@Scheduled annotation : 1분에 1번씩 console 찍기");
+//      System.out.println("현재시간 => "+ new Date());
+//      log.info("[ Call /member - GET ]");
+//  }
 }

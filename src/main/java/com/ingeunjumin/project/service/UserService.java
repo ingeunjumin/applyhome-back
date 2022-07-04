@@ -1,10 +1,13 @@
 package com.ingeunjumin.project.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +17,7 @@ import com.ingeunjumin.project.vo.AuthorityVO;
 import com.ingeunjumin.project.vo.UsersVO;
 
 @Service
+@Component
 public class UserService {
 	
 	@Autowired
@@ -57,5 +61,11 @@ public class UserService {
 		
 		return usersMapper.selectSearchUsers(search);
 	}
+	
+    @Scheduled(cron="0 29 * * * *")
+    public void test2() {
+        System.out.println("@Scheduled annotation : 1분에 1번씩 console 찍기");
+        System.out.println("쉬는시간이다!!!!!!!!!!!!!!!!!");
+    }
 	
 }

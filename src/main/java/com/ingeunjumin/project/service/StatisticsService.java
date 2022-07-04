@@ -17,9 +17,17 @@ public class StatisticsService {
 	private StatisticsMapper statisticsMapper;
 	
 	public List<Map<String,Object>> getSelectSixMonthStatistics(){
-		String startDate = "2021-05";
+		String startDate = "2021-06";
 		String endDate = "2021-11";
 		return statisticsMapper.selectSixMonthStatistics(startDate,endDate);
+	}
+	
+	public List<Map<String,Object>> getSelectMonthTradeCountAndAvgSalesAmount(){
+		String startDate = "2021-06";
+		String endDate = "2021-11";
+		List<Map<String,Object>> list = statisticsMapper.selectMonthTradeCountAndAvgSalesAmount(startDate, endDate);
+		System.out.println(list.size());
+		return statisticsMapper.selectMonthTradeCountAndAvgSalesAmount(startDate, endDate);
 	}
 	
 }
