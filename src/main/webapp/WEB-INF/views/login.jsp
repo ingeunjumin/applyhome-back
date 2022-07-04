@@ -37,7 +37,7 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
-	<script type="text/javascript" src="/resources/static/js/login.js"></script>
 	<script src="https://www.google.com/recaptcha/api.js"></script>
+	<script type="text/javascript" src="/resources/static/js/login.js"></script>
   </body>
 </html>

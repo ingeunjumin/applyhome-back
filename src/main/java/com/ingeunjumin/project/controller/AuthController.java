@@ -49,17 +49,14 @@ public class AuthController {
 	}
 	
 	@PostMapping("/valid-recaptcha")
-    public @ResponseBody String validRecaptcha(HttpServletRequest request){
-    	String result = null;
+    public @ResponseBody boolean validRecaptcha(HttpServletRequest request){
+		boolean isResult = true;
     	String response = request.getParameter("g-recaptcha-response");
     	boolean isRecaptcha = authService.verifyRecaptcha(response); //인증 메소드 서비스로 분리
-
-    	if(isRecaptcha) {
-    		result = "success";
-    	}else {
-    		result = "false";
-    	}  	
-    	return result;
+    	if(!isRecaptcha) {
+    		isResult = false;
+    	}
+    	return isResult;
    }
 	
 }
