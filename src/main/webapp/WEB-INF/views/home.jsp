@@ -4,23 +4,343 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
+  <jsp:include page="include/header.jsp"></jsp:include>
+  <body>
+   <jsp:include page="include/nav.jsp"></jsp:include>
+    <main>
+      <div class="container">
+        <div class="home-container">
+          <h2>대전 부동산 데이터 (22-07-04)</h2>
+          <div class="rank-row">
+            <div class="rank-item">
+              <div class="item-header">
+                <h6>중구 매매 순위</h6>
+              </div>
+              <div class="item-body">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="item-header">
+                <h6>동구 매매 순위</h6>
+              </div>
+              <div class="item-body">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="item-header">
+                <h6>대덕구 매매 순위</h6>
+              </div>
+              <div class="item-body">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="item-header">
+                <h6>서구 매매 순위</h6>
+              </div>
+              <div class="item-body">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="item-header">
+                <h6>유성구 매매 순위</h6>
+              </div>
+              <div class="item-body">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>대주파크빌</td>
+                      <td>2.3억</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- table end -->
+          <div class="graph-container">
+            <div class="bar-graph">
+              <div class="graph-header">
+                <h6>최근 6개월 대전 매매 평균시세</h6>
+              </div>
+              <div class="graph-body">
+                <canvas id="myChart3"></canvas>
+              </div>
+            </div>
+            <div class="dough-graph">
+              <div class="graph-header">
+                <h6>구별 매매 평균</h6>
+              </div>
+              <div class="graph-body">
+                <canvas id="myChart"></canvas>
+              </div>
+            </div>
+            <div class="dough-graph">
+              <div class="graph-header">
+                <h6>매매율이 높은 지역</h6>
+              </div>
+              <div class="graph-body">
+                <canvas id="myChart2"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script defer src="/resources/static/js/theme.js"></script>
+    	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+		// 최근 6개월 대전 매매 시세 그래프 start
+		$.ajax({
+			url : "/statistics/sixmonth/contract",
+			data : "GET",
+			dataType : "json",
+			success : function(response) {
+				const labelArray = [];
+				const dataArray = [];
+				for (var i = 0; i < response.length; i++) {
+					labelArray.push(response[i].month);
+					dataArray.push(response[i].monthAvgAmount);
+				}
+				const datas = {
+					labels : labelArray,
+					datasets : [ {
+						label : "대전 매매 가격",
+						backgroundColor : "rgb(255, 99, 132)",
+						borderColor : "rgb(255, 99, 132)",
+						data : dataArray,
+					}, ],
+				};
 
-<jsp:include page="include/header.jsp"></jsp:include>
+				const config = {
+					type : "line",
+					data : datas,
+					options : {},
+				};
+				
+				const myChart = new Chart(document.getElementById("myChart3"),config);
+			}
+		});
+		
+		const monthAvgAmount = [];
+		const countMonthSales = [];
+		const gu = [];
+		$.ajax({
+			url : "/statistics/sixmonth/trade/sale",
+			data : "GET",
+			dataType : "json",
+			success : function(response) {
+				for (var i = 0; i < response.length; i++) {
+					monthAvgAmount.push(response[i].monthAvgAmount)
+					countMonthSales.push(response[i].countMonthSales)
+					gu.push(response[i].gu);
+				}
+		// 구별 매매 평균 가격
+				const DATA_SETTINGS = {
+					labels: gu,
+					datasets : [
+							{
+								label : "대전 구별 데이터",
+								data : monthAvgAmount,
+								backgroundColor : [ 
+									'rgba(255, 99, 132)',
+					                'rgba(54, 162, 235)',
+					                'rgba(255, 206, 86)',
+					                'rgba(75, 192, 192)',
+					                'rgba(153, 102, 255)',
+					                'rgba(255, 159, 64)' ],
+							}, ],
+				};
+				const MY_CHART_DATA = {
+					type : "doughnut",
+					data : DATA_SETTINGS,
+					 options: {
+					        plugins: {
+					            legend: {
+					                labels: {
+					                    font: {
+					                        size: 8
+					                    }
+					                }
+					            }
+					        }
+					    }
+				};
+				new Chart(document.getElementById("myChart"), MY_CHART_DATA);
 
-<body>
-
-	<jsp:include page="include/nav.jsp"></jsp:include>
-	
-	<main>
-		<div class="container">
-			<h1>Home</h1>
-			<h3>이름 : ${name}</h3>
-			<c:forEach items="${auth}" var="item">
-					<h3>권한 : ${item.roleCode}</h3>
-					<h3>권한 설명 : ${item.roleDescription}</h3>
-			</c:forEach>
-		</div>
-	</main>
-	<script defer src="/resources/static/js/theme.js"></script>
-</body>
+		// 매매율이 높은 지역(건수)
+				const DATA_SETTINGS2 = {
+					labels: gu,
+					datasets : [
+							{
+								label : "대전 구별 데이터",
+								data : countMonthSales,
+								backgroundColor : [ 
+									'rgba(255, 99, 132)',
+					                'rgba(54, 162, 235)',
+					                'rgba(255, 206, 86)',
+					                'rgba(75, 192, 192)',
+					                'rgba(153, 102, 255)',
+					                'rgba(255, 159, 64)' ],
+							}, ],
+				};
+				const MY_CHART_DATA2 = {
+					type : "doughnut",
+					data : DATA_SETTINGS2,
+					 options: {
+					        plugins: {
+					            legend: {
+					                labels: {
+					                    font: {
+					                        size: 8
+					                    }
+					                }
+					            }
+					        }
+					    }
+				};
+				new Chart(document.getElementById("myChart2"), MY_CHART_DATA2);
+			}
+		});
+	</script>
+  </body>
 </html>

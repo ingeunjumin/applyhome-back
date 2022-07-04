@@ -21,7 +21,7 @@
             </svg>
 			</a></li>
 
-			<li class="nav-item"><a href="/member?pageNum=1&pageSize=10" class="nav-link">
+			<li class="nav-item"><a href="/home" class="nav-link">
 					<svg aria-hidden="true" focusable="false" data-prefix="fad"
 						data-icon="cat" role="img" xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 512 512" class="svg-inline--fa fa-cat fa-w-16 fa-9x">
@@ -33,10 +33,10 @@
 							d="M376 144a16 16 0 1 0 16 16 16 16 0 0 0-16-16zm80 0a16 16 0 1 0 16 16 16 16 0 0 0-16-16zM131.06 273.53L192 304l-23.52-70.56a192.06 192.06 0 0 0-37.42 40.09zM256 272v-77.11a198.62 198.62 0 0 0-43.15 12.38z"
 							class="fa-primary"></path>
               </g>
-            </svg> <span class="link-text">Members</span>
+            </svg> <span class="link-text">Home</span>
 			</a></li>
 
-			<li class="nav-item"><a href="/apartments?pageNum=1&pageSize=10" class="nav-link">
+			<li class="nav-item"><a href="/member?pageNum=1&pageSize=10" class="nav-link">
 					<svg aria-hidden="true" focusable="false" data-prefix="fad"
 						data-icon="alien-monster" role="img"
 						xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
@@ -48,10 +48,10 @@
                 <path fill="currentColor"
 							d="M160,320h64V224H160Zm192-96v96h64V224Z" class="fa-primary"></path>
               </g>
-            </svg> <span class="link-text">Apartments</span>
+            </svg> <span class="link-text">Members</span>
 			</a></li>
 
-			<li class="nav-item"><a href="/saleContent" class="nav-link"> <svg aria-hidden="true" focusable="false"
+			<li class="nav-item"><a href="/apartments?pageNum=1&pageSize=10" class="nav-link"> <svg aria-hidden="true" focusable="false"
 						data-prefix="fad" data-icon="space-station-moon-alt" role="img"
 						xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
 						class="svg-inline--fa fa-space-station-moon-alt fa-w-16 fa-5x">
@@ -63,10 +63,10 @@
 							d="M256,320c-90.52344,0-174.80469-13.23047-246.27344-35.73438a246.11376,246.11376,0,0,0,6.98438,35.998C87.28906,340.53906,168.65625,352,256,352s168.71094-11.46094,239.28906-31.73633a246.11376,246.11376,0,0,0,6.98438-35.998C430.80469,306.76953,346.52344,320,256,320Zm-64-80a80,80,0,1,0-80-80A80.00021,80.00021,0,0,0,192,240Zm0-104a24,24,0,1,1-24,24A23.99993,23.99993,0,0,1,192,136Z"
 							class="fa-primary"></path>
               </g>
-            </svg> <span class="link-text">Sale content</span>
+            </svg> <span class="link-text">Apartments</span>
 			</a></li>
 
-			<li class="nav-item"><a href="/statistics" class="nav-link">
+			<li class="nav-item"><a href="/data" class="nav-link">
 					<svg aria-hidden="true" focusable="false" data-prefix="fad"
 						data-icon="space-shuttle" role="img"
 						xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
@@ -79,7 +79,7 @@
 							d="M592.6 208.24C559.73 192.84 515.78 184 472 184H186.54a45.62 45.62 0 0 0-40.2-24H32c-23.2 0-32 10-32 24v144c0 14 8.82 24 32 24h114.34a45.62 45.62 0 0 0 40.2-24H472c43.78 0 87.73-8.84 120.6-24.24C622.28 289.84 640 272 640 256s-17.72-33.84-47.4-47.76zM488 296a8 8 0 0 1-8-8v-64a8 8 0 0 1 8-8c31.91 0 31.94 80 0 80z"
 							class="fa-primary"></path>
               </g>
-            </svg> <span class="link-text">Statistics</span>
+            </svg> <span class="link-text">Data</span>
 			</a></li>
 
 			<li class="nav-item" id="themeButton"><a href="#"

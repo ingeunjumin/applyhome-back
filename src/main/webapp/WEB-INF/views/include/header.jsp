@@ -11,4 +11,5 @@
     <link rel="stylesheet" href="/resources/static/css/table.css" />
     <link rel="stylesheet" href="/resources/static/css/form.css" />
     <link rel="stylesheet" href="/resources/static/css/statistics.css" />
+    <link rel="stylesheet" href="/resources/static/css/home.css" />
 </head>

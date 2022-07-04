@@ -35,7 +35,7 @@ public class StatisticsController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/statistics")
+	@GetMapping("/data")
 	public String callStatisticsPage(ModelMap map) {
 		log.info("[ Call /statistics - GET ]");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -44,7 +44,7 @@ public class StatisticsController {
 		List<AuthorityVO> list = userService.getAuth(vo.getUserId());
 		vo.setAuthorities(list);
 		
-		return "statistics";
+		return "data";
 	}
 	
 	
