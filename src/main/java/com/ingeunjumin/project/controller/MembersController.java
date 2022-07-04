@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,7 +30,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Controller
 @Slf4j
-@Component
 public class MembersController {
 
 	@Autowired
@@ -117,10 +115,4 @@ public class MembersController {
 		return "member";
 	}
 	
-//  @Scheduled(cron="0/3 * * * * *")
-//  public void test2() {
-//      System.out.println("@Scheduled annotation : 1분에 1번씩 console 찍기");
-//      System.out.println("현재시간 => "+ new Date());
-//      log.info("[ Call /member - GET ]");
-//  }
 }
