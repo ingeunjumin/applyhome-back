@@ -25,7 +25,14 @@ function isInputData() {
 		$('#userPassword').focus();
 		return false;
 	}
+	if(!isRecaptchachecked){
+		alert('리캡차 인증 체크를 해주세요.');
+		$("#recaptcha").focus();
+		return false;
+	}
+	
 	doVaildRecaptcha()
+	
 	return true;
 }
 
@@ -46,7 +53,7 @@ function doVaildRecaptcha(){
 		data: formData,		
 		dataType: 'text', 
 		cache : false,
-		success: function(data){
+		success: function(response){
 		if(data == 'success'){        
 			console.log('리캡챠 성공!');
 			$('#loginForm').submit(); //리캡쳐 성공후 로그인 id,pw 체킹 (security 사용)
