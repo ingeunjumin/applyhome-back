@@ -22,6 +22,10 @@
           <input id="userPassword" name="userPassword" type="password" required />
           <label>비밀번호</label>
         </div>
+        <div id="recaptcha" class="g-recaptcha" 
+        data-sitekey="6LdQkL8gAAAAALz09_eDYcqfMyP5GnHAyHA8vVeC";
+ 		data-callback="recaptchaCallback">
+ 		</div>
         <input id="loginBtn" class="login-btn" type="butten" value="로그인"/>
        </form>
       </div>
@@ -32,5 +36,6 @@
       crossorigin="anonymous"
     ></script>
 	<script type="text/javascript" src="/resources/static/js/login.js"></script>
+	<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
   </body>
 </html>
