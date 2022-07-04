@@ -318,3 +318,34 @@ VALUES
 "36.3005094",
 "127.3247763"
 );
+
+-- 대형병원
+insert into business_area(business_type,business_name,latitude,longitude)
+values("대형병원","충남대학교병원","36.3167707","127.4162265");
+
+insert into business_area(business_type,business_name,latitude,longitude)
+values("대형병원","가톨릭대학교 대전성모병원","36.3227797","127.4202454");
+
+insert into business_area(business_type,business_name,latitude,longitude)
+values("대형병원","대전을지대학교병원","36.35530056","127.381988");
+
+insert into business_area(business_type,business_name,latitude,longitude)
+values("대형병원","대전선병원","36.33593926","127.4104197");
+
+insert into business_area(business_type,business_name,latitude,longitude)
+values("대형병원","근로복지공단 대전병원","36.36922264","127.4278939");
+
+insert into business_area(business_type,business_name,latitude,longitude)
+values("대형병원","대전보훈병원","36.44731641","127.439694");
+
+insert into business_area(business_type,business_name,latitude,longitude)
+values("대형병원","건양대학교병원","36.30778182","127.3426468");
+
+insert into business_area(business_type,business_name,latitude,longitude)
+values("대형병원","대전한국병원","36.34817581","127.4358351");
+
+insert into business_area(business_type,business_name,latitude,longitude)
+values("대형병원","유성선병원","36.37513316","127.3249905");
+
+insert into business_area(business_type,business_name,latitude,longitude)
+values("대형병원","대청병원","36.30822671","127.3705107");
