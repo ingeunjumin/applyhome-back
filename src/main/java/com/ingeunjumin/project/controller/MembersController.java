@@ -71,7 +71,7 @@ public class MembersController {
 		 *comment : 특정 계정 정보 가져오기
 		 */
 	@GetMapping("/member/{userNo}")
-	@ResponseBody
+	@ResponseBody //Controller에서 리턴값이 페이지가 아닌 메소드를 리턴할 경우 사용
 	public UsersVO callUserNo(@PathVariable("userNo") int userNo) {
 		return userService.getSelecteUserNo(userNo);
 	}
