@@ -36,7 +36,12 @@
 				gu,
 				DATE_FORMAT(create_at,'%Y') AS createAt,
 				latitude,
-				longitude
+				longitude,
+				heat_type AS heatType,
+				dong_cnt AS dongCnt,
+				sede_cnt AS sedeCnt,
+				manage_type AS manageType,
+				leasable_area AS leasableArea		
 			FROM apartments
 			WHERE apartments_no = #{apartmentsNo}
 		</select>
@@ -45,7 +50,12 @@
 		UPDATE apartments
 		SET
 			apartments_name = #{apartmentsName},
-			addr = #{addr}
+			addr = #{addr},
+			heat_type = #{heatType},
+			dong_cnt = #{dongCnt},
+			sede_cnt = #{sedeCnt},
+			manage_type = #{manageType},
+			leasable_area = #{leasableArea}
 		WHERE apartments_no = #{apartmentsNo}
 	</update>
 

@@ -6,7 +6,19 @@
 <html lang="en">
 
 <jsp:include page="include/header.jsp"></jsp:include>
-
+<style>
+	.excal-btn{
+	position: relative;
+	top : 50px;
+	left : 125%;
+    padding: 0.8%;
+    background: #1cc88a;
+    text-decoration: none;
+    color: #777;
+    border-radius: 6px;
+    text-align: center;
+	}
+</style>
 <body>
 
 	<jsp:include page="include/nav.jsp"></jsp:include>
@@ -16,6 +28,7 @@
 			<h1>Apartments</h1>
 			<!-- search -->
 			<div class="search">
+				<a href="/excel/Apartments" class="excal-btn">엑셀 다운로드</a>
 				<label> <input id="searchBar" type="text"
 					placeholder="검색어 입력..." />
 				<input id="searchBarHidden" type="hidden" value="${search}" />
@@ -114,22 +127,22 @@
 								<label>최근 매매 가격 :</label> <input id="price" type="text" class="input" readonly />
 							</div>
 							<div class="inputfield">
-								<label>난방방식 :</label> <input type="password" class="input" />
+								<label>난방방식 :</label> <input id="heatType" type="text" class="input" />
 							</div>
 							<div class="inputfield">
 								<label>건축 년도 :</label> <input id="createAt" type="text" class="input" readonly/>
 							</div>
 							<div class="inputfield">
-								<label>동 수 :</label> <input type="text" class="input" />
+								<label>동 수 :</label> <input id="dongCnt" type="text" class="input" />
 							</div>
 							<div class="inputfield">
-								<label>세대 수 :</label> <input type="text" class="input" />
+								<label>세대 수 :</label> <input id="sedeCnt" type="text" class="input" />
 							</div>
 							<div class="inputfield">
-								<label>관리방식 :</label> <input type="text" class="input" />
+								<label>관리방식 :</label> <input id="manageType" type="text" class="input" />
 							</div>
 							<div class="inputfield">
-								<label>주거전용면적 :</label> <input type="text" class="input" />
+								<label>주거전용면적 :</label> <input id="leasableArea" type="text" class="input" />
 							</div>
 							<div class="inputfield">
 								<label>홈페이지주소 :</label> <input type="text" class="input" />
@@ -189,6 +202,11 @@
 				$('#addr').val(response.addr);
 				$('#price').val(response.price);
 				$('#createAt').val(response.createAt);
+				$('#heatType').val(response.heatType)
+				$('#dongCnt').val(response.dongCnt)
+				$('#sedeCnt').val(response.sedeCnt)
+				$('#manageType').val(response.manageType)
+				$('#leasableArea').val(response.leasableArea)
 		        var longitude = response.longitude;
 				var latitude = response.latitude;
 				
@@ -233,9 +251,19 @@
 			var apartmentsNo = $("#apartmentsUpdateHidden").val();
 			var apartmentsName = $('#apartmentsName').val();
 			var addr = $('#addr').val();
+			var heatType = $('#heatType').val()
+			var dongCnt = $('#dongCnt').val()
+			var sedeCnt = $('#sedeCnt').val()
+			var manageType = $('#manageType').val()
+			var leasableArea = $('#leasableArea').val()
 			var jsonData = {
 					apartmentsName : apartmentsName,
 					addr : addr,
+					heatType : heatType,
+					dongCnt : dongCnt,
+					sedeCnt : sedeCnt,
+					manageType : manageType,
+					leasableArea : leasableArea
 			}
 			$.ajax({
 				url : "/apartments/"+ apartmentsNo ,
@@ -244,6 +272,7 @@
 				dataType: "json",
 				data: JSON.stringify(jsonData),
 				success : function(response){
+					console.log(response)
 					 if (response > 0) {
 						 if(apartmentsName ===''){
 							 alert("데이터를 입력해주세요");
@@ -251,6 +280,31 @@
 							 return false;
 						 }
 						 if(addr === ''){
+							 alert("데이터를 입력해주세요");
+							 $('#addr').focus()
+							 return false;
+						 }
+						 if(heatType === ''){
+							 alert("데이터를 입력해주세요");
+							 $('#addr').focus()
+							 return false;
+						 }
+						 if(dongCnt === ''){
+							 alert("데이터를 입력해주세요");
+							 $('#addr').focus()
+							 return false;
+						 }
+						 if(sedeCnt === ''){
+							 alert("데이터를 입력해주세요");
+							 $('#addr').focus()
+							 return false;
+						 }
+						 if(manageType === ''){
+							 alert("데이터를 입력해주세요");
+							 $('#addr').focus()
+							 return false;
+						 }
+						 if(leasableArea === ''){
 							 alert("데이터를 입력해주세요");
 							 $('#addr').focus()
 							 return false;

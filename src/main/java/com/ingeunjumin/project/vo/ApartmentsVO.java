@@ -15,5 +15,11 @@ public class ApartmentsVO {
 	private String latitude;//위도
 	private String longitude;//경도
 	private String createAt;//아파트 건립날짜
+	private String heatType;//난방방식
+	private int dongCnt;//동수
+	private int sedeCnt;//세대수
+	private String manageType;//관리 방식
+	private int leasableArea;//주거지역면적
+
 	
 }
