@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <jsp:include page="include/header.jsp"></jsp:include>
+  <link rel="stylesheet" href="/resources/static/css/bouncein.css" />
   <body>
    <jsp:include page="include/nav.jsp"></jsp:include>
     <main>
@@ -12,7 +13,7 @@
         <div class="home-container">
           <h2>대전 부동산 데이터 (${today})</h2>
           <div class="rank-row">
-            <div class="rank-item">
+            <div class="rank-item bounceIn">
               <div class="item-header">
                 <h6>중구 매매 순위</h6>
               </div>
@@ -48,7 +49,7 @@
                 </table>
               </div>
             </div>
-            <div class="rank-item">
+            <div class="rank-item bounceIn">
               <div class="item-header">
                 <h6>동구 매매 순위</h6>
               </div>
@@ -84,7 +85,7 @@
                 </table>
               </div>
             </div>
-            <div class="rank-item">
+            <div class="rank-item bounceIn">
               <div class="item-header">
                 <h6>대덕구 매매 순위</h6>
               </div>
@@ -120,7 +121,7 @@
                 </table>
               </div>
             </div>
-            <div class="rank-item">
+            <div class="rank-item bounceIn">
               <div class="item-header">
                 <h6>서구 매매 순위</h6>
               </div>
@@ -156,7 +157,7 @@
                 </table>
               </div>
             </div>
-            <div class="rank-item">
+            <div class="rank-item bounceIn">
               <div class="item-header">
                 <h6>유성구 매매 순위</h6>
               </div>
