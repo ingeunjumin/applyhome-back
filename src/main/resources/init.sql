@@ -56,6 +56,11 @@ CREATE TABLE IF NOT EXISTS apartments(
 	dong VARCHAR(20) COMMENT '동 이름(법정동)',
 	latitude VARCHAR(40) COMMENT '위도',
 	longitude VARCHAR(40) COMMENT '경도',
+	heat_type VARCHAR(20) COMMENT '난방 방식',
+	dong_cnt INTEGER(4) COMMENT '동 수',
+	sede_cnt INTEGER(4) COMMENT '세대 수',
+	manage_type VARCHAR(20) COMMENT '관리 방식',
+	leasable_area INTEGER(4) COMMENT '주거 전용 면적',
 	create_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '아파트 건립날짜'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
