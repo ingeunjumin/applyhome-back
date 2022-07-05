@@ -30,4 +30,8 @@ public class StatisticsService {
 		return statisticsMapper.selectMonthTradeCountAndAvgSalesAmount(startDate, endDate);
 	}
 	
+	public List<Map<String,Object>> getSelectTopAptPrice(String gu){
+		return statisticsMapper.selectTopApartPrice(gu);
+	}
+	
 }

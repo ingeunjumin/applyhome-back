@@ -10,7 +10,7 @@
     <main>
       <div class="container">
         <div class="home-container">
-          <h2>대전 부동산 데이터 (22-07-04)</h2>
+          <h2>대전 부동산 데이터 (${today})</h2>
           <div class="rank-row">
             <div class="rank-item">
               <div class="item-header">
@@ -18,8 +18,8 @@
               </div>
               <div class="item-body">
                 <table>
-                  <tbody>
-                    <tr>
+                  <tbody id ="Jung-gu">
+                     <!--<tr> 
                       <td>1</td>
                       <td>대주파크빌</td>
                       <td>2.3억</td>
@@ -43,7 +43,7 @@
                       <td>5</td>
                       <td>대주파크빌</td>
                       <td>2.3억</td>
-                    </tr>
+                    </tr>-->
                   </tbody>
                 </table>
               </div>
@@ -54,8 +54,8 @@
               </div>
               <div class="item-body">
                 <table>
-                  <tbody>
-                    <tr>
+                  <tbody id = "Dong-gu">
+                   <!--  <tr>
                       <td>1</td>
                       <td>대주파크빌</td>
                       <td>2.3억</td>
@@ -79,7 +79,7 @@
                       <td>5</td>
                       <td>대주파크빌</td>
                       <td>2.3억</td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -90,8 +90,8 @@
               </div>
               <div class="item-body">
                 <table>
-                  <tbody>
-                    <tr>
+                  <tbody id = "Daedeok-gu">
+                    <!--  <tr>
                       <td>1</td>
                       <td>대주파크빌</td>
                       <td>2.3억</td>
@@ -115,7 +115,7 @@
                       <td>5</td>
                       <td>대주파크빌</td>
                       <td>2.3억</td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -126,8 +126,8 @@
               </div>
               <div class="item-body">
                 <table>
-                  <tbody>
-                    <tr>
+                  <tbody id="Seo-gu">
+                    <!--  <tr>
                       <td>1</td>
                       <td>대주파크빌</td>
                       <td>2.3억</td>
@@ -151,7 +151,7 @@
                       <td>5</td>
                       <td>대주파크빌</td>
                       <td>2.3억</td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -162,8 +162,8 @@
               </div>
               <div class="item-body">
                 <table>
-                  <tbody>
-                    <tr>
+                  <tbody id="Yuseong-gu">
+                    <!--  <tr>
                       <td>1</td>
                       <td>대주파크빌</td>
                       <td>2.3억</td>
@@ -187,7 +187,7 @@
                       <td>5</td>
                       <td>대주파크빌</td>
                       <td>2.3억</td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -341,6 +341,208 @@
 				new Chart(document.getElementById("myChart2"), MY_CHART_DATA2);
 			}
 		});
+		
+		getJungGuAptTopList()
+		function getJungGuAptTopList(){
+			var gu = "중구";
+			$.ajax({
+				url : "/home/aptTop/" + gu,
+				type : 'GET',
+				dataType: "json",
+				success : function(response) {
+					console.log(response)
+					let html = " ";
+					for(var i=0;i<response.length;++i){
+						var price = response[i].price.toString(10);
+						var StringPrice = response[i].price.toString(10).split("");
+						if(StringPrice.length == 6){
+							price = StringPrice[0]+StringPrice[1]+"."+StringPrice[2]+"억";
+							if(StringPrice[2] === "0"){
+								price = StringPrice[0]+StringPrice[1]+"억";
+							}
+						}
+						if(StringPrice.length == 5){
+							price = StringPrice[0]+"."+StringPrice[1]+"억";
+							if(StringPrice[1] === "0"){
+								price = StringPrice[0]+"억";
+							}
+						}
+						if(StringPrice.length <= 4){
+							StringPrice = price + "만";
+							price = StringPrice
+						}
+						html = 
+						"<tr><td>" +
+						response[i].apartmentsName +
+						"</td><td>"+
+						price
+						+"</td></tr>"
+						$('#Jung-gu').append(html);
+					}
+				}
+			})
+		}
+		
+		getDongGuAptTopList()
+		function getDongGuAptTopList(){
+			var gu = "동구";
+			$.ajax({
+				url : "/home/aptTop/" + gu,
+				type : 'GET',
+				dataType: "json",
+				success : function(response) {
+					console.log(response)
+					let html = " ";
+					for(var i=0;i<response.length;++i){
+						var price = response[i].price.toString(10);
+						var StringPrice = response[i].price.toString(10).split("");
+						if(StringPrice.length == 6){
+							price = StringPrice[0]+StringPrice[1]+"."+StringPrice[2]+"억";
+							if(StringPrice[2] === "0"){
+								price = StringPrice[0]+StringPrice[1]+"억";
+							}
+						}
+						if(StringPrice.length == 5){
+							price = StringPrice[0]+"."+StringPrice[1]+"억";
+							if(StringPrice[1] === "0"){
+								price = StringPrice[0]+"억";
+							}
+						}
+						if(StringPrice.length <= 4){
+							StringPrice = price + "만";
+							price = StringPrice
+						}
+						html = 
+						"<tr><td>" +
+						response[i].apartmentsName +
+						"</td><td>"+
+						price
+						+"</td></tr>"
+						$('#Dong-gu').append(html);
+					}
+				}
+			})
+		}
+		getDaedeokGuAptTopList()
+		function getDaedeokGuAptTopList(){
+			var gu = "대덕구";
+			$.ajax({
+				url : "/home/aptTop/" + gu,
+				type : 'GET',
+				dataType: "json",
+				success : function(response) {
+					console.log(response)
+					let html = " ";
+					for(var i=0;i<response.length;++i){
+						var price = response[i].price.toString(10);
+						var StringPrice = response[i].price.toString(10).split("");
+						if(StringPrice.length == 6){
+							price = StringPrice[0]+StringPrice[1]+"."+StringPrice[2]+"억";
+							if(StringPrice[2] === "0"){
+								price = StringPrice[0]+StringPrice[1]+"억";
+							}
+						}
+						if(StringPrice.length == 5){
+							price = StringPrice[0]+"."+StringPrice[1]+"억";
+							if(StringPrice[1] === "0"){
+								price = StringPrice[0]+"억";
+							}
+						}
+						if(StringPrice.length <= 4){
+							StringPrice = price + "만";
+							price = StringPrice
+						}
+						html = 
+						"<tr><td>" +
+						response[i].apartmentsName +
+						"</td><td>"+
+						price
+						+"</td></tr>"
+						$('#Daedeok-gu').append(html);
+					}
+				}
+			})
+		}
+		getYuseongGuAptTopList()
+		function getYuseongGuAptTopList(){
+			var gu = "유성구";
+			$.ajax({
+				url : "/home/aptTop/" + gu,
+				type : 'GET',
+				dataType: "json",
+				success : function(response) {
+					console.log(response)
+					let html = " ";
+					for(var i=0;i<response.length;++i){
+						var price = response[i].price.toString(10);
+						var StringPrice = response[i].price.toString(10).split("");
+						if(StringPrice.length == 6){
+							price = StringPrice[0]+StringPrice[1]+"."+StringPrice[2]+"억";
+							if(StringPrice[2] === "0"){
+								price = StringPrice[0]+StringPrice[1]+"억";
+							}
+						}
+						if(StringPrice.length == 5){
+							price = StringPrice[0]+"."+StringPrice[1]+"억";
+							if(StringPrice[1] === "0"){
+								price = StringPrice[0]+"억"
+							}
+						}
+						if(StringPrice.length <= 4){
+							StringPrice = price + "만";
+							price = StringPrice
+						}
+						html = 
+						"<tr><td>" +
+						response[i].apartmentsName +
+						"</td><td>"+
+						price
+						+"</td></tr>"
+						$('#Yuseong-gu').append(html);
+					}
+				}
+			})
+		}
+		getSeoGuAptTopList()
+		function getSeoGuAptTopList(){
+			var gu = "서구";
+			$.ajax({
+				url : "/home/aptTop/" + gu,
+				type : 'GET',
+				dataType: "json",
+				success : function(response) {
+					console.log(response)
+					let html = " ";
+					for(var i=0;i<response.length;++i){
+						var price = response[i].price.toString(10);
+						var StringPrice = response[i].price.toString(10).split("");
+						if(StringPrice.length == 6){
+							price = StringPrice[0]+StringPrice[1]+"."+StringPrice[2]+"억";
+							if(StringPrice[2] === "0"){
+								price = StringPrice[0]+StringPrice[1]+"억";
+							}
+						}
+						if(StringPrice.length == 5){
+							price = StringPrice[0]+"."+StringPrice[1]+"억";
+							if(StringPrice[1] === "0"){
+								price = StringPrice[0]+"억";
+							}
+						}
+						if(StringPrice.length <= 4){
+							StringPrice = price + "만";
+							price = StringPrice
+						}
+						html = 
+						"<tr><td>" +
+						response[i].apartmentsName +
+						"</td><td>"+
+						price
+						+"</td></tr>"
+						$('#Seo-gu').append(html);
+					}
+				}
+			})
+		}
 	</script>
   </body>
 </html>

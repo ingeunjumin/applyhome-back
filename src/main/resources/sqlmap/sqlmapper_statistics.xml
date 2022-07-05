@@ -44,4 +44,17 @@
 	ORDER BY COUNT(*)
 	</select>
     
+    <select id="selectTopApartPrice" resultType="map">
+    	SELECT 
+			apt.apartments_name AS apartmentsName,
+			apt.price AS price,
+			apt.gu AS gu
+		FROM apartments AS apt 
+		INNER JOIN history_sale_contract AS hsc 
+		on apt.apartments_no = hsc.apartments_no
+		WHERE apt.gu = #{gu}
+		GROUP by hsc.apartments_no 
+		ORDER by apt.price desc
+		limit 5
+    </select>
 </mapper>

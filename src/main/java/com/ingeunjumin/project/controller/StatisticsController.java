@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ingeunjumin.project.service.StatisticsService;
@@ -60,6 +61,12 @@ public class StatisticsController {
 	public List<Map<String,Object>> callSixmonthTradeCountAndAvgSaleAmount(){
 		log.info("[ Call /statistics/sixmonth/trade/sale - GET ]");
 		return statisticsService.getSelectMonthTradeCountAndAvgSalesAmount();
+	}
+	
+	@GetMapping("/home/aptTop/{gu}")
+	@ResponseBody
+	public List<Map<String,Object>> callAptTop(@PathVariable("gu") String gu, ModelMap map){
+		return statisticsService.getSelectTopAptPrice(gu);
 	}
 	
 	

@@ -1,6 +1,9 @@
 package com.ingeunjumin.project.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -37,6 +40,10 @@ public class HomeController {
 		List<AuthorityVO> list = UserService.getAuth(vo.getUserId());
 		vo.setAuthorities(list);
 		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd" , Locale.KOREA);
+		String strTodday = formatter.format(Calendar.getInstance().getTime());
+		
+		modelMap.addAttribute("today", strTodday);
 	    modelMap.addAttribute("name",vo.getUsername());
 	    modelMap.addAttribute("auth",vo.getAuthorities());
 		return "home";

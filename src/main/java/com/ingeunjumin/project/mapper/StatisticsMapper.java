@@ -36,5 +36,11 @@ public interface StatisticsMapper {
 			@Param("endDate") String endDate
 			);
 	
-	
+	/**
+	 * @return
+	 * @author : In Seok
+	 * @Date : 2022. 7. 4.
+	 * comment : 구별 TOP5 가격 아파트 조회~
+	 */
+	public List<Map<String, Object>> selectTopApartPrice(@Param("gu") String gu);
 }
