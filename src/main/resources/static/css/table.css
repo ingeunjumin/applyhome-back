@@ -78,3 +78,16 @@
   background-color: #141418;
   color: #fff;
 }
+
+.excal-btn {
+	position: relative;
+	top: 40px;
+	left: 120%;
+	padding: 2.5%;
+	background: #1cc88a;
+	color: #fff;
+	font-weight:600;
+	text-decoration: none;
+	border-radius: 3px;
+	text-align: center;
+}

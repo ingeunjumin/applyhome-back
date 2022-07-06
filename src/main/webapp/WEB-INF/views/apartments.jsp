@@ -6,19 +6,6 @@
 <html lang="en">
 
 <jsp:include page="include/header.jsp"></jsp:include>
-<style>
-	.excal-btn{
-	position: relative;
-	top : 50px;
-	left : 125%;
-    padding: 0.8%;
-    background: #1cc88a;
-    text-decoration: none;
-    color: #777;
-    border-radius: 6px;
-    text-align: center;
-	}
-</style>
 <body>
 
 	<jsp:include page="include/nav.jsp"></jsp:include>
