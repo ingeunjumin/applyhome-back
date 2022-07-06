@@ -57,4 +57,15 @@
 		ORDER by apt.price desc
 		limit 5
     </select>
+    
+    <select id="selectCrawlingDataAllList" resultType="map">
+    	SELECT
+			subscription_no AS subscriptionNo,
+			apartments_name AS apartmentsName,
+			apartments_address AS apartmentsAddress,
+			latitude ,
+			longitude ,
+			apartments_subscription_date ASapartmentsSubscriptionDate
+		FROM crawling_data
+    </select>
 </mapper>

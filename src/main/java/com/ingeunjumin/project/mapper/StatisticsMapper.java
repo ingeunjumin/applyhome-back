@@ -43,4 +43,12 @@ public interface StatisticsMapper {
 	 * comment : 구별 TOP5 가격 아파트 조회~
 	 */
 	public List<Map<String, Object>> selectTopApartPrice(@Param("gu") String gu);
+	
+	/**
+	 * @return
+	 * @author : In Seok
+	 * @Date : 2022. 7. 6.
+	 * comment : 크롤링 데이터 조회
+	 */
+	public List<Map<String, Object>> selectCrawlingDataAllList();
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
 import com.ingeunjumin.project.mapper.StatisticsMapper;
 
 @Service
@@ -32,6 +33,11 @@ public class StatisticsService {
 	
 	public List<Map<String,Object>> getSelectTopAptPrice(String gu){
 		return statisticsMapper.selectTopApartPrice(gu);
+	}
+	
+	public List<Map<String,Object>> getCrawlingDataAllList(int pageNum,int pageSize){
+		PageHelper.startPage(pageNum, pageSize);
+		return statisticsMapper.selectCrawlingDataAllList();
 	}
 	
 }

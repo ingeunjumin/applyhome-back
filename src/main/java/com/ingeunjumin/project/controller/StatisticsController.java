@@ -11,10 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageInfo;
 import com.ingeunjumin.project.service.StatisticsService;
 import com.ingeunjumin.project.service.UserService;
+import com.ingeunjumin.project.vo.ApartmentsVO;
 import com.ingeunjumin.project.vo.AuthorityVO;
 import com.ingeunjumin.project.vo.UsersVO;
 
@@ -37,13 +40,18 @@ public class StatisticsController {
 	private UserService userService;
 	
 	@GetMapping("/data")
-	public String callStatisticsPage(ModelMap map) {
+	public String callStatisticsPage(ModelMap map,@RequestParam("pageNum") int pageNum,
+			@RequestParam("pageSize") int pageSize) {
 		log.info("[ Call /statistics - GET ]");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UsersVO vo = (UsersVO) auth.getPrincipal();
 		
 		List<AuthorityVO> list = userService.getAuth(vo.getUserId());
 		vo.setAuthorities(list);
+		
+		List<Map<String,Object>> CrawlingList = statisticsService.getCrawlingDataAllList(pageNum, pageSize);
+		PageInfo<Map<String,Object>> pageInfo = new PageInfo<Map<String,Object>>(CrawlingList);
+		map.addAttribute("pageHelper", pageInfo);		
 		
 		return "data";
 	}
