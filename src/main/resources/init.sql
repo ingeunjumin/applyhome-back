@@ -77,4 +77,14 @@ CREATE TABLE IF NOT EXISTS history_sale_contract(
 	CONSTRAINT history_sale_contract_id_fk FOREIGN KEY (apartments_no) REFERENCES apartments(apartments_no) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- crawling_data 테이블
+CREATE TABLE IF NOT EXISTS crawling_data(
+subscription_no INT(5) AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT '청약 번호',
+apartments_name varchar(100) COMMENT '아파트 이름',
+apartments_address varchar(100) COMMENT '아파트 주소',
+latitude varchar(50) COMMENT '위도',
+longitude varchar(50) COMMENT '경도'
+apartments_subscription_date varchar(30) COMMENT '청약 날짜'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- ALTER TABLE 테이블이름 ADD 컬럼명 VARCHAR(20);
