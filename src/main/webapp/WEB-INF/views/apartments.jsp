@@ -15,7 +15,7 @@
 			<h1>Apartments</h1>
 			<!-- search -->
 			<div class="search">
-				<a href="/excel/Apartments" class="excel-btn">엑셀 다운로드</a>
+				<a href="/excel/apartments" class="excel-btn">엑셀 다운로드</a>
 				<label> <input id="searchBar" type="text"
 					placeholder="검색어 입력..." />
 				<input id="searchBarHidden" type="hidden" value="${search}" />
@@ -131,9 +131,10 @@
 							<div class="inputfield">
 								<label>주거전용면적 :</label> <input id="leasableArea" type="text" class="input" />
 							</div>
+							<!-- 홈페이지주소 주석처리
 							<div class="inputfield">
-								<label>홈페이지주소 :</label> <input type="text" class="input" />
-							</div>
+								<label>홈페이지주소 :</label> <input id="homePage" type="text" class="input" />
+							</div>	-->
 							<div class="inputfield">
 								<div id="map" style="width: 100%; height: 230px;"></div>
 							</div>

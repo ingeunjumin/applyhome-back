@@ -19,7 +19,7 @@ public class ExcelController {
 	@Autowired
 	private ExcelService excelService;
 	
-	@GetMapping("/excel/Apartments")
+	@GetMapping("/excel/apartments")
 	public void downloadExcelFile(HttpServletResponse response) throws Exception{
 	String today = new SimpleDateFormat("yyyy-MM-dd" , Locale.KOREA).format(new Date());
 	String title = "인근주민_아파트정보";
