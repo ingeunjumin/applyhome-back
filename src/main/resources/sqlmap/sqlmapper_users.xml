@@ -121,7 +121,8 @@
 			phone,
 			email,
 			address,
-			postal_code AS postalCode
+			postal_code AS postalCode,
+			detail_address AS detailAddress
 		FROM
 			users u
 		WHERE

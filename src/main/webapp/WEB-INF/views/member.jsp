@@ -139,7 +139,8 @@
 							</div>
 							<div class="inputfield">
 								<label>Detail Address</label> <input type="text" class="input"
-									id="detailAddress" />
+									id="detailAddress" placeholder="상세주소를 입력해주세요..." 
+									onfocus="this.placeholder=''" onblur="this.placeholder='상세주소를 입력해주세요...'" />
 							</div>
 							<div class="inputfield terms">
 								<label class="check"> <input type="checkbox"
@@ -202,7 +203,8 @@
 					$('#email').val(response.email);
 					$('#phone').val(response.phone);
 					$('textarea#address').val(response.address);
-					$('#postalCode').val(response.postalCode);
+					$('textarea#postalCode').val(response.postalCode);
+					$('#detailAddress').val(response.detailAddress);
 				}
 			})
 		}
