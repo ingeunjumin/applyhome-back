@@ -27,18 +27,23 @@ public class ApiService {
 		int price = (int) map.get("price");
 		String strPrice = "";
 		String tenMillion = "";
-		if(price >= 10000) {
+		if(price < 10000) {
+			map.put("strPrice", price);
+		}
+		if(price >= 10000 && price < 100000) {
 			String hundredMillion = Integer.toString(price).substring(0,1);
 			strPrice = hundredMillion+"억 ";
 			tenMillion = Integer.toString(price).substring(1);
+			tenMillion = new DecimalFormat("###,###").format(Integer.parseInt(tenMillion));
+			map.put("strPrice", strPrice+tenMillion);
 		}
-		if(price >= 100000){
+		if(price >= 100000 && price < 1000000){
 			String billion = Integer.toString(price).substring(0,2);
 			strPrice = billion+"억 ";
 			tenMillion = Integer.toString(price).substring(2);
+			tenMillion = new DecimalFormat("###,###").format(Integer.parseInt(tenMillion));
+			map.put("strPrice", strPrice+tenMillion);
 		}
-		tenMillion = new DecimalFormat("###,###").format(Integer.parseInt(tenMillion));
-		map.put("strPrice", strPrice+tenMillion);
 
 		String latitude = map.get("latitude").toString();
 		String longitude = map.get("longitude").toString();
@@ -100,5 +105,10 @@ public class ApiService {
 		}
 		return list;
 	}
+	
+	public List<Map<String, Object>> getSubscriptionApartments(){
+		return mapper.selectSubscriptionApartments();
+	}
+	
  
 }

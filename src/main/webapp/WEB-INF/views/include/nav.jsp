@@ -82,7 +82,7 @@
             </svg> <span class="link-text">Data</span>
 			</a></li>
 
-			<li class="nav-item" id="themeButton"><a href="#"
+			<li class="nav-item" id="themeButton"><a href="/logout"
 				class="nav-link"> <svg class="theme-icon" id="lightIcon"
 						aria-hidden="true" focusable="false" data-prefix="fad"
 						data-icon="moon-stars" role="img"

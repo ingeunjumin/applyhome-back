@@ -21,6 +21,10 @@
 			dong,
 			latitude,
 			longitude,
+			heat_type AS heatType,
+			dong_cnt AS dongCnt,
+			sede_cnt AS sedeCnt,
+			manage_type AS manageType,
 			DATE_FORMAT(create_at, '%Y-%m-%d') AS createAt
 		FROM apartments
 		WHERE apartments_no = #{apartmentsNo}
@@ -56,21 +60,32 @@
 	</select>
     
 	<select id="selectTopFiveApartments" resultType="map">
-	select 
-		top.apartments_no AS apartmentsNo, 
-		top.price AS price,
-		a.apartments_name AS apartmentsName
-	from (
-	select 
-	max(sale_price) as price,
-	apartments_no 
-	from history_sale_contract 
-	group by apartments_no 
-	order by 1 desc
-	limit 5
-	) as top
-	inner join apartments as a 
-	on top.apartments_no = a.apartments_no 
+		SELECT 
+			top.apartments_no AS apartmentsNo, 
+			top.price AS price,
+			a.apartments_name AS apartmentsName
+		FROM (
+		SELECT 
+		MAX(sale_price) AS price,
+		apartments_no 
+		FROM history_sale_contract 
+		GROUP BY apartments_no 
+		ORDER BY 1 DESC
+		LIMIT 5
+		) AS top
+		INNER JOIN apartments AS a 
+		ON top.apartments_no = a.apartments_no 
+	</select>
+	
+	<select id="selectSubscriptionApartments" resultType="map">
+		SELECT
+			subscription_no AS subscriptionNo,
+			apartments_name AS apartmentsName,
+			apartments_address AS apartmentsAddress,
+			apartments_subscription_date AS apartmentsSubscriptionDate,
+			latitude,
+			longitude
+		FROM crawling_data
 	</select>
 
 </mapper>

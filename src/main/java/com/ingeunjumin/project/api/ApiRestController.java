@@ -47,4 +47,10 @@ public class ApiRestController {
 		log.info("[ Call /api/v1/apartments/rank - GET ]");
 		return apiService.getTopFiveApartments();
 	}
+	
+	@GetMapping("/apartments/subscription")
+	public List<Map<String, Object>> callApartmentsSubscription() {
+		log.info("[ Call /api/v1/apartments/subscription - GET ]");
+		return apiService.getSubscriptionApartments();
+	}
 }
