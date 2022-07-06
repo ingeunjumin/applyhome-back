@@ -40,8 +40,12 @@ public class StatisticsController {
 	private UserService userService;
 	
 	@GetMapping("/data")
-	public String callStatisticsPage(ModelMap map,@RequestParam("pageNum") int pageNum,
-			@RequestParam("pageSize") int pageSize) {
+	public String callStatisticsPage(
+			ModelMap map,
+			@RequestParam("pageNum") int pageNum,
+			@RequestParam("pageSize") int pageSize
+			) {
+		
 		log.info("[ Call /statistics - GET ]");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UsersVO vo = (UsersVO) auth.getPrincipal();
@@ -56,6 +60,13 @@ public class StatisticsController {
 		return "data";
 	}
 	
+	@GetMapping("/data/{subscriptionNo}")
+	@ResponseBody
+	public Map<String, Object> callSubscriptionNoSelect(
+			@PathVariable("subscriptionNo") int subscriptionNo
+			){
+		return statisticsService.getSubscriptionNoSelect(subscriptionNo);
+	}
 	
 	@GetMapping("/statistics/sixmonth/contract")
 	@ResponseBody

@@ -58,6 +58,8 @@
 		limit 5
     </select>
     
+    
+    <!-- 크롤링한 청약 데이터 가져오기 -->
     <select id="selectCrawlingDataAllList" resultType="map">
     	SELECT
 			subscription_no AS subscriptionNo,
@@ -67,5 +69,19 @@
 			longitude ,
 			apartments_subscription_date ASapartmentsSubscriptionDate
 		FROM crawling_data
+    </select>
+    <!-- 특정 청약 데이터 가져오기 -->
+    <select id="subscriptionNoSelect" resultType="map">
+    	SELECT
+			subscription_no AS subscriptionNo,
+			apartments_name AS apartmentsName,
+			apartments_address AS apartmentsAddress,
+			latitude ,
+			longitude ,
+			apartments_subscription_date ASapartmentsSubscriptionDate
+		FROM 
+			crawling_data
+		WHERE 
+			subscription_no = #{subscriptionNo}
     </select>
 </mapper>

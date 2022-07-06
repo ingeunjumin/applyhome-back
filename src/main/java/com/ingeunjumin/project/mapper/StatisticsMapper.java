@@ -51,4 +51,16 @@ public interface StatisticsMapper {
 	 * comment : 크롤링 데이터 조회
 	 */
 	public List<Map<String, Object>> selectCrawlingDataAllList();
+	
+	
+	
+	/**
+		 * @Method Name : subscriptionNoSelect
+		 * @return : Map<String,Object>
+		 * @author : geunhwan Ryu
+		 * @date : 2022. 7. 6.
+		 * @upDate : 
+		 *comment : 특정 청약 데이터 가져오기
+		 */
+	public Map<String, Object> subscriptionNoSelect(int subscriptionNo);
 }

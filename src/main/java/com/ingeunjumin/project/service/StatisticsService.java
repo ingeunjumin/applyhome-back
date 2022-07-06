@@ -40,4 +40,8 @@ public class StatisticsService {
 		return statisticsMapper.selectCrawlingDataAllList();
 	}
 	
+	public Map<String,Object> getSubscriptionNoSelect(int subscriptionNo){
+		return statisticsMapper.subscriptionNoSelect(subscriptionNo);
+	}
+	
 }

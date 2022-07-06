@@ -15,12 +15,10 @@
 					<table class="content-table">
 						<thead>
 							<tr>
-								<th>아파트 코드</th>
-								<th>아파트 명</th>
-								<th>도로명 주소</th>
-								<th>구</th>
-								<th>매매 가격</th>
-								<th>거래 날짜</th>
+								<th>No</th>
+								<th>Name</th>
+								<th>Address</th>
+								<th>Date</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -70,6 +68,19 @@
 						</tbody>
 					</table>
 					<div class="pagination">
+						<c:if test="${pageHelper.hasPreviousPage}">
+							<a onclick="getSubscriptionDataList(${pageHelper.pageNum-1},10)" href="#">Previous</a>
+						</c:if>
+						<c:forEach items="${pageHelper.navigatepageNums}" var="pageNum">
+							<a id="pageNum${pageNum}"
+								onclick="getSubscriptionDataList(${pageNum},10)"> ${pageNum}</a>
+						</c:forEach>
+						<c:if test="${pageHelper.hasNextPage}">
+							<a onclick="getSubscriptionDataList(${pageHelper.pageNum+1},10)" href="#">Next</a>
+						</c:if>
+						<input id="nowPageNum" type="hidden" value="${pageHelper.pageNum}">
+					</div>
+					<div class="pagination">
             <!--
               <a href="#">Previous</a>
               <a href="#">1</a>
@@ -84,10 +95,10 @@
           <div class="detail-data-container">
             <div class="wrapper">
               <div class="title">위치 정보</div>
+              <input id="info" type="hidden" value="" />
               <div class="form">
                 <div class="inputfield">
-                  <label>Hello World</label>
-                
+                <div id="map" style="width: 100%; height: 300px;"></div>
                 </div>
               </div>
             </div>
@@ -97,7 +108,52 @@
       </div>
     </main>
     <script defer src="/resources/static/js/theme.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+	></script>
+	<script
+	   type="text/javascript"
+	   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0fd0f8b5a2dc48f454d8049f912ec8b2"
+	></script>
     <script>
+    function getSubscriptionDataList(pageNum,pageSize){
+    	location.href = "/data?pageNum="+pageNum+"&pageSize="+pageSize
+    }
+    
+    function getApartmentsWrapper(subscriptionNo){
+    	$('#map').children().remove();
+    	var info = $('#info').val(subscriptionNo);
+    	var latitude = null;
+    	var longitude = null;
+    	$.ajax({
+    		url : "/data/"+subscriptionNo ,
+			type : 'GET',
+			dataType: "json",
+			success : function(response) {
+				console.log(response)
+				latitude = response.latitude;
+				longitude = response.longitude;
+				
+				//카카오맵
+			    var mapContainer = document.getElementById("map"), // 지도를 표시할 div
+			    mapOption = {
+			        center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
+			        level: 3, // 지도의 확대 레벨
+			    };
+			    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+			 	// 마커가 표시될 위치입니다
+			    var markerPosition = new kakao.maps.LatLng(latitude, longitude);       
+			    // 마커를 생성합니다
+			    var marker = new kakao.maps.Marker({
+			      position: markerPosition,
+			    });
+			    // 마커가 지도 위에 표시되도록 설정합니다
+			    marker.setMap(map);
+			}
+    	})
+    }
      
     </script>
   </body>
