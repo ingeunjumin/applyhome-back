@@ -32,14 +32,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	public void configure(WebSecurity web) {
-		web.ignoring().antMatchers("/resources/static/*/**");
+		web.ignoring().antMatchers("/resources/static/*/**","/error");
 	}
 	
 	@Override
 	// HTTP 시큐리티 관련 보안 설정
     protected void configure(HttpSecurity http) throws Exception{
 		 http
-		 .authorizeRequests().antMatchers("/login","/join","/api/v1/**","/resources/static/*/**","/valid-recaptcha").permitAll()//security 대상에서 제외
+		 .authorizeRequests().antMatchers("/login","/join","/api/v1/**","/resources/static/*/**","/valid-recaptcha","/error").permitAll()//security 대상에서 제외
 		 .anyRequest().authenticated();
 		 http
 		 .csrf().disable();//CSRF 기능 off
