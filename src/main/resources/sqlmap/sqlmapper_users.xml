@@ -105,6 +105,9 @@
 			<if test="postalCode != null">
 				,postal_code = #{postalCode}
 			</if>
+			<if test="detailAddress != null">
+				,detail_address = #{detailAddress}
+			</if>
 		WHERE
 			user_no = #{userNo}
 	</update>

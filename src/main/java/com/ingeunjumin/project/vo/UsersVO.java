@@ -21,6 +21,7 @@ public class UsersVO implements UserDetails{
 	private String createAt;
 	private String postalCode; // 우편주소
 	private String address; // 지번주소
+	private String detailAddress; //상세주소
 	private int roleId;
 	private String roleName;
 	private List<AuthorityVO> authorities;

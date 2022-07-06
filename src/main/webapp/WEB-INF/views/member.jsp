@@ -134,8 +134,12 @@
 								<textarea class="textarea" onclick="getPostCode()" id="address"></textarea>
 							</div>
 							<div class="inputfield">
-								<label>Postal Code</label> <input type="text" class="input"
-									id="postalCode" onclick="getPostCode()" />
+								<label>Postal Code</label> <textarea type="text" class="input"
+									id="postalCode" onclick="getPostCode()" ></textarea>
+							</div>
+							<div class="inputfield">
+								<label>Detail Address</label> <input type="text" class="input"
+									id="detailAddress" />
 							</div>
 							<div class="inputfield terms">
 								<label class="check"> <input type="checkbox"
@@ -213,7 +217,8 @@
 			var phone = $('#phone').val().trim();
 			var email = $('#email').val().trim();
 			var address = $('textarea#address').val().trim(); //textarea 값 가져오기
-			var postalCode = $('#postalCode').val().trim();
+			var postalCode = $('textarea#postalCode').val().trim();
+			var detailAddress = $('#detailAddress').val().trim();
 			var regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/; //핸드폰번호 확인 정규 표현식
 			var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;//이메일 정규 표현식
 			
@@ -225,7 +230,9 @@
 					phone : phone,
 					email : email,
 					address : address,
-					postalCode : postalCode
+					postalCode : postalCode,
+					detailAddress : detailAddress
+					
 			}
 //특정 계정 수정 중 input값 체크 구간 start
 		if(name != "" && userId != "" && phone != "" && email != "" && address != "" && postalCode != ""){// 빈값 여부 확인
