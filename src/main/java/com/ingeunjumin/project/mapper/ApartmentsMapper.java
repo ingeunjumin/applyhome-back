@@ -42,5 +42,5 @@ public interface ApartmentsMapper {
 	 * @Date : 2022. 6. 29.
 	 * comment : 아파트 검색 리스트
 	 */
-	public  List<ApartmentsVO> selectSearchApartmentsList(String studentsName);
+	public List<ApartmentsVO> selectSearchApartmentsList(String studentsName);
 }

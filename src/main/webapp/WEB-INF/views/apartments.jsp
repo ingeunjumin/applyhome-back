@@ -9,16 +9,15 @@
 <body>
 
 	<jsp:include page="include/nav.jsp"></jsp:include>
-	
+
 	<main>
 		<div class="container">
 			<h1>Apartments</h1>
 			<!-- search -->
 			<div class="search">
-				<a href="/excel/apartments" class="excel-btn">엑셀 다운로드</a>
-				<label> <input id="searchBar" type="text"
-					placeholder="검색어 입력..." />
-				<input id="searchBarHidden" type="hidden" value="${search}" />
+				<a href="/excel/apartments" class="excel-btn">엑셀 다운로드</a> <label>
+					<input id="searchBar" type="text" placeholder="검색어 입력..." /> <input
+					id="searchBarHidden" type="hidden" value="${search}" />
 				</label>
 			</div>
 			<div class="row">
@@ -35,28 +34,27 @@
 							</tr>
 						</thead>
 						<tbody>
-						
-							<c:choose>	 		
-					 			<c:when test="${fn:length(pageHelper.list) > 0}">
-					 				<c:forEach items="${pageHelper.list}" var="item">	
-						 				<tr id="aptNumber${item.apartmentsNo}" onclick="getApartmentsWrapper(${item.apartmentsNo})">
-								    		<td>${item.apartmentsNo}</td>
-								    		<td>${item.apartmentsName}</td>
-								    		<td>${item.addr}</td>
-								    		<td>${item.gu}</td>
-								    		<td>${item.price}</td>
-								    		<td>${item.createAt}</td>			    							    			
-				  						</tr>
+							<c:choose>
+								<c:when test="${fn:length(pageHelper.list) > 0}">
+									<c:forEach items="${pageHelper.list}" var="item">
+										<tr id="aptNumber${item.apartmentsNo}"
+											onclick="getApartmentsWrapper(${item.apartmentsNo})">
+											<td>${item.apartmentsNo}</td>
+											<td>${item.apartmentsName}</td>
+											<td>${item.addr}</td>
+											<td>${item.gu}</td>
+											<td>${item.price}</td>
+											<td>${item.createAt}</td>
+										</tr>
 									</c:forEach>
-					 			</c:when>
-					 			
-					 			<c:otherwise>
-					 				<tr>
-					 					<td colspan="6">데이터가 없습니다.</td>
-					 				</tr>
-					 			</c:otherwise>
-					 		</c:choose>
-					 		
+								</c:when>
+
+								<c:otherwise>
+									<tr>
+										<td colspan="6">데이터가 없습니다.</td>
+									</tr>
+								</c:otherwise>
+							</c:choose>
 							<!-- <tr>
 								<td>1</td>
 								<td>대주파크빌</td>
@@ -85,16 +83,17 @@
 					</table>
 					<div class="pagination">
 						<c:if test="${pageHelper.hasPreviousPage}">
-				          	<a onclick="getApartmentsList(${pageHelper.pageNum-1},10)">Previous</a>
-				          </c:if>
-				          <c:forEach begin="${pageHelper.navigateFirstPage}" end="${pageHelper.navigateLastPage}"  var="pageNum">
-				          	<a id="pageNum${pageNum}"  onclick="getApartmentsList(${pageNum},10)">${pageNum}</a>
-				          </c:forEach>
-				          <c:if test="${pageHelper.hasNextPage}">
-				          	<a onclick="getApartments(${pageHelper.pageNum+1},10)">Next</a>
-				          </c:if>
-				          
-				          <input id="nowPageNum" type="hidden" value="${pageHelper.pageNum}">
+							<a onclick="getApartmentsList(${pageHelper.pageNum-1},10)">Previous</a>
+						</c:if>
+						<c:forEach begin="${pageHelper.navigateFirstPage}"
+							end="${pageHelper.navigateLastPage}" var="pageNum">
+							<a id="pageNum${pageNum}"
+								onclick="getApartmentsList(${pageNum},10)">${pageNum}</a>
+						</c:forEach>
+						<c:if test="${pageHelper.hasNextPage}">
+							<a onclick="getApartments(${pageHelper.pageNum+1},10)">Next</a>
+						</c:if>
+						<input id="nowPageNum" type="hidden" value="${pageHelper.pageNum}">
 						<!--  <a href="#">Previous</a> <a href="#">1</a> <a href="#">2</a> <a
 							href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">Next</a>-->
 					</div>
@@ -105,31 +104,40 @@
 						<div class="title">아파트 정보</div>
 						<div class="form">
 							<div class="inputfield">
-								<label>아파트 이름 :</label> <input id="apartmentsName" type="text" class="input" />
+								<label>아파트 이름 :</label> <input id="apartmentsName" type="text"
+									class="input" />
 							</div>
 							<div class="inputfield">
-								<label>도로명 주소 :</label> <input id="addr" type="text" class="input" />
+								<label>도로명 주소 :</label> <input id="addr" type="text"
+									class="input" />
 							</div>
 							<div class="inputfield">
-								<label>최근 매매 가격 :</label> <input id="price" type="text" class="input" readonly />
+								<label>최근 매매 가격 :</label> <input id="price" type="text"
+									class="input" readonly />
 							</div>
 							<div class="inputfield">
-								<label>난방방식 :</label> <input id="heatType" type="text" class="input" />
+								<label>난방방식 :</label> <input id="heatType" type="text"
+									class="input" />
 							</div>
 							<div class="inputfield">
-								<label>건축 년도 :</label> <input id="createAt" type="text" class="input" readonly/>
+								<label>건축 년도 :</label> <input id="createAt" type="text"
+									class="input" readonly />
 							</div>
 							<div class="inputfield">
-								<label>동 수 :</label> <input id="dongCnt" type="text" class="input" />
+								<label>동 수 :</label> <input id="dongCnt" type="text"
+									class="input" />
 							</div>
 							<div class="inputfield">
-								<label>세대 수 :</label> <input id="sedeCnt" type="text" class="input" />
+								<label>세대 수 :</label> <input id="sedeCnt" type="text"
+									class="input" />
 							</div>
 							<div class="inputfield">
-								<label>관리방식 :</label> <input id="manageType" type="text" class="input" />
+								<label>관리방식 :</label> <input id="manageType" type="text"
+									class="input" />
 							</div>
 							<div class="inputfield">
-								<label>주거전용면적 :</label> <input id="leasableArea" type="text" class="input" />
+								<label>주거전용면적 :</label> <input id="leasableArea" type="text"
+									class="input" />
 							</div>
 							<!-- 홈페이지주소 주석처리
 							<div class="inputfield">
@@ -139,9 +147,9 @@
 								<div id="map" style="width: 100%; height: 230px;"></div>
 							</div>
 							<div class="inputfield">
-								<input id="apartmentsHidden" type="hidden" />
-								<input id="apartmentsUpdateHidden" type="hidden" />
-								<input id="apartmentsUpdate" type="submit" value="수정하기" class="btn" />
+								<input id="apartmentsHidden" type="hidden" /> <input
+									id="apartmentsUpdateHidden" type="hidden" /> <input
+									id="apartmentsUpdate" type="submit" value="수정하기" class="btn" />
 							</div>
 						</div>
 					</div>
@@ -151,19 +159,12 @@
 		</div>
 	</main>
 	<script defer src="/resources/static/js/theme.js"></script>
-	
-	<script
-    src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-    crossorigin="anonymous"
-	></script>
-	<script
-	   type="text/javascript"
-	   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0fd0f8b5a2dc48f454d8049f912ec8b2"
-	></script>
-	
-	<script type="text/javascript">
-	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0fd0f8b5a2dc48f454d8049f912ec8b2"></script>
+	<script type="text/javascript">	
 	
 	function getApartmentsList(pageNum, pageSize) {
 	    var search = $("#searchBarHidden").val();
@@ -231,9 +232,6 @@
           	})
 		});
 
-	
-	
-	
 	$("#apartmentsUpdate").click(function (){
 		if (confirm("정말로 수정 하시겠습니까?")) {
 			var apartmentsNo = $("#apartmentsUpdateHidden").val();

@@ -9,21 +9,21 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class GlobalController implements ErrorController{
+public class GlobalController implements ErrorController {
 	@GetMapping("/error")
-	public String handleError(ModelMap map,HttpServletRequest request) {
-		//발생하는 오류 종류 판별
+	public String handleError(ModelMap map, HttpServletRequest request) {
+		// 발생하는 오류 종류 판별
 		String status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE).toString();
-		
-		System.out.println("Error Code : "+ status);
-		
-		if(status.equals("404")) {
+
+		System.out.println("Error Code : " + status);
+
+		if (status.equals("404")) {
 			return "error/error404";
 		}
-		if(status.equals("500")) {
+		if (status.equals("500")) {
 			return "error/error500";
 		}
-		
+
 		return null;
 	}
 }

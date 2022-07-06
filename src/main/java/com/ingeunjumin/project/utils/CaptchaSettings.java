@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CaptchaSettings {
-	 private String site;
-	 private String secret;
-	 private String url;
+	private String site;
+	private String secret;
+	private String url;
 }

@@ -1,52 +1,59 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- MyBatis에게 Mapper 경로를 적어야 한다. -->
-<mapper namespace="com.ingeunjumin.project.mapper.ApartmentsMapper">
-		<select id="ApartmentsAllList" resultType="ApartmentsVO">
-			SELECT
-				apartments_no AS apartmentsNo,
-				apartments_name AS apartmentsName,
-				price,
-				addr,
-				gu,
-				DATE_FORMAT(create_at,'%Y') AS createAt,
-				latitude,
-				longitude
-			FROM apartments 
-		</select>
-		
-		<select id="selectSearchApartmentsList" resultType="ApartmentsVO">
-			SELECT
-				apartments_no AS apartmentsNo,
-				apartments_name AS apartmentsName,
-				price,
-				addr,
-				gu,
-				DATE_FORMAT(create_at,'%Y') AS createAt,
-				latitude,
-				longitude
-			FROM apartments
-			WHERE apartments_name LIKE CONCAT(#{apartmentsName} ,'%')
-		</select>
-		
-		<select id="SelectApartments" resultType="ApartmentsVO">
-			SELECT
-				apartments_name AS apartmentsName,
-				price,
-				addr,
-				gu,
-				DATE_FORMAT(create_at,'%Y') AS createAt,
-				latitude,
-				longitude,
-				heat_type AS heatType,
-				dong_cnt AS dongCnt,
-				sede_cnt AS sedeCnt,
-				manage_type AS manageType,
-				leasable_area AS leasableArea		
-			FROM apartments
-			WHERE apartments_no = #{apartmentsNo}
-		</select>
-		
-		<update id="updateApartments">
+<mapper
+	namespace="com.ingeunjumin.project.mapper.ApartmentsMapper">
+	<select id="ApartmentsAllList" resultType="ApartmentsVO">
+		SELECT
+			apartments_no AS apartmentsNo,
+			apartments_name AS apartmentsName,
+			price,
+			addr,
+			gu,
+			DATE_FORMAT(create_at,'%Y') AS createAt,
+			latitude,
+			longitude
+		FROM 
+			apartments
+	</select>
+
+	<select id="selectSearchApartmentsList"
+		resultType="ApartmentsVO">
+		SELECT
+			apartments_no AS apartmentsNo,
+			apartments_name AS apartmentsName,
+			price,
+			addr,
+			gu,
+			DATE_FORMAT(create_at,'%Y') AS createAt,
+			latitude,
+			longitude
+		FROM 
+			apartments
+		WHERE 
+			apartments_name LIKE CONCAT(#{apartmentsName} ,'%')
+	</select>
+
+	<select id="SelectApartments" resultType="ApartmentsVO">
+		SELECT
+			apartments_name AS apartmentsName,
+			price,
+			addr,
+			gu,
+			DATE_FORMAT(create_at,'%Y') AS createAt,
+			latitude,
+			longitude,
+			heat_type AS heatType,
+			dong_cnt AS dongCnt,
+			sede_cnt AS sedeCnt,
+			manage_type AS manageType,
+			leasable_area AS leasableArea
+		FROM 
+			apartments
+		WHERE 
+			apartments_no = #{apartmentsNo}
+	</select>
+
+	<update id="updateApartments">
 		UPDATE apartments
 		SET
 			apartments_name = #{apartmentsName},
@@ -56,8 +63,9 @@
 			sede_cnt = #{sedeCnt},
 			manage_type = #{manageType},
 			leasable_area = #{leasableArea}
-		WHERE apartments_no = #{apartmentsNo}
+		WHERE
+			 apartments_no = #{apartmentsNo}
 	</update>
 
-    
+
 </mapper>

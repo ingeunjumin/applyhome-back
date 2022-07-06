@@ -31,48 +31,45 @@ import lombok.extern.slf4j.Slf4j;
 public class ApartmentsController {
 	@Autowired
 	private ApartmentsService apartmentsService;
-	
+
 	@GetMapping("apartments")
 	public String callApartmentsPage(ModelMap map, @RequestParam("pageNum") int pageNum,
 			@RequestParam("pageSize") int pageSize) {
-		
+
 		log.info("[ Call /apartments - GET ]");
 		List<ApartmentsVO> list = apartmentsService.getApartmaentsAllList(pageNum, pageSize);
 		PageInfo<ApartmentsVO> pageInfo = new PageInfo<ApartmentsVO>(list);
 		map.addAttribute("pageHelper", pageInfo);
-		
+
 		return "apartments";
 	}
-	
-	
+
 	/**
 	 * @param apartmentNo
 	 * @return
 	 * @author : In Seok
-	 * @Date : 2022. 6. 30.
-	 * comment : 아파트번호 클릭시 apartmentsNo넘에 맞는 정보 출력
+	 * @Date : 2022. 6. 30. comment : 아파트번호 클릭시 apartmentsNo넘에 맞는 정보 출력
 	 */
 	@ResponseBody
 	@GetMapping("/apartments/{apartmentsNo}")
 	public ApartmentsVO callSelectApartments(@PathVariable("apartmentsNo") int apartmentNo) {
-		log.info("[ Call /apartments/"+apartmentNo+" - GET ]");
+		log.info("[ Call /apartments/" + apartmentNo + " - GET ]");
 		return apartmentsService.getSelectApartmaents(apartmentNo);
 	}
-	
+
 	/**
 	 * @param apartmentsNo
 	 * @param vo
 	 * @return
 	 * @author : In Seok
-	 * @Date : 2022. 6. 29.
-	 * comment : 업데이트
+	 * @Date : 2022. 6. 29. comment : 업데이트
 	 */
 	@ResponseBody
 	@PatchMapping("/apartments/{apartmentsNo}")
-  	public int updateApartments(@PathVariable("apartmentsNo")int apartmentsNo, @RequestBody ApartmentsVO vo) {
+	public int updateApartments(@PathVariable("apartmentsNo") int apartmentsNo, @RequestBody ApartmentsVO vo) {
 		return apartmentsService.updateApartmaents(apartmentsNo, vo);
 	}
-	
+
 	/**
 	 * @param map
 	 * @param writer
@@ -80,22 +77,21 @@ public class ApartmentsController {
 	 * @param pageSize
 	 * @return
 	 * @author : In Seok
-	 * @Date : 2022. 6. 30.
-	 * comment : 아파트 검색!!
+	 * @Date : 2022. 6. 30. comment : 아파트 검색!!
 	 */
 	@GetMapping("/apartments/search")
 	public String callBoardSearchPage(ModelMap map, @RequestParam("name") String name,
 			@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
-		log.info("[ Call /apartments/"+name+" - GET ]");
-		List<ApartmentsVO> list = apartmentsService.getSearchApartmentsList(name, pageNum, pageSize);
 		
+		log.info("[ Call /apartments/" + name + " - GET ]");
+		List<ApartmentsVO> list = apartmentsService.getSearchApartmentsList(name, pageNum, pageSize);
+
 		String addSearcg = name;
 		map.addAttribute("search", addSearcg);
-		
+
 		PageInfo<ApartmentsVO> pageInfo = new PageInfo<ApartmentsVO>(list);
-		
 		map.addAttribute("pageHelper", pageInfo);
-		
+
 		return "apartments";
 	}
 

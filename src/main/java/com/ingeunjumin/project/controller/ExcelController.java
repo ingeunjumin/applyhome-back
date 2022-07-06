@@ -18,22 +18,23 @@ import com.ingeunjumin.project.service.ExcelService;
 public class ExcelController {
 	@Autowired
 	private ExcelService excelService;
-	
+
 	@GetMapping("/excel/apartments")
-	public void downloadExcelFile(HttpServletResponse response) throws Exception{
-	String today = new SimpleDateFormat("yyyy-MM-dd" , Locale.KOREA).format(new Date());
-	String title = "인근주민_아파트정보";
-	
-	//엑셀 파일을 보내겠다.
-	response.setContentType("ms-vnd/excel");
-	//엑셀 파일 이름 수정
-	response.setHeader("Content-Disposition", "attachment;filename="+ URLEncoder.encode(today+"_"+title,"UTF-8")+".xls");
-	Workbook workBook = excelService.makeExcelForm();
-	workBook.write(response.getOutputStream());
-	workBook.close();
-	        
-	response.getOutputStream().flush();
-	response.getOutputStream().close();
-	
+	public void downloadExcelFile(HttpServletResponse response) throws Exception {
+		String today = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(new Date());
+		String title = "인근주민_아파트정보";
+
+		// 엑셀 파일을 보내겠다.
+		response.setContentType("ms-vnd/excel");
+		// 엑셀 파일 이름 수정
+		response.setHeader("Content-Disposition",
+				"attachment;filename=" + URLEncoder.encode(today + "_" + title, "UTF-8") + ".xls");
+		Workbook workBook = excelService.makeExcelForm();
+		workBook.write(response.getOutputStream());
+		workBook.close();
+
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
+
 	}
 }
