@@ -53,7 +53,7 @@
 	</select>
 
 	<!-- 사용자 추가 -->
-	<insert id="insertUser">
+	<insert id="insertUser" useGeneratedKeys="true" keyProperty="userNo">
 		INSERT INTO users
 			(
 			user_id,
@@ -70,6 +70,19 @@
 			#{phone},
 			#{email}
 			)
+	</insert>
+	
+	<insert id="insertAuth">
+		INSERT INTO auth_users_authority
+		(
+			user_no,
+			role_id
+		)
+		VALUES
+		(
+			#{userNo},
+			#{roleId}
+		)
 	</insert>
 
 	<!-- 특정 사용자 삭제 -->

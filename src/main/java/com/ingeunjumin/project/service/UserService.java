@@ -21,11 +21,17 @@ public class UserService {
 	@Autowired
 	private UsersMapper usersMapper;
 	
+	@Transactional(rollbackFor = Exception.class)
 	public int setUser(UsersVO usersVO) {
 		String password = usersVO.getUserPassword(); // 파라미터값 비밀번호 get
 		password = passwordEncoder.encode(password); // 암호화
 		usersVO.setUserPassword(password); // 암호화된 패스워드 set
-		return usersMapper.insertUser(usersVO);
+		int rows = usersMapper.insertUser(usersVO);
+		if(rows > 0) {
+			int rootRoleId = 3;
+			usersMapper.insertAuth(usersVO.getUserNo(), rootRoleId);
+		}
+		return rows;
 	}
 	
 	public List<Map<String,Object>> getUsersAllList(int pageNum,int pageSize) {

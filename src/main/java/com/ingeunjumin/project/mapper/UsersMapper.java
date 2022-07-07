@@ -95,4 +95,14 @@ public interface UsersMapper {
 		 *comment : search users
 		 */
 	public List<Map<String, Object>> selectSearchUsers(String search);
+	
+	/**
+	 * @param userNo
+	 * @param roleId
+	 * @return
+	 * @author : Sangwon Hyun
+	 * @date : 2022. 7. 7.
+	 * comment : 사용자 권한 주기
+	 */
+	public int insertAuth(@Param("userNo") int userNo, @Param("roleId") int roleId);
 }
