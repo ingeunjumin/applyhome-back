@@ -42,7 +42,7 @@ public interface UsersMapper {
 		 * @upDate : 
 		 *comment : 전체 사용자 조회
 		 */
-	public List<Map<String,Object>> selectUsersAll();
+	public List<UsersVO> selectUsersAll();
 	
 	/**
 		 * @Method Name : insertUsers
@@ -105,4 +105,6 @@ public interface UsersMapper {
 	 * comment : 사용자 권한 주기
 	 */
 	public int insertAuth(@Param("userNo") int userNo, @Param("roleId") int roleId);
+
+
 }

@@ -4,14 +4,17 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.ingeunjumin.project.mapper.UsersMapper;
 import com.ingeunjumin.project.utils.DistanceHandler;
+import com.ingeunjumin.project.vo.UsersVO;
 
 @SpringBootTest
 class ProjectApplicationTests {
 
 	@Autowired
 	private DistanceHandler distanceHandler;
-
+	@Autowired
+	private UsersMapper usersMapper;
 	@Test
 	void contextLoads() {
 
@@ -30,6 +33,9 @@ class ProjectApplicationTests {
 		if(result <= boundary){
 			System.out.println("1.5km 안에 목표물 발견 !!");
 		}
+		
+		UsersVO userVO  = usersMapper.selectUserInfo("admi");
+		System.out.println(userVO);
 
 	}
 

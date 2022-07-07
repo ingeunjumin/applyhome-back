@@ -10,7 +10,11 @@
 			user_id AS userId,
 			user_name AS name,
 			phone,
-			email
+			email,
+			address,
+			postal_code AS postalCode,
+			detail_address AS detailAddress,
+			create_at AS createAt
 		FROM 
 			users
 		WHERE 
@@ -44,15 +48,17 @@
 			u.email,
 			DATE_FORMAT(u.create_at, "%Y-%m-%d") AS createAt,
 			aa.role_name AS roleName
-		FROM users u LEFT JOIN auth_users_authority aua
-		ON
-		u.user_no = aua.user_no
-		LEFT JOIN auth_authority aa
-		ON
-		aua.role_id =aa.role_id
+		FROM users u INNER JOIN auth_users_authority aua
+			ON
+			u.user_no = aua.user_no
+			INNER JOIN auth_authority aa
+			ON
+			aua.role_id =aa.role_id
 	</select>
 
 	<!-- 사용자 추가 -->
+	<!-- useGeneratedKeys : (insert, update에만 적용) 자동생성 키를 받을때 true로 설정한다. (default: false) -->
+	<!-- keyProperty : 리턴 될 key property 설정. 여러개를 사용한다면 ,(콤마)를 구분자로 나열한다. -->
 	<insert id="insertUser" useGeneratedKeys="true" keyProperty="userNo">
 		INSERT INTO users
 			(
@@ -161,7 +167,6 @@
 		WHERE 
 			u.user_name LIKE CONCAT('%',#{search},'%') or u.user_id LIKE CONCAT('%',#{search},'%')
 	</select>
-
 
 
 </mapper>

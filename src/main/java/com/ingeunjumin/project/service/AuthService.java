@@ -10,6 +10,7 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.net.ssl.HttpsURLConnection;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,10 +34,9 @@ public class AuthService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 		UsersVO userVO  = usersMapper.selectUserInfo(userId);
-		
 		if(userVO == null) throw new UsernameNotFoundException("User Not Found"+userId);
-         
-		return userVO;
+		
+		return userVO; 
 	}
 	
 	public boolean verifyRecaptcha(String recaptcha) {

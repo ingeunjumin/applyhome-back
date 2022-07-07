@@ -16,9 +16,11 @@
 			<h1>Members</h1>
 			<!-- search -->
 			<div class="search">
+			<a href="/excel/members" class="excel-btn">엑셀 다운로드</a>
 				<label> <input id="searchBar" type="text"
-					placeholder="ID 또는 이름 입력..." onfocus="this.placeholder=''" onblur="this.placeholder='ID 또는 이름 입력...'"/> <input id="keyword" type="hidden"
-					value="${search}">
+					placeholder="ID 또는 이름 입력..." onfocus="this.placeholder=''"
+					onblur="this.placeholder='ID 또는 이름 입력...'" /> <input id="keyword"
+					type="hidden" value="${search}">
 				</label>
 			</div>
 			<div class="row">
@@ -97,9 +99,9 @@
 							</div>
 							<div class="inputfield">
 								<label>Password</label> <input type="password" class="input"
-									id="password" placeholder="숫자,대문자,특수문자를 포함한 6글자 이상 입력..." 
-									onfocus="this.placeholder=''" onblur="this.placeholder='숫자,대문자,특수문자를 포함한 6글자 이상 입력...'"
-									/>
+									id="password" placeholder="숫자,대문자,특수문자를 포함한 6글자 이상 입력..."
+									onfocus="this.placeholder=''"
+									onblur="this.placeholder='숫자,대문자,특수문자를 포함한 6글자 이상 입력...'" />
 							</div>
 							<div class="inputfield">
 								<label>Confirm Password</label> <input type="password"
@@ -125,22 +127,24 @@
 							</div>
 							<div class="inputfield">
 								<label>Phone Number</label> <input type="text" class="input"
-									id="phone" placeholder="'-'를 제외한 핸드폰번호를 입력하세요..." 
-									onfocus="this.placeholder=''" onblur="this.placeholder=''-'를 제외한 핸드폰번호를 입력하세요...'"
-									/>
+									id="phone" placeholder="'-'를 제외한 핸드폰번호를 입력하세요..."
+									onfocus="this.placeholder=''"
+									onblur="this.placeholder=''-'를 제외한 핸드폰번호를 입력하세요...'" />
 							</div>
 							<div class="inputfield" id="address">
 								<label>Address</label>
 								<textarea class="textarea" onclick="getPostCode()" id="address"></textarea>
 							</div>
 							<div class="inputfield">
-								<label>Postal Code</label> <textarea type="text" class="input"
-									id="postalCode" onclick="getPostCode()" ></textarea>
+								<label>Postal Code</label>
+								<textarea type="text" class="input" id="postalCode"
+									onclick="getPostCode()"></textarea>
 							</div>
 							<div class="inputfield">
 								<label>Detail Address</label> <input type="text" class="input"
-									id="detailAddress" placeholder="상세주소를 입력해주세요..." 
-									onfocus="this.placeholder=''" onblur="this.placeholder='상세주소를 입력해주세요...'" />
+									id="detailAddress" placeholder="상세주소를 입력해주세요..."
+									onfocus="this.placeholder=''"
+									onblur="this.placeholder='상세주소를 입력해주세요...'" />
 							</div>
 							<div class="inputfield terms">
 								<label class="check"> <input type="checkbox"
@@ -237,53 +241,65 @@
 					
 			}
 //특정 계정 수정 중 input값 체크 구간 start
-		if(name != "" && userId != "" && phone != "" && email != "" && address != "" && postalCode != ""){// 빈값 여부 확인
+			// 빈칸 여부 확인 start	
+			if(name != "" && userId != "" && phone != "" && email != "" && address != "" && postalCode != ""){// 빈값 여부 확인
+			}else{
+				alert("정보를 입력해주세요!")
+				return false;
+			}// 빈칸 여부 확인 end	
+		
+			// 비밀번호 확인 start
 			if(password == userPassword){
 				$('#confirmPassword').css('color','green');
-				    if (regEmail.test(email) === true) {// 이메일 정규 표현식
-				    console.log("email OK!")
-						if (regPhone.test(phone) === true) {// 휴대폰번호 정규 표현식
-					    	console.log("휴대폰 OK!")
-							if($('#checkbox').is(':checked')){ // 체크 여부 확인
-								if(confirm("수정하시겠습니까?")){
-										$.ajax({
-									         url : '/member/update',
-									         type : 'PATCH',
-									         contentType : 'application/json',//서버에 json타입으로 보낼 예정(요청).
-									         dataType : 'json', //서버결과를 json으로 응답받겠다.
-									         data : JSON.stringify(jsonData),
-									         success: function(response){
-									        	 if(response > 0){
-									        		 console.log(response)
-									        	 }
-									         }
-										}) //ajax end
-									alert("수정되었습니다.")
-								}
-							}else{
-								alert("동의 항목을 체크해주세요!")
-								return false;
-							}// 체크 여부 확인 end
-						}else{
-						    alert('휴대폰번호 형식이 아닙니다.');
-						    $('#phone').focus();
-						    return false;
-						}// 휴대폰번호 정규 표현식 end
-					}else{
-						alert('이메일 형식이 아닙니다.');
-					    $('#email').focus();
-					    return false;
-					}// 이메일 정규 표현식 end
-				}else{
-					alert("비밀번호가 일치하지 않습니다.")
-					$('#confirmPassword').css('color','red');
-					$('#confirmPassword').focus();
-					return false;
-				} // 비밀번호 확인 end
-		}else{
-			alert("정보를 입력해주세요!")
-			return false;
-		}// 빈칸 여부 확인 end
+			}else{
+				alert("비밀번호가 일치하지 않습니다.")
+				$('#confirmPassword').css('color','red');
+				$('#confirmPassword').focus();
+				return false;
+			} // 비밀번호 확인 end
+			
+			// 이메일 정규 표현식 start
+			if (regEmail.test(email) === true) {// 이메일 정규 표현식.test(email) === true
+		    	console.log("email OK!")
+		   	}
+			else{
+				alert('이메일 형식이 아닙니다.');
+				$('#email').focus();
+			    return false;
+			}// 이메일 정규 표현식 end
+			
+			// 휴대폰번호 정규 표현식 start
+			if (regPhone.test(phone) === true) {// 휴대폰번호 정규 표현식
+			   	console.log("휴대폰 OK!")
+			}else{
+			   alert('휴대폰번호 형식이 아닙니다.');
+			   $('#phone').focus();
+			   return false;
+			}// 휴대폰번호 정규 표현식 end	
+			
+			// 체크 여부 확인 start
+			if($('#checkbox').is(':checked')){ // 체크 여부 확인
+			}else{
+				alert("동의 항목을 체크해주세요!")
+				return false;
+			}// 체크 여부 확인 end
+			
+			if(confirm("수정하시겠습니까?")){
+				//ajax start
+				$.ajax({
+					url : '/member/update',
+					type : 'PATCH',
+					contentType : 'application/json',//서버에 json타입으로 보낼 예정(요청).
+					dataType : 'json', //서버결과를 json으로 응답받겠다.
+					data : JSON.stringify(jsonData),
+					success: function(response){
+						if(response > 0){
+							console.log(response)
+							}
+						}
+					}) //ajax end
+				alert("수정되었습니다.")
+			}
 //특정 계정 수정 중 input값 체크 구간 end
 		}//userUpdate() end
 		
@@ -302,14 +318,14 @@
 		});
 	
 // 이메일 정규 표현식
-		function fn_submit() {
-		      var text = document.getElementById('text').value;
-		
+		function fn_submit(text) {
+		      // var text = document.getElementById('text').value;
 		      var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 		      if (regEmail.test(text) === true) {
 		          alert('입력된 값은 이메일입니다.');
 		      }
 	 	 }	
+	 	 
 // 핸드폰번호 정규 표현식
 		function submitPhoneNum(phone) {
 	// 정규 표현식이라는 의미 : 변수 앞에 reg

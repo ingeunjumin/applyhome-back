@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
+import com.ingeunjumin.project.service.AuthService;
 import com.ingeunjumin.project.service.UserService;
 import com.ingeunjumin.project.vo.AuthorityVO;
 import com.ingeunjumin.project.vo.UsersVO;
@@ -34,6 +35,8 @@ public class MembersController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private AuthService authService;
 
 	/**
 		 * @Method Name : callMembersPage
@@ -46,15 +49,17 @@ public class MembersController {
 	@GetMapping("/member")
 	public String callMembersPage(ModelMap modelMap,
 			@RequestParam("pageNum") int pageNum,
-			@RequestParam("pageSize") int pageSize) {
+			@RequestParam("pageSize") int pageSize
+			) {
 		log.info("[ Call /member - GET ]");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();// security에서 로그인한 사람에 정보를 체크 후 불러옴
 		UsersVO vo = (UsersVO) auth.getPrincipal(); // UsersVO 사용자 권한정보가 저장된 vo
 		List<AuthorityVO> list = userService.getAuth(vo.getUserId());// 사용자 권한 조회
 		vo.setAuthorities(list);// 사용자 권한 vo에 set
 		
-		List<Map<String, Object>> list1 = userService.getUsersAllList(pageNum,pageSize);
-		PageInfo<Map<String, Object>> pageInfo = new PageInfo<Map<String, Object>>(list1);
+		List<UsersVO> list1 = userService.getUsersAllList(pageNum,pageSize);
+		PageInfo<UsersVO> pageInfo = new PageInfo<UsersVO>(list1);
+		
 		
 		modelMap.addAttribute("pageHelper", pageInfo);
 		modelMap.addAttribute("name", vo.getUsername());
@@ -114,5 +119,6 @@ public class MembersController {
 		
 		return "member";
 	}
+
 	
 }

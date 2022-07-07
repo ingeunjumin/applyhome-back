@@ -3,6 +3,8 @@ package com.ingeunjumin.project.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,13 +30,15 @@ public class UserService {
 		usersVO.setUserPassword(password); // 암호화된 패스워드 set
 		int rows = usersMapper.insertUser(usersVO);
 		if(rows > 0) {
-			int rootRoleId = 3;
+			int rootRoleId = 2;
 			usersMapper.insertAuth(usersVO.getUserNo(), rootRoleId);
 		}
 		return rows;
 	}
 	
-	public List<Map<String,Object>> getUsersAllList(int pageNum,int pageSize) {
+	
+	
+	public List<UsersVO> getUsersAllList(int pageNum,int pageSize) {
 		
 		PageHelper.startPage(pageNum, pageSize);
 		
@@ -63,4 +67,5 @@ public class UserService {
 		
 		return usersMapper.selectSearchUsers(search);
 	}
+	
 }

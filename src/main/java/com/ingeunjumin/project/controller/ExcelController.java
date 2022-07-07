@@ -37,4 +37,24 @@ public class ExcelController {
 		response.getOutputStream().close();
 
 	}
+	
+	
+	@GetMapping("/excel/members")
+	public void downloadMemberExcelFile(HttpServletResponse response) throws Exception {
+		String today = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(new Date());
+		String title = "인근주민_사용자_정보";
+
+		// 엑셀 파일을 보내겠다.
+		response.setContentType("ms-vnd/excel");
+		// 엑셀 파일 이름 수정
+		response.setHeader("Content-Disposition",
+				"attachment;filename=" + URLEncoder.encode(today + "_" + title, "UTF-8") + ".xls");
+		Workbook workBook = excelService.makeMembersExcelForm();
+		workBook.write(response.getOutputStream());
+		workBook.close();
+
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
+
+	}
 }
