@@ -32,6 +32,15 @@ public class ApartmentsController {
 	@Autowired
 	private ApartmentsService apartmentsService;
 
+	/**
+	 * @param map
+	 * @param pageNum
+	 * @param pageSize
+	 * @return	"apartments.jsp"
+	 * @author : In Seok
+	 * @Date : 2022. 7. 8.
+	 * comment : 
+	 */
 	@GetMapping("apartments")
 	public String callApartmentsPage(ModelMap map, @RequestParam("pageNum") int pageNum,
 			@RequestParam("pageSize") int pageSize) {
@@ -46,7 +55,7 @@ public class ApartmentsController {
 
 	/**
 	 * @param apartmentNo
-	 * @return
+	 * @return	ApartmentsVO
 	 * @author : In Seok
 	 * @Date : 2022. 6. 30. comment : 아파트번호 클릭시 apartmentsNo넘에 맞는 정보 출력
 	 */
@@ -60,7 +69,7 @@ public class ApartmentsController {
 	/**
 	 * @param apartmentsNo
 	 * @param vo
-	 * @return
+	 * @return	int
 	 * @author : In Seok
 	 * @Date : 2022. 6. 29. comment : 업데이트
 	 */
@@ -72,10 +81,10 @@ public class ApartmentsController {
 
 	/**
 	 * @param map
-	 * @param writer
+	 * @param name
 	 * @param pageNum
 	 * @param pageSize
-	 * @return
+	 * @return	"apartments.jsp"
 	 * @author : In Seok
 	 * @Date : 2022. 6. 30. comment : 아파트 검색!!
 	 */

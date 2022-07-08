@@ -16,7 +16,7 @@
 			<!-- search -->
 			<div class="search">
 				<a href="/excel/apartments" class="excel-btn">엑셀 다운로드</a> <label>
-					<input id="searchBar" type="text" placeholder="검색어 입력..." /> <input
+					<input id="searchBar" type="text" placeholder="아파트 이름 입력..." /> <input
 					id="searchBarHidden" type="hidden" value="${search}" />
 				</label>
 			</div>

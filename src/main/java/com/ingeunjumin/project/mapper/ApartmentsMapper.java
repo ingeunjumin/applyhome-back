@@ -11,7 +11,7 @@ import com.ingeunjumin.project.vo.ApartmentsVO;
 public interface ApartmentsMapper {
 	
 	/**
-	 * @return
+	 * @return	List<ApartmentsVO>
 	 * @author : In Seok
 	 * @Date : 2022. 6. 29.
 	 * comment : Apartments 테이블 게시물가져오기
@@ -19,7 +19,8 @@ public interface ApartmentsMapper {
 	public List<ApartmentsVO> ApartmentsAllList();
 	
 	/**
-	 * @return
+	 * @param apartmentsNo
+	 * @return	ApartmentsVO
 	 * @author : In Seok
 	 * @Date : 2022. 6. 29.
 	 * comment : select 컬럼정보 보내기
@@ -28,7 +29,7 @@ public interface ApartmentsMapper {
 	
 	/**
 	 * @param vo
-	 * @return
+	 * @return	int
 	 * @author : In Seok
 	 * @Date : 2022. 6. 29.
 	 * comment : 아파트업데이트
@@ -37,7 +38,7 @@ public interface ApartmentsMapper {
 	
 	/**
 	 * @param studentsName
-	 * @return
+	 * @return	List<ApartmentsVO>
 	 * @author : In Seok
 	 * @Date : 2022. 6. 29.
 	 * comment : 아파트 검색 리스트

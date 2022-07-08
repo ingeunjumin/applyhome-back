@@ -19,7 +19,7 @@ public class ApartmentsService {
 	/**
 	 * @param pageNum
 	 * @param pageSize
-	 * @return
+	 * @return	List<ApartmentsVO>
 	 * @author : In Seok
 	 * @Date : 2022. 6. 29.
 	 * comment : 게시물 가져오기 &  페이징처리
@@ -29,11 +29,13 @@ public class ApartmentsService {
 		return apartmentsMapper.ApartmentsAllList();
 	}
 	
+
 	/**
-	 * @return
+	 * @param apartmentsNo
+	 * @return ApartmentsVO
 	 * @author : In Seok
-	 * @Date : 2022. 6. 29.
-	 * comment : 게시물 보내기
+	 * @Date : 2022. 7. 8.
+	 * comment : 
 	 */
 	public ApartmentsVO getSelectApartmaents(int apartmentsNo){
 		return apartmentsMapper.SelectApartments(apartmentsNo);
@@ -42,7 +44,7 @@ public class ApartmentsService {
 	/**
 	 * @param vo
 	 * @param apartment_no
-	 * @return
+	 * @return	int
 	 * @author : In Seok
 	 * @Date : 2022. 6. 29.
 	 * comment : 게시물수정
@@ -58,7 +60,7 @@ public class ApartmentsService {
 	 * @param apartmentsName
 	 * @param pageNum
 	 * @param pageSize
-	 * @return
+	 * @return	List<ApartmentsVO>
 	 * @author : In Seok
 	 * @Date : 2022. 6. 30.
 	 * comment : 게시물 서치
