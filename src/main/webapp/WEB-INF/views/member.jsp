@@ -253,14 +253,24 @@
 					
 			}
 //특정 계정 수정 중 input값 체크 구간 start
-			// 빈칸 여부 확인 start	
-			if(name != "" && userId != "" && phone != "" && email != "" && address != "" && postalCode != ""){// 빈값 여부 확인
+	// 빈칸 여부 확인 start	
+			if(name !== "" && userId !=="" && phone !== "" && email !== "" && address !== "" && postalCode !== ""){// 빈값 여부 확인
 			}else{
 				alert("정보를 입력해주세요!")
 				return false;
-			}// 빈칸 여부 확인 end	
-		
-			// 비밀번호 확인 start
+			}
+	// 빈칸 여부 확인 end	
+			
+	// 비밀번호 길이 확인 start
+			if(password !== "" && userPassword !== ""){
+				if(password.length < 6 && userPassword.length < 6){
+					alert("비밀번호 길이는 6글자 이상 작성해주세요!")
+					return false;
+				}
+			}
+	// 비밀번호 길이 확인 end
+			
+	// 비밀번호 확인 start
 			if(password == userPassword){
 				$('#confirmPassword').css('color','green');
 			}else{
@@ -268,9 +278,10 @@
 				$('#confirmPassword').css('color','red');
 				$('#confirmPassword').focus();
 				return false;
-			} // 비밀번호 확인 end
+			} 
+	// 비밀번호 확인 end
 			
-			// 이메일 정규 표현식 start
+	// 이메일 정규 표현식 start
 			if (regEmail.test(email) === true) {// 이메일 정규 표현식.test(email) === true
 		    	console.log("email OK!")
 		   	}
@@ -278,26 +289,37 @@
 				alert('이메일 형식이 아닙니다.');
 				$('#email').focus();
 			    return false;
-			}// 이메일 정규 표현식 end
+			}
+	// 이메일 정규 표현식 end
 			
-			// 휴대폰번호 정규 표현식 start
+	// 휴대폰번호 정규 표현식 start
 			if (regPhone.test(phone) === true) {// 휴대폰번호 정규 표현식
 			   	console.log("휴대폰 OK!")
 			}else{
 			   alert('휴대폰번호 형식이 아닙니다.');
 			   $('#phone').focus();
 			   return false;
-			}// 휴대폰번호 정규 표현식 end	
+			}
+	// 휴대폰번호 정규 표현식 end	
 			
-			// 체크 여부 확인 start
+	//상세주소 확인 start
+			if(address !== "" && postalCode !== ""){
+				alert('상세주소를 입력해주세요!')
+				$('#detailAddress').focus();
+				return false;
+			}
+	//상세주소 확인 end
+			
+	// 체크 여부 확인 start
 			if($('#checkbox').is(':checked')){ // 체크 여부 확인
 			}else{
 				alert("동의 항목을 체크해주세요!")
 				return false;
-			}// 체크 여부 확인 end
+			}
+	// 체크 여부 확인 end
 			
 			if(confirm("수정하시겠습니까?")){
-				//ajax start
+	//ajax start
 				$.ajax({
 					url : '/member/update',
 					type : 'PATCH',
@@ -309,10 +331,11 @@
 							console.log(response)
 							}
 						}
-					}) //ajax end
+					}) 
+	//ajax end
 				alert("수정되었습니다.")
 			}
-//특정 계정 수정 중 input값 체크 구간 end
+//특정 계정 수정 input값 체크 구간 end
 		}//userUpdate() end
 		
 // select user search
@@ -322,10 +345,9 @@
 			// keycode = 13 은 enter를 의미
 			if (key.keyCode == 13) {
 				var search = $('#searchBar').val().trim(); 
-				if (search != '') {
+				if (search !== "") {
 					location.href = '/member/search?search='+search+'&pageNum='+pageNum+'&pageSize='+pageSize
 				}
-				
 			}
 		});
 	
@@ -433,6 +455,7 @@
                 //$(".textarea").val(data.zonecode+', '+fullRoadAddr);
                 $(".textarea").val(fullRoadAddr);
                 $("#postalCode").val(data.zonecode);
+                $('#detailAddress').focus();
                 
                 // 계정 클릭시 입력된 주소 clear, 데이터에 주소 들어가면 지우기
 				$('tr').click(function(){
