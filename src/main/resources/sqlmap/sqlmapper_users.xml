@@ -41,9 +41,9 @@
 	<select id="selectUsersAll" resultType="UsersVO">
 		SELECT
 			u.user_no AS userNo,
-			u.user_password AS userPassword,
-			u.user_id AS userId ,
+			u.user_id AS userId,
 			u.user_name AS name,
+			u.user_password AS userPassword,
 			u.phone,
 			u.email,
 			DATE_FORMAT(u.create_at, "%Y-%m-%d") AS createAt,

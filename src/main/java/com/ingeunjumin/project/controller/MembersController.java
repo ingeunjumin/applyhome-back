@@ -1,7 +1,10 @@
 package com.ingeunjumin.project.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -59,7 +62,6 @@ public class MembersController {
 		
 		List<UsersVO> list1 = userService.getUsersAllList(pageNum,pageSize);
 		PageInfo<UsersVO> pageInfo = new PageInfo<UsersVO>(list1);
-		
 		
 		modelMap.addAttribute("pageHelper", pageInfo);
 		modelMap.addAttribute("name", vo.getUsername());

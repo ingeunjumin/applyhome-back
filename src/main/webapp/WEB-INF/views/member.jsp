@@ -110,7 +110,7 @@
 							<p>
 							<div class="alert" id="passwordStrength"></div>
 							</p>
-							<div class="inputfield">
+							<div class="inputfield" id="selectBoxDiv">
 								<label>Authority</label>
 								<div class="custom_select">
 									<select>
@@ -120,6 +120,7 @@
 										<option value="admin">USER</option>
 									</select>
 								</div>
+								<input id="userAuth" type="hidden" value="${auth.get(0).getRoleCode()}">
 							</div>
 							<div class="inputfield">
 								<label>Email Address</label> <input type="text" class="input"
@@ -182,6 +183,7 @@
 	<script defer src="/resources/static/js/theme.js"></script>
 	<script type="text/javascript">
 	passwordSecurity();// 비밀번호 보안 메소드 호출
+	selectBoxDisplay();// userAuth 로그인 계정의 권한으로 selectBox 보여줄지 말지 정하는 함수
 	
 // 검색창 입력 값이 있으면 검색된 사용자를 보여줄지 전체 사용자를 보여줄지 함수
 	function getUserDataList(pageNum, pageSize){
@@ -190,7 +192,17 @@
 			if($('#keyword').val() != null){
 				URL = '/member/search?search='+search+'&pageNum='+pageNum+'&pageSize='+pageSize; 
 			}
-				location.href = URL
+				location.href = URL;
+	}
+	
+	
+// userAuth 로그인 계정의 권한으로 selectBox 보여줄지 말지 정하는 함수
+// ex) root => selectBox (O) , admin or user => selectBox (X)
+	function selectBoxDisplay(){
+		var userAuth = $('#userAuth').val();
+		if(userAuth !== "ROOT"){
+			$('#selectBoxDiv').css("display","none")
+		}
 	}
 	
 //특정 계정 정보 가져오기
