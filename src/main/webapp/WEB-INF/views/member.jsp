@@ -254,7 +254,7 @@
 			}
 //특정 계정 수정 중 input값 체크 구간 start
 	// 빈칸 여부 확인 start	
-			if(name !== "" && userId !=="" && phone !== "" && email !== "" && address !== "" && postalCode !== ""){// 빈값 여부 확인
+			if(name !== "" && userId !=="" && phone !== "" && email !== "" && address !== "" && postalCode !== "" && detailAddress!== ""){// 빈값 여부 확인
 			}else{
 				alert("정보를 입력해주세요!")
 				return false;
@@ -301,14 +301,6 @@
 			   return false;
 			}
 	// 휴대폰번호 정규 표현식 end	
-			
-	//상세주소 확인 start
-			if(address !== "" && postalCode !== ""){
-				alert('상세주소를 입력해주세요!')
-				$('#detailAddress').focus();
-				return false;
-			}
-	//상세주소 확인 end
 			
 	// 체크 여부 확인 start
 			if($('#checkbox').is(':checked')){ // 체크 여부 확인
